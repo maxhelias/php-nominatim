@@ -1,0 +1,29 @@
+{
+    "name": "maxh/php-nominatim",
+    "description": "Wrapper for Nominatim API",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Maxime Helias",
+            "email": "maximehelias16@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": ">=5.4.0",
+        "guzzlehttp/guzzle": "^6.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.4",
+        "mockery/mockery": "@stable",
+        "phpdocumentor/phpdocumentor": "^2.9"
+    },
+    "autoload": {
+        "psr-4": { "maxh\\Nominatim\\": "src"}
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "maxh\\Nominatim\\Tests\\": "tests/"
+        }
+    }
+}

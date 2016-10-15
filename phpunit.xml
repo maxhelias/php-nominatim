@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit colors="true">
+	<testsuite name="Nominatim API wrapper">
+		<directory>tests</directory>
+	</testsuite>
+</phpunit>
