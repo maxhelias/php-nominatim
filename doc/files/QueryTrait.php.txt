@@ -1,0 +1,98 @@
+<?php
+/**
+ * Trait QueryTrait
+ *
+ * @package      maxh\nominatim
+ * @author       Maxime Hélias <maximehelias16@gmail.com>
+ */
+
+namespace maxh\Nominatim;
+
+/**
+ * Trait implementing functionality common to requests nominatim.
+ */
+trait QueryTrait
+{
+	/**
+	 * Contain the path of the request
+	 * @var string
+	 */
+	protected $path;
+
+	/**
+	 * Contain the query for request
+	 * @var array
+	 */
+	protected $query = [];
+
+	/**
+	 * Contain the format for decode data returning by the request
+	 * @var string
+	 */
+	protected $format;
+
+	/**
+	 * Get path
+	 * @return string
+	 */
+	public function getPath()
+	{
+		return $this->path;
+	}
+
+	/**
+	 * Get query
+	 * @return array
+	 */
+	public function getQuery()
+	{
+		return $this->query;
+	}
+
+	/**
+	 * Get format
+	 * @return string
+	 */
+	public function getFormat()
+	{
+		return $this->format;
+	}
+
+	/**
+	 * Set path
+	 * @param string $path Name's path of the service
+	 */
+	private function setPath($path)
+	{
+		$this->path = $path;
+	}
+
+	/**
+	 * Set query
+	 * @param array $query Parameter of the query
+	 */
+	private function setQuery($query = array())
+	{
+		$this->query = $query;
+	}
+
+	/**
+	 * Set format
+	 * @param string $format Format returning by the response
+	 */
+	private function setFormat($format)
+	{
+		$this->format = $format;
+	}
+
+	/**
+	 * Returns the URL-encoded query.
+	 *
+	 * @return string
+	 */
+	public function getQueryString()
+	{
+		return http_build_query($this->query);
+	}
+}
+

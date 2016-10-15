@@ -1,0 +1,347 @@
+<?php
+/**
+ * Class Search
+ *
+ * @package      maxh\nominatim
+ * @author       Maxime Hélias <maximehelias16@gmail.com>
+ */
+
+namespace maxh\Nominatim;
+
+use maxh\Nominatim\Exceptions\InvalidParameterException;
+
+/**
+ * Searches a OSM nominatim service for places.
+ *
+ * @see http://wiki.openstreetmap.org/wiki/Nominatim
+ */
+class Search implements QueryInterface
+{
+	use QueryTrait;
+
+	 /**
+	 * Output format accepted
+	 * @var array
+	 */
+	public $accepteFormat = ['html', 'xml', 'json', 'jsonv2'];
+
+	/**
+	 * Output polygon format accepted
+	 * @var array
+	 */
+	public $polygon = ['geojson', 'kml', 'svg', 'text'];
+
+	/**
+	 * Constuctor
+	 * @param array $query Default value for this query
+	 */
+	public function __construct(array $query = [])
+	{
+		if(!isset($query['format']))
+		{
+			//Default format
+			$query['format'] = 'json';
+		}
+
+		$this->setPath('search');
+		$this->setQuery($query);
+		$this->setFormat($query['format']);
+
+	}
+
+	// -- Builder methods ------------------------------------------------------
+
+	/**
+	 * Format returning by the request.
+	 *
+	 * @param  string $format The output format for the request
+	 *
+	 * @return maxh\Nominatim\Search
+	 * @throws maxh\Nominatim\Exceptions\InvalidParameterException if format is not supported
+	 */
+	public function format($format)
+	{
+		$format = strtolower($format);
+
+		if(in_array($format, $this->accepteFormat))
+		{
+			$this->query['format'] = $format;
+			$this->setFormat($format);
+
+			return $this;
+		}
+
+		throw new InvalidParameterException("Format is not supported");
+	}
+
+	/**
+	 * Preferred language order for showing search results, overrides the value
+	 * specified in the "Accept-Language" HTTP header. Either uses standard
+	 * rfc2616 accept-language string or a simple comma separated list of
+	 * language codes.
+	 *
+	 * @param  string $language         Preferred language order for showing search results, overrides the value specified in the "Accept-Language" HTTP header.
+	 * Either uses standard rfc2616 accept-language string or a simple comma separated list of language codes.
+	 *
+	 * @return maxh\Nominatim\Search
+	 */
+	public function language($language)
+	{
+		$this->query['accept-language'] = $language;
+
+		return $this;
+	}
+
+	/**
+	 * Query string to search for.
+	 *
+	 * @param  string $query The query
+	 *
+	 * @return maxh\Nominatim\Search
+	 */
+	public function query($query)
+	{
+		$this->query['q'] = $query;
+
+		return $this;
+	}
+
+	/**
+	 * Street to search for.
+	 *
+	 * Do not combine with query().
+	 *
+	 * @param  string $street The street
+	 *
+	 * @return maxh\Nominatim\Search
+	 */
+	public function street($street)
+	{
+		$this->query['street'] = $street;
+
+		return $this;
+	}
+
+	/**
+	 * City to search for (experimental).
+	 *
+	 * Do not combine with query().
+	 * 
+	 * @param  string $city The city
+	 *
+	 * @return maxh\Nominatim\Search
+	 */
+	public function city($city)
+	{
+		$this->query['city'] = $city;
+
+		return $this;
+	}
+
+	/**
+	 * County to search for.
+	 *
+	 * Do not combine with query().
+	 * 
+	 * @param  string $county The county
+	 *
+	 * @return maxh\Nominatim\Search
+	 */
+	public function county($county)
+	{
+		$this->query['county'] = $county;
+
+		return $this;
+	}
+
+	/**
+	 * State to search for.
+	 *
+	 * Do not combine with query().
+	 *
+	 * @param  string $state The state
+	 *
+	 * @return maxh\Nominatim\Search
+	 */
+	public function state($state)
+	{
+		$this->query['state'] = $state;
+
+		return $this;
+	}
+
+	/**
+	 * Country to search for.
+	 *
+	 * Do not combine with query().
+	 *
+	 * @param  string $country The country
+	 *
+	 * @return maxh\Nominatim\Search
+	 */
+	public function country($country)
+	{
+		$this->query['country'] = $country;
+
+		return $this;
+	}
+
+	/**
+	 * Postal code to search for (experimental).
+	 *
+	 * Do not combine with query().
+	 *
+	 * @param  integer $postalCode The postal code
+	 *
+	 * @return maxh\Nominatim\Search
+	 */
+	public function postalCode($postalCode)
+	{
+		$this->query['postalcode'] = $postalCode;
+
+		return $this;
+	}
+
+	/**
+	 * Limit search results to a specific country (or a list of countries).
+	 *
+	 * <countrycode> should be the ISO 3166-1alpha2 code, e.g. gb for the United
+	 * Kingdom, de for Germany, etc.
+	 *
+	 * @param  string $countrycode The country code
+	 *
+	 * @return maxh\Nominatim\Search
+	 * @throws maxh\Nominatim\Exceptions\InvalidParameterException if country code is invalid
+	 */
+	public function countryCode($countrycode)
+	{
+		if (!preg_match('/^[a-z]{2}$/i', $countrycode)) {
+			throw new InvalidParameterException("Invalid country code: \"$countrycode\"");
+		}
+
+		if (!isset($this->query['countrycode'])) {
+			$this->query['countrycode'] = $countrycode;
+		} else {
+			$this->query['countrycode'] .= "," . $countrycode;
+		}
+
+		return $this;
+	}
+
+	/**
+	 * The preferred area to find search results
+	 * 
+	 * @param  string $left   Left of the area
+	 * @param  string $top	Top of the area
+	 * @param  string $right  Right of the area
+	 * @param  string $bottom Bottom of the area
+	 * 
+	 * @return maxh\Nominatim\Search
+	 */
+	public function viewBox($left, $top, $right, $bottom)
+	{
+		$this->query['viewbox'] = $left . ',' . $top . ',' . $right . ',' . $bottom;
+
+		return $this;
+	}
+
+	/**
+	* Include a breakdown of the address into elements.
+	*
+	* @param  boolean $details
+	* 
+	* @return maxh\Nominatim\Search
+	*/
+	public function addressDetails($details = true)
+	{
+		$this->query['addressdetails'] = $details ? "1" : "0";
+
+		return $this;
+	}
+
+	/**
+	 * If you do not want certain openstreetmap objects to appear in the search results.
+	 * 
+	 * @return maxh\Nominatim\Search
+	 * @throws maxh\Nominatim\Exceptions\InvalidParameterException  if no place id
+	 */
+	public function exludePlaceIds()
+	{
+		$args = func_get_args();
+
+		if(count($args) > 0)
+		{
+			$this->query['exclude_place_ids'] = implode(', ', $args);
+
+			return $this;
+		}
+
+		throw new InvalidParameterException("No place id in parameter");
+	}
+
+	/**
+	 * Limit the number of returned results
+	 * 
+	 * @param  integer $limit 
+	 * 
+	 * @return maxh\Nominatim\Search
+	 */
+	public function limit($limit)
+	{
+		$this->query['limit'] = strval($limit);
+
+		return $this;
+	}
+
+	/**
+	 * Output format for the geometry of results
+	 * 
+	 * @param  string $polygon
+	 * 
+	 * @return maxh\Nominatim\Search
+	 * @throws maxh\Nominatim\Exceptions\InvalidParameterException  if polygon format is not supported
+	 */
+	public function polygon($polygon)
+	{
+		if(in_array($polygon, $this->polygon))
+		{
+			$this->query['polygon_'.$polygon] = "1";
+
+			return $this;
+		}
+
+		throw new InvalidParameterException("This polygon format is not supported");
+	}
+
+	/**
+	 * Include additional information in the result if available
+	 * 
+	 * @param  boolean $tags 
+	 * 
+	 * @return maxh\Nominatim\Search
+	 */
+	public function extraTags($tags = true)
+	{
+		$this->query['extratags'] = $tags ? "1" : "0";
+
+		return $this;
+	}
+
+	/**
+	 * Include a list of alternative names in the results.
+	 * These may include language variants, references, operator and brand.
+	 * 
+	 * @param  boolean $details 
+	 * 
+	 * @return maxh\Nominatim\Search
+	 */
+	public function nameDetails($details = true)
+	{
+		$this->query['namedetails'] = $details ? "1" : "0";
+
+		return $this;
+	}
+
+
+}
+
