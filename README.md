@@ -52,3 +52,23 @@ $result = $nominatim->find($reverse);
 
 By default, the output format of the request is json and the wrapper return a array of results. 
 It can be also xml, but the wrapper return a object [SimpleXMLElement](http://php.net/manual/fr/simplexml.examples-basic.php)
+
+How to customize HTTP client configuration?
+-------------------------------------------
+
+You can inject your own HTTP client with your specific configuration. For instance, you can edit user-agent and timeout for all your requests
+
+```php
+<?php
+use maxh\Nominatim\Nominatim;
+use GuzzleHttp\Client;
+
+$client = new Client();
+$client->setDefaultOption('timeout', 1);
+$client->setDefaultOption('headers', array('User-Agent' => 'api_client') );
+
+$url = "http://nominatim.openstreetmap.org/";
+$nominatim = new Nominatim($url, $client);
+
+?>
+```
