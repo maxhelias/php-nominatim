@@ -4,8 +4,6 @@ use maxh\Nominatim\Nominatim;
 use maxh\Nominatim\Search;
 use maxh\Nominatim\Reverse;
 
-use Mockery as m;
-
 
 class NominatimTest extends PHPUnit_Framework_TestCase
 {
@@ -34,14 +32,8 @@ class NominatimTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals($reverse, $baseReverse);
 
 		//Testing Client
-		$guzzle = m::mock("GuzzleHttp\\Client");
-		$this->assertSame($guzzle, $instance->getClient());
+		$this->assertInstanceOf("GuzzleHttp\\Client", $instance->getClient());
 
-	}
-
-	public function testInvalidMethod(){
-		$n = new Nominatim($this->url);
-		$n->foo();
 	}
 
 }
