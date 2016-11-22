@@ -1,6 +1,8 @@
 Wrapper Nominatim API
 ================
 
+[![Build Status](https://travis-ci.org/maxhelias/php-nominatim.svg?branch=master)](https://travis-ci.org/maxhelias/php-nominatim)
+
 A simple interface to OSM Nominatim.
 
 
