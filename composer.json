@@ -1,6 +1,8 @@
 {
     "name": "maxh/php-nominatim",
+    "type": "library",
     "description": "Wrapper for Nominatim API",
+    "keywords": ["geo", "geolocation", "open street map", "osm", "nominatim", "web service"],
     "license": "MIT",
     "authors": [
         {
