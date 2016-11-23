@@ -1,6 +1,8 @@
 Wrapper Nominatim API
 ================
 
+[![Join the chat at https://gitter.im/maxhelias-php-nominatim/Lobby](https://badges.gitter.im/maxhelias-php-nominatim/Lobby.svg)](https://gitter.im/maxhelias-php-nominatim/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 [![Build Status](https://travis-ci.org/maxhelias/php-nominatim.svg?branch=master)](https://travis-ci.org/maxhelias/php-nominatim)
 
 A simple interface to OSM Nominatim.
