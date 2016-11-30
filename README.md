@@ -76,3 +76,8 @@ $nominatim = new Nominatim($url, $client);
 
 ?>
 ```
+
+Note
+----
+
+This projet was inpired by the [Opendi/nominatim](https://github.com/opendi/nominatim) project with more features like reverse query, support of the xml format, customize HTTP client and more on which i work.
