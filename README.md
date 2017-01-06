@@ -111,7 +111,7 @@ Note
 
 This projet was inpired by the [Opendi/nominatim](https://github.com/opendi/nominatim) project with more features like reverse query, support of the xml format, customize HTTP client and more on which i work.
 
-Recall Usage Policy Nominatim (if you use the service : "http://nominatim.openstreetmap.org/")
+Recall Usage Policy Nominatim 
 -----------------------------
 
-For the usage policy of nominatim.openstreetmap.org, please see [Nominatim usage policy](http://wiki.openstreetmap.org/wiki/Nominatim_usage_policy).
+If you use the service : [http://nominatim.openstreetmap.org/](http://nominatim.openstreetmap.org/), please see [Nominatim usage policy](http://wiki.openstreetmap.org/wiki/Nominatim_usage_policy).
