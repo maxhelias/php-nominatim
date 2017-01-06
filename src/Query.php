@@ -52,7 +52,7 @@ class Query implements QueryInterface
 	 */
 	public function __construct(array $query = [])
 	{
-		if(!isset($query['format']))
+		if (!isset($query['format']))
 		{
 			//Default format
 			$query['format'] = 'json';
@@ -77,7 +77,7 @@ class Query implements QueryInterface
 	{
 		$format = strtolower($format);
 
-		if(in_array($format, $this->accepteFormat))
+		if (in_array($format, $this->accepteFormat))
 		{
 			$this->setFormat($format);
 
@@ -144,9 +144,9 @@ class Query implements QueryInterface
 	 */
 	public function polygon($polygon)
 	{
-		if(in_array($polygon, $this->polygon))
+		if (in_array($polygon, $this->polygon))
 		{
-			$this->query['polygon_'.$polygon] = "1";
+			$this->query['polygon_' . $polygon] = "1";
 
 			return $this;
 		}

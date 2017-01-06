@@ -197,7 +197,7 @@ class Search extends Query
 	{
 		$args = func_get_args();
 
-		if(count($args) > 0)
+		if (count($args) > 0)
 		{
 			$this->query['exclude_place_ids'] = implode(', ', $args);
 
