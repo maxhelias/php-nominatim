@@ -8,6 +8,8 @@
 
 namespace maxh\Nominatim;
 
+use maxh\Nominatim\Exceptions\InvalidParameterException;
+
 /**
  * Class implementing functionality common to requests nominatim.
  */
@@ -30,6 +32,12 @@ class Query implements QueryInterface
 	 * @var string
 	 */
 	protected $format;
+
+	/**
+	 * Output format accepted
+	 * @var array
+	 */
+	protected $accepteFormat = ['xml', 'json'];
 
 	/**
 	 * Output polygon format accepted
@@ -71,7 +79,6 @@ class Query implements QueryInterface
 
 		if(in_array($format, $this->accepteFormat))
 		{
-			$this->query['format'] = $format;
 			$this->setFormat($format);
 
 			return $this;
@@ -219,6 +226,8 @@ class Query implements QueryInterface
 	 */
 	protected function setFormat($format)
 	{
+		$this->query['format'];
+		
 		$this->format = $format;
 	}
 

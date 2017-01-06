@@ -19,12 +19,6 @@ class Reverse extends Query
 {
 
 	/**
-	 * Output format accepted
-	 * @var array
-	 */
-	public $accepteFormat = ['xml', 'json'];
-
-	/**
 	 * OSM Type accepted (Node/Way/Relation)
 	 * @var array
 	 */
@@ -40,7 +34,6 @@ class Reverse extends Query
 		parent::__construct();
 
 		$this->setPath('reverse');
-
 	}
 
 	// -- Builder methods ------------------------------------------------------

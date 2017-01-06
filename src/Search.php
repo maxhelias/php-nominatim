@@ -18,13 +18,6 @@ use maxh\Nominatim\Exceptions\InvalidParameterException;
 class Search extends Query
 {
 
-	 /**
-	 * Output format accepted
-	 * @var array
-	 */
-	public $accepteFormat = ['html', 'xml', 'json', 'jsonv2'];
-
-
 	/**
 	 * Constuctor
 	 * @param array $query Default value for this query
@@ -35,6 +28,8 @@ class Search extends Query
 
 		$this->setPath('search');
 
+		$this->accepteFormat[] = 'html';
+		$this->accepteFormat[] = 'jsonv2';
 	}
 
 	// -- Builder methods ------------------------------------------------------
