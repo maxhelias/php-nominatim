@@ -76,21 +76,18 @@ class Nominatim
 				'timeout'			 => 30,
 				'connection_timeout' => 5,
 			]);
-		} 
-		else if ($http_client instanceof Client)
+		} else if ($http_client instanceof Client)
 		{
 			$application_url_client = $http_client->getConfig('base_uri');
 
 			if (!isset($application_url_client))
 			{
 				$http_client->setDefaultOption('base_uri', $application_url);
-			}
-			else if ($application_url_client != $application_url)
+			} else if ($application_url_client != $application_url)
 			{
 				throw new InvalidParameterException("http_client parameter has a differente url to application_url parameter");
 			}
-		}
-		else
+		} else
 		{
 			throw new InvalidParameterException("http_client parameter must be a GuzzleHttp\Client object or empty");
 		}

@@ -246,9 +246,7 @@ class Query implements QueryInterface
 	 */
 	protected function setFormat($format)
 	{
-		$this->query['format'];
-
-		$this->format = $format;
+		$this->format = $this->query['format'] = $format;
 	}
 
 }
