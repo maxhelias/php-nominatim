@@ -15,21 +15,8 @@ use maxh\Nominatim\Exceptions\InvalidParameterException;
  *
  * @see http://wiki.openstreetmap.org/wiki/Nominatim
  */
-class Search implements QueryInterface
+class Search extends Query
 {
-	use QueryTrait;
-
-	 /**
-	 * Output format accepted
-	 * @var array
-	 */
-	public $accepteFormat = ['html', 'xml', 'json', 'jsonv2'];
-
-	/**
-	 * Output polygon format accepted
-	 * @var array
-	 */
-	public $polygon = ['geojson', 'kml', 'svg', 'text'];
 
 	/**
 	 * Constuctor
@@ -37,60 +24,15 @@ class Search implements QueryInterface
 	 */
 	public function __construct(array $query = [])
 	{
-		if(!isset($query['format']))
-		{
-			//Default format
-			$query['format'] = 'json';
-		}
+		parent::__construct();
 
 		$this->setPath('search');
-		$this->setQuery($query);
-		$this->setFormat($query['format']);
 
+		$this->accepteFormat[] = 'html';
+		$this->accepteFormat[] = 'jsonv2';
 	}
 
 	// -- Builder methods ------------------------------------------------------
-
-	/**
-	 * Format returning by the request.
-	 *
-	 * @param  string $format The output format for the request
-	 *
-	 * @return maxh\Nominatim\Search
-	 * @throws maxh\Nominatim\Exceptions\InvalidParameterException if format is not supported
-	 */
-	public function format($format)
-	{
-		$format = strtolower($format);
-
-		if(in_array($format, $this->accepteFormat))
-		{
-			$this->query['format'] = $format;
-			$this->setFormat($format);
-
-			return $this;
-		}
-
-		throw new InvalidParameterException("Format is not supported");
-	}
-
-	/**
-	 * Preferred language order for showing search results, overrides the value
-	 * specified in the "Accept-Language" HTTP header. Either uses standard
-	 * rfc2616 accept-language string or a simple comma separated list of
-	 * language codes.
-	 *
-	 * @param  string $language         Preferred language order for showing search results, overrides the value specified in the "Accept-Language" HTTP header.
-	 * Either uses standard rfc2616 accept-language string or a simple comma separated list of language codes.
-	 *
-	 * @return maxh\Nominatim\Search
-	 */
-	public function language($language)
-	{
-		$this->query['accept-language'] = $language;
-
-		return $this;
-	}
 
 	/**
 	 * Query string to search for.
@@ -246,20 +188,6 @@ class Search implements QueryInterface
 	}
 
 	/**
-	* Include a breakdown of the address into elements.
-	*
-	* @param  boolean $details
-	* 
-	* @return maxh\Nominatim\Search
-	*/
-	public function addressDetails($details = true)
-	{
-		$this->query['addressdetails'] = $details ? "1" : "0";
-
-		return $this;
-	}
-
-	/**
 	 * If you do not want certain openstreetmap objects to appear in the search results.
 	 * 
 	 * @return maxh\Nominatim\Search
@@ -269,7 +197,7 @@ class Search implements QueryInterface
 	{
 		$args = func_get_args();
 
-		if(count($args) > 0)
+		if (count($args) > 0)
 		{
 			$this->query['exclude_place_ids'] = implode(', ', $args);
 
@@ -289,55 +217,6 @@ class Search implements QueryInterface
 	public function limit($limit)
 	{
 		$this->query['limit'] = strval($limit);
-
-		return $this;
-	}
-
-	/**
-	 * Output format for the geometry of results
-	 * 
-	 * @param  string $polygon
-	 * 
-	 * @return maxh\Nominatim\Search
-	 * @throws maxh\Nominatim\Exceptions\InvalidParameterException  if polygon format is not supported
-	 */
-	public function polygon($polygon)
-	{
-		if(in_array($polygon, $this->polygon))
-		{
-			$this->query['polygon_'.$polygon] = "1";
-
-			return $this;
-		}
-
-		throw new InvalidParameterException("This polygon format is not supported");
-	}
-
-	/**
-	 * Include additional information in the result if available
-	 * 
-	 * @param  boolean $tags 
-	 * 
-	 * @return maxh\Nominatim\Search
-	 */
-	public function extraTags($tags = true)
-	{
-		$this->query['extratags'] = $tags ? "1" : "0";
-
-		return $this;
-	}
-
-	/**
-	 * Include a list of alternative names in the results.
-	 * These may include language variants, references, operator and brand.
-	 * 
-	 * @param  boolean $details 
-	 * 
-	 * @return maxh\Nominatim\Search
-	 */
-	public function nameDetails($details = true)
-	{
-		$this->query['namedetails'] = $details ? "1" : "0";
 
 		return $this;
 	}

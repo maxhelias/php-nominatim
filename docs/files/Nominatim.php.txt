@@ -48,6 +48,11 @@ class Nominatim
 	 */
 	private $baseReverse;
 
+	/**
+	 * Template for new ones created by 'newLookup()' method.
+	 * @var Lookup
+	 */
+	private $baseLookup;
 
 	/**
 	 * Constructor
@@ -71,31 +76,30 @@ class Nominatim
 				'timeout'			 => 30,
 				'connection_timeout' => 5,
 			]);
-		} 
-		else if($http_client instanceof Client)
+		} else if ($http_client instanceof Client)
 		{
 			$application_url_client = $http_client->getConfig('base_uri');
 
-			if(!isset($application_url_client))
+			if (!isset($application_url_client))
 			{
 				$http_client->setDefaultOption('base_uri', $application_url);
-			}
-			else if($application_url_client != $application_url)
+			} else if ($application_url_client != $application_url)
 			{
 				throw new InvalidParameterException("http_client parameter has a differente url to application_url parameter");
 			}
-		}
-		else
+		} else
 		{
 			throw new InvalidParameterException("http_client parameter must be a GuzzleHttp\Client object or empty");
 		}
 
-		$this->application_url 	= $application_url;
-		$this->http_client 		= $http_client;
+		$this->application_url = $application_url;
+		$this->http_client = $http_client;
 
 		//Create base
 		$this->baseSearch = new Search();
 		$this->baseReverse = new Reverse();
+		$this->baseLookup = new Lookup();
+
 	}
 
 	/**
@@ -109,13 +113,23 @@ class Nominatim
 	}
 
 	/**
-	 * Returns a new search object based on the base search.
+	 * Returns a new search object based on the base reverse.
 	 *
-	 * @return Search
+	 * @return Reverse
 	 */
 	public function newReverse()
 	{
 		return clone $this->baseReverse;
+	}
+
+	/**
+	 * Returns a new search object based on the base lookup.
+	 * 
+	 * @return Lookup
+	 */
+	public function newLookup()
+	{
+		return clone $this->baseLookup;
 	}
 
 	/**
@@ -125,18 +139,18 @@ class Nominatim
 	 * @param  Request  $request  Request object from Guzzle
 	 * @param  ResponseInterface $response Interface response object from Guzzle
 	 * 
-	 * @return array|SimpleXMLElement
+	 * @return array|\SimpleXMLElement
 	 * @throws maxh\Nominatim\Exceptions\NominatimException if no format for decode
 	 */
 	private function decodeResponse($format, Request $request, ResponseInterface $response)
 	{
 
-		if($format == 'json')
+		if ($format == 'json')
 		{
 			return json_decode($response->getBody(), true);
 		}
 
-		if($format == 'xml')
+		if ($format == 'xml')
 		{
 			return new \SimpleXMLElement($response->getBody());
 		}
@@ -146,7 +160,7 @@ class Nominatim
 
 	/**
 	 * Runs the query and returns the result set from Nominatim.
-	 * @param  NominatimInterface $nRequest  The object request to send
+	 * @param  QueryInterface $nRequest  The object request to send
 	 * 
 	 * @return array                                        The decoded data returned from Nominatim
 	 * @throws \GuzzleHttp\Exception\ClientException 		if http request is an error
