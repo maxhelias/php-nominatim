@@ -48,7 +48,7 @@ class Reverse extends Query
 	 */
 	public function osmType($type)
 	{
-		if(in_array($type, $this->osmType))
+		if (in_array($type, $this->osmType))
 		{
 			$this->query['osm_type'] = $type;
 

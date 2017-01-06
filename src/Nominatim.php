@@ -72,15 +72,15 @@ class Nominatim
 				'connection_timeout' => 5,
 			]);
 		} 
-		else if($http_client instanceof Client)
+		else if ($http_client instanceof Client)
 		{
 			$application_url_client = $http_client->getConfig('base_uri');
 
-			if(!isset($application_url_client))
+			if (!isset($application_url_client))
 			{
 				$http_client->setDefaultOption('base_uri', $application_url);
 			}
-			else if($application_url_client != $application_url)
+			else if ($application_url_client != $application_url)
 			{
 				throw new InvalidParameterException("http_client parameter has a differente url to application_url parameter");
 			}
@@ -90,8 +90,8 @@ class Nominatim
 			throw new InvalidParameterException("http_client parameter must be a GuzzleHttp\Client object or empty");
 		}
 
-		$this->application_url 	= $application_url;
-		$this->http_client 		= $http_client;
+		$this->application_url = $application_url;
+		$this->http_client = $http_client;
 
 		//Create base
 		$this->baseSearch = new Search();
@@ -131,12 +131,12 @@ class Nominatim
 	private function decodeResponse($format, Request $request, ResponseInterface $response)
 	{
 
-		if($format == 'json')
+		if ($format == 'json')
 		{
 			return json_decode($response->getBody(), true);
 		}
 
-		if($format == 'xml')
+		if ($format == 'xml')
 		{
 			return new \SimpleXMLElement($response->getBody());
 		}
