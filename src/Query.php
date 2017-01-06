@@ -120,6 +120,41 @@ class Query implements QueryInterface
 	}
 
 	/**
+	 * If you are making large numbers of request please include a valid email address or alternatively include your email address as part of the User-Agent string.
+	 * This information will be kept confidential and only used to contact you in the event of a problem, see Usage Policy for more details.
+	 * 
+	 * @param  string $email Address mail
+	 * 
+	 * @return maxh\Nominatim\Query
+	 */
+	public function email($email)
+	{
+		$this->query['email'] = $email;
+
+		return $this;
+	}
+
+	/**
+	 * Output format for the geometry of results
+	 * 
+	 * @param  string $polygon
+	 * 
+	 * @return maxh\Nominatim\Query
+	 * @throws maxh\Nominatim\Exceptions\InvalidParameterException  if polygon format is not supported
+	 */
+	public function polygon($polygon)
+	{
+		if(in_array($polygon, $this->polygon))
+		{
+			$this->query['polygon_'.$polygon] = "1";
+
+			return $this;
+		}
+
+		throw new InvalidParameterException("This polygon format is not supported");
+	}
+
+	/**
 	 * Include additional information in the result if available
 	 * 
 	 * @param  boolean $tags 
@@ -144,21 +179,6 @@ class Query implements QueryInterface
 	public function nameDetails($details = true)
 	{
 		$this->query['namedetails'] = $details ? "1" : "0";
-
-		return $this;
-	}
-
-	/**
-	 * If you are making large numbers of request please include a valid email address or alternatively include your email address as part of the User-Agent string.
-	 * This information will be kept confidential and only used to contact you in the event of a problem, see Usage Policy for more details.
-	 * 
-	 * @param  string $email Address mail
-	 * 
-	 * @return maxh\Nominatim\Query
-	 */
-	public function email($email)
-	{
-		$this->query['email'] = $email;
 
 		return $this;
 	}
@@ -227,7 +247,7 @@ class Query implements QueryInterface
 	protected function setFormat($format)
 	{
 		$this->query['format'];
-		
+
 		$this->format = $format;
 	}
 

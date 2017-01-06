@@ -221,25 +221,5 @@ class Search extends Query
 		return $this;
 	}
 
-	/**
-	 * Output format for the geometry of results
-	 * 
-	 * @param  string $polygon
-	 * 
-	 * @return maxh\Nominatim\Reverse
-	 * @throws maxh\Nominatim\Exceptions\InvalidParameterException  if polygon format is not supported
-	 */
-	public function polygon($polygon)
-	{
-		if(in_array($polygon, $this->polygon))
-		{
-			$this->query['polygon_'.$polygon] = "1";
-
-			return $this;
-		}
-
-		throw new InvalidParameterException("This polygon format is not supported");
-	}
-
 
 }
