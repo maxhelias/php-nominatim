@@ -48,6 +48,11 @@ class Nominatim
 	 */
 	private $baseReverse;
 
+	/**
+	 * Template for new ones created by 'newLookup()' method.
+	 * @var Lookup
+	 */
+	private $baseLookup;
 
 	/**
 	 * Constructor
@@ -96,6 +101,8 @@ class Nominatim
 		//Create base
 		$this->baseSearch = new Search();
 		$this->baseReverse = new Reverse();
+		$this->baseLookup = new Lookup();
+
 	}
 
 	/**
@@ -109,13 +116,23 @@ class Nominatim
 	}
 
 	/**
-	 * Returns a new search object based on the base search.
+	 * Returns a new search object based on the base reverse.
 	 *
-	 * @return Search
+	 * @return Reverse
 	 */
 	public function newReverse()
 	{
 		return clone $this->baseReverse;
+	}
+
+	/**
+	 * Returns a new search object based on the base lookup.
+	 * 
+	 * @return Lookup
+	 */
+	public function newLookup()
+	{
+		return clone $this->baseLookup;
 	}
 
 	/**
@@ -146,7 +163,7 @@ class Nominatim
 
 	/**
 	 * Runs the query and returns the result set from Nominatim.
-	 * @param  NominatimInterface $nRequest  The object request to send
+	 * @param  QueryInterface $nRequest  The object request to send
 	 * 
 	 * @return array                                        The decoded data returned from Nominatim
 	 * @throws \GuzzleHttp\Exception\ClientException 		if http request is an error
