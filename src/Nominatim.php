@@ -125,7 +125,7 @@ class Nominatim
 	 * @param  Request  $request  Request object from Guzzle
 	 * @param  ResponseInterface $response Interface response object from Guzzle
 	 * 
-	 * @return array|SimpleXMLElement
+	 * @return array|\SimpleXMLElement
 	 * @throws maxh\Nominatim\Exceptions\NominatimException if no format for decode
 	 */
 	private function decodeResponse($format, Request $request, ResponseInterface $response)
