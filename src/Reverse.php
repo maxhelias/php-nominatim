@@ -15,9 +15,8 @@ use maxh\Nominatim\Exceptions\InvalidParameterException;
  *
  * @see http://wiki.openstreetmap.org/wiki/Nominatim
  */
-class Reverse implements QueryInterface
+class Reverse extends Query
 {
-	use QueryTrait;
 
 	/**
 	 * Output format accepted
@@ -31,12 +30,6 @@ class Reverse implements QueryInterface
 	 */
 	public $osmType = ['N', 'W', 'R'];
 
-	/**
-	 * Outpu polygon format accepted
-	 * @var array
-	 */
-	public $polygon = ['geojson', 'kml', 'svg', 'text'];
-
 
 	/**
 	 * Constructo
@@ -44,60 +37,13 @@ class Reverse implements QueryInterface
 	 */
 	public function __construct(array $query = [])
 	{
-		if(!isset($query['format']))
-		{
-			//Default format
-			$query['format'] = 'json';
-		}
+		parent::__construct();
 
 		$this->setPath('reverse');
-		$this->setQuery($query);
-		$this->setFormat($query['format']);
 
 	}
 
 	// -- Builder methods ------------------------------------------------------
-
-	/**
-	 * Format returning by the request.
-	 *
-	 * @param  string $format The output format for the request
-	 * 
-	 * @return maxh\Nominatim\Reverse
-	 * @throws maxh\Nominatim\Exceptions\InvalidParameterException  if format is not supported
-	 */
-	public function format($format)
-	{
-		$format = strtolower($format);
-
-		if(in_array($format, $this->accepteFormat))
-		{
-			$this->query['format'] = $format;
-			$this->setFormat($format);
-
-			return $this;
-		}
-
-		throw new InvalidParameterException("Format is not supported");
-	}
-
-	/**
-	 * Preferred language order for showing search results, overrides the value
-	 * specified in the "Accept-Language" HTTP header. Either uses standard
-	 * rfc2616 accept-language string or a simple comma separated list of
-	 * language codes.
-	 *
-	 * @param  string $language         Preferred language order for showing search results, overrides the value specified in the "Accept-Language" HTTP header.
-	 * Either uses standard rfc2616 accept-language string or a simple comma separated list of language codes.
-	 * 
-	 * @return maxh\Nominatim\Reverse
-	 */
-	public function language($language)
-	{
-		$this->query['accept-language'] = $language;
-
-		return $this;
-	}
 
 	/**
 	 * [osmType description]
@@ -166,20 +112,6 @@ class Reverse implements QueryInterface
 	}
 
 	/**
-	 * Include a breakdown of the address into elements.
-	 *
-	 * @param  boolean $details
-	 * 
-	 * @return maxh\Nominatim\Reverse
-	 */
-	public function addressDetails($details = true)
-	{
-		$this->query['addressdetails'] = $details ? "1" : "0";
-
-		return $this;
-	}
-
-	/**
 	 * Output format for the geometry of results
 	 * 
 	 * @param  string $polygon
@@ -197,35 +129,6 @@ class Reverse implements QueryInterface
 		}
 
 		throw new InvalidParameterException("This polygon format is not supported");
-	}
-
-	/**
-	 * Include additional information in the result if available
-	 * 
-	 * @param  boolean $tags 
-	 * 
-	 * @return maxh\Nominatim\Reverse
-	 */
-	public function extraTags($tags = true)
-	{
-		$this->query['extratags'] = $tags ? "1" : "0";
-
-		return $this;
-	}
-
-	/**
-	 * Include a list of alternative names in the results.
-	 * These may include language variants, references, operator and brand.
-	 * 
-	 * @param  boolean $details 
-	 * 
-	 * @return maxh\Nominatim\Reverse
-	 */
-	public function nameDetails($details = true)
-	{
-		$this->query['namedetails'] = $details ? "1" : "0";
-
-		return $this;
 	}
 
 

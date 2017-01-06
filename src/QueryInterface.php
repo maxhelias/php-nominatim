@@ -9,10 +9,11 @@
 namespace maxh\Nominatim;
 
 /**
- * NRequestInterface for building request to Nominatim 
+ * QueryInterface for building request to Nominatim 
  */
 interface QueryInterface
 {
+	
 	/**
 	 * Get path of the request
 	 *
