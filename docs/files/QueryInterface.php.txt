@@ -41,3 +41,4 @@ interface QueryInterface
 	public function getFormat();
 
 }
+
