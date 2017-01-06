@@ -7,6 +7,7 @@ Wrapper Nominatim API
 [![Total Downloads](https://poser.pugx.org/maxh/php-nominatim/downloads)](https://packagist.org/packages/maxh/php-nominatim)
 [![Join the chat at https://gitter.im/maxhelias/php-nominatim](https://badges.gitter.im/maxhelias-php-nominatim/Lobby.svg)](https://gitter.im/maxhelias/php-nominatim?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/maxhelias/php-nominatim/blob/master/LICENSE)
+
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/c54e5519-01fd-4855-980f-3a28c5f6ff12/big.png)](https://insight.sensiolabs.com/projects/c54e5519-01fd-4855-980f-3a28c5f6ff12)
 
 A simple interface to OSM Nominatim.
@@ -71,6 +72,16 @@ $reverse = $nominatim->newReverse()
 $result = $nominatim->find($reverse);
 ```
 
+Or do a lookup query :
+
+```php
+$lookup = $nominatim->newLookup()
+            ->format('xml')
+            ->osmIds('R146656,W104393803,N240109189')
+            ->nameDetails(true);
+
+$result = $nominatim->find($lookup);
+```
 
 By default, the output format of the request is json and the wrapper return a array of results. 
 It can be also xml, but the wrapper return a object [SimpleXMLElement](http://php.net/manual/fr/simplexml.examples-basic.php)
@@ -99,3 +110,8 @@ Note
 ----
 
 This projet was inpired by the [Opendi/nominatim](https://github.com/opendi/nominatim) project with more features like reverse query, support of the xml format, customize HTTP client and more on which i work.
+
+Recall Usage Policy Nominatim (if you use the service : "http://nominatim.openstreetmap.org/")
+-----------------------------
+
+For the usage policy of nominatim.openstreetmap.org, please see [Nominatim usage policy](http://wiki.openstreetmap.org/wiki/Nominatim_usage_policy).
