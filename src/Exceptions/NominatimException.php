@@ -9,6 +9,8 @@ use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use GuzzleHttp\Promise\PromiseInterface;
 
+use Exception;
+
 /**
  * InvalidParameterException exception is thrown when a request failed because of a bad client configuration
  *
@@ -18,7 +20,7 @@ use GuzzleHttp\Promise\PromiseInterface;
  * @package maxh\Nominatim
  * @category Exceptions
  */
-class NominatimException extends \Exception
+class NominatimException extends Exception
 {
 
 	/**
