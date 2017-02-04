@@ -25,7 +25,7 @@ install:
     - composer install --prefer-dist
 
 script:
-    - phpcs --standard=PSR2 src/
+    - vendor/bin/phpcs --standard=PSR2 src/
     - phpunit --coverage-clover=coverage.clover
 
 after_script:

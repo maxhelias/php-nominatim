@@ -6,10 +6,6 @@ filter:
         - 'tests/*'
         - 'vendor/*'
 
-before_commands:
-    - "composer self-update"
-    - "composer install --prefer-source --dev"
-
 tools:
     # Code Coverage
     external_code_coverage: true
@@ -17,7 +13,7 @@ tools:
     # PHP Code Sniffer
     php_code_sniffer:
         enabled: true
-        command: phpcs
+        command: vendor/bin/phpcs
         config:
             standard: PSR2
 
