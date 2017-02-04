@@ -1,0 +1,42 @@
+filter:
+    paths: [src/*]
+    excluded_paths:
+        - 'docs/*'
+        - 'examples/*'
+        - 'tests/*'
+        - 'vendor/*'
+
+before_commands:
+    - "composer self-update"
+    - "composer install --prefer-source --dev"
+
+tools:
+    # Code Coverage
+    external_code_coverage: true
+
+    # PHP Code Sniffer
+    php_code_sniffer:
+        enabled: true
+        command: phpcs
+        config:
+            standard: PSR2
+
+checks:
+    php: true
+
+coding_style:
+    php:
+        indentation:
+            general:
+                use_tabs: false
+                size: 4
+            switch:
+                indent_case: true
+        spaces:
+            around_operators:
+                concatenation: true
+
+build:
+    environment:
+        php:
+            version: 7.0
