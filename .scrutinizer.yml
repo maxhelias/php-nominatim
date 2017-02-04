@@ -15,11 +15,11 @@ tools:
     external_code_coverage: true
 
     # PHP Code Sniffer
-    php_code_sniffer:
-        enabled: true
-        command: phpcs
-        config:
-            standard: PSR2
+    #php_code_sniffer:
+    #    enabled: true
+    #    command: phpcs
+    #    config:
+    #        standard: PSR2
 
 checks:
     php: true
@@ -39,4 +39,4 @@ coding_style:
 build:
     environment:
         php:
-            version: 7.0.8
+            version: "7.0.8"
