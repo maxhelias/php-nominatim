@@ -36,7 +36,7 @@
 <text text-anchor="middle" x="257.246" y="-14.3" font-family="Times New Roman,serif" font-size="14.00" fill="gray">xception</text>
 </g>
 <!-- \\maxh\\Nominatim\\Exceptions\\NominatimException&#45;&gt;\\Exception -->
-<g id="edge3" class="edge"><title>\\maxh\\Nominatim\\Exceptions\\NominatimException&#45;&gt;\\Exception</title>
+<g id="edge4" class="edge"><title>\\maxh\\Nominatim\\Exceptions\\NominatimException&#45;&gt;\\Exception</title>
 <path fill="none" stroke="black" d="M394.941,-134.72C384.022,-131.145 373.15,-126.646 363.493,-121 328.493,-100.537 328.632,-84.1879 299.493,-56 294.509,-51.1788 289.105,-46.0991 283.902,-41.2779"/>
 <polygon fill="none" stroke="black" points="286.222,-38.6561 276.494,-34.4594 281.481,-43.8067 286.222,-38.6561"/>
 </g>
@@ -46,49 +46,14 @@
 <text text-anchor="middle" x="463.993" y="-91.2" font-family="Courier,monospace" font-size="11.00">InvalidParameterException</text>
 </g>
 <!-- \\maxh\\Nominatim\\Exceptions\\InvalidParameterException&#45;&gt;\\Exception -->
-<g id="edge4" class="edge"><title>\\maxh\\Nominatim\\Exceptions\\InvalidParameterException&#45;&gt;\\Exception</title>
+<g id="edge6" class="edge"><title>\\maxh\\Nominatim\\Exceptions\\InvalidParameterException&#45;&gt;\\Exception</title>
 <path fill="none" stroke="black" d="M414.47,-75.9891C379.276,-62.925 332.21,-45.4545 298.966,-33.1148"/>
 <polygon fill="none" stroke="black" points="300.143,-29.8184 289.55,-29.6197 297.707,-36.3809 300.143,-29.8184"/>
 </g>
-<!-- \\maxh\\Nominatim\\Nominatim -->
-<g id="node3" class="node"><title>\\maxh\\Nominatim\\Nominatim</title>
-<polygon fill="none" stroke="black" points="502.493,-346 425.493,-346 425.493,-310 502.493,-310 502.493,-346"/>
-<text text-anchor="middle" x="463.993" y="-325.2" font-family="Courier,monospace" font-size="11.00">Nominatim</text>
-</g>
-<!-- \\maxh\\Nominatim\\Search -->
-<g id="node4" class="node"><title>\\maxh\\Nominatim\\Search</title>
-<polygon fill="none" stroke="black" points="492.493,-238 435.493,-238 435.493,-202 492.493,-202 492.493,-238"/>
-<text text-anchor="middle" x="463.993" y="-217.2" font-family="Courier,monospace" font-size="11.00">Search</text>
-</g>
 <!-- \\maxh\\Nominatim\\Query -->
-<g id="node7" class="node"><title>\\maxh\\Nominatim\\Query</title>
+<g id="node3" class="node"><title>\\maxh\\Nominatim\\Query</title>
 <polygon fill="none" stroke="black" points="284.246,-292 230.246,-292 230.246,-256 284.246,-256 284.246,-292"/>
 <text text-anchor="middle" x="257.246" y="-271.2" font-family="Courier,monospace" font-size="11.00">Query</text>
-</g>
-<!-- \\maxh\\Nominatim\\Search&#45;&gt;\\maxh\\Nominatim\\Query -->
-<g id="edge1" class="edge"><title>\\maxh\\Nominatim\\Search&#45;&gt;\\maxh\\Nominatim\\Query</title>
-<path fill="none" stroke="black" d="M435.38,-227.283C398.852,-236.916 334.404,-253.914 294.137,-264.534"/>
-<polygon fill="none" stroke="black" points="293.229,-261.154 284.452,-267.088 295.014,-267.922 293.229,-261.154"/>
-</g>
-<!-- \\maxh\\Nominatim\\Reverse -->
-<g id="node5" class="node"><title>\\maxh\\Nominatim\\Reverse</title>
-<polygon fill="none" stroke="black" points="495.993,-400 431.993,-400 431.993,-364 495.993,-364 495.993,-400"/>
-<text text-anchor="middle" x="463.993" y="-379.2" font-family="Courier,monospace" font-size="11.00">Reverse</text>
-</g>
-<!-- \\maxh\\Nominatim\\Reverse&#45;&gt;\\maxh\\Nominatim\\Query -->
-<g id="edge2" class="edge"><title>\\maxh\\Nominatim\\Reverse&#45;&gt;\\maxh\\Nominatim\\Query</title>
-<path fill="none" stroke="black" d="M431.828,-376.803C411.626,-372.659 385.139,-365.737 363.493,-355 333.952,-340.347 304.571,-316.787 284.39,-298.844"/>
-<polygon fill="none" stroke="black" points="286.624,-296.145 276.861,-292.029 281.926,-301.335 286.624,-296.145"/>
-</g>
-<!-- \\maxh\\Nominatim\\Lookup -->
-<g id="node6" class="node"><title>\\maxh\\Nominatim\\Lookup</title>
-<polygon fill="none" stroke="black" points="492.493,-292 435.493,-292 435.493,-256 492.493,-256 492.493,-292"/>
-<text text-anchor="middle" x="463.993" y="-271.2" font-family="Courier,monospace" font-size="11.00">Lookup</text>
-</g>
-<!-- \\maxh\\Nominatim\\Lookup&#45;&gt;\\maxh\\Nominatim\\Query -->
-<g id="edge5" class="edge"><title>\\maxh\\Nominatim\\Lookup&#45;&gt;\\maxh\\Nominatim\\Query</title>
-<path fill="none" stroke="black" d="M435.38,-274C399.007,-274 334.95,-274 294.65,-274"/>
-<polygon fill="none" stroke="black" points="294.452,-270.5 284.452,-274 294.452,-277.5 294.452,-270.5"/>
 </g>
 <!-- \\maxh\\Nominatim\\QueryInterface -->
 <g id="node8" class="node"><title>\\maxh\\Nominatim\\QueryInterface</title>
@@ -96,9 +61,44 @@
 <text text-anchor="middle" x="87.5" y="-271.2" font-family="Courier,monospace" font-size="11.00">QueryInterface</text>
 </g>
 <!-- \\maxh\\Nominatim\\Query&#45;&gt;\\maxh\\Nominatim\\QueryInterface -->
-<g id="edge6" class="edge"><title>\\maxh\\Nominatim\\Query&#45;&gt;\\maxh\\Nominatim\\QueryInterface</title>
+<g id="edge1" class="edge"><title>\\maxh\\Nominatim\\Query&#45;&gt;\\maxh\\Nominatim\\QueryInterface</title>
 <path fill="none" stroke="black" stroke-dasharray="1,5" d="M230.036,-274C209.527,-274 180.104,-274 153.391,-274"/>
 <polygon fill="none" stroke="black" points="153.31,-270.5 143.31,-274 153.31,-277.5 153.31,-270.5"/>
+</g>
+<!-- \\maxh\\Nominatim\\Nominatim -->
+<g id="node4" class="node"><title>\\maxh\\Nominatim\\Nominatim</title>
+<polygon fill="none" stroke="black" points="502.493,-346 425.493,-346 425.493,-310 502.493,-310 502.493,-346"/>
+<text text-anchor="middle" x="463.993" y="-325.2" font-family="Courier,monospace" font-size="11.00">Nominatim</text>
+</g>
+<!-- \\maxh\\Nominatim\\Search -->
+<g id="node5" class="node"><title>\\maxh\\Nominatim\\Search</title>
+<polygon fill="none" stroke="black" points="492.493,-238 435.493,-238 435.493,-202 492.493,-202 492.493,-238"/>
+<text text-anchor="middle" x="463.993" y="-217.2" font-family="Courier,monospace" font-size="11.00">Search</text>
+</g>
+<!-- \\maxh\\Nominatim\\Search&#45;&gt;\\maxh\\Nominatim\\Query -->
+<g id="edge2" class="edge"><title>\\maxh\\Nominatim\\Search&#45;&gt;\\maxh\\Nominatim\\Query</title>
+<path fill="none" stroke="black" d="M435.38,-227.283C398.852,-236.916 334.404,-253.914 294.137,-264.534"/>
+<polygon fill="none" stroke="black" points="293.229,-261.154 284.452,-267.088 295.014,-267.922 293.229,-261.154"/>
+</g>
+<!-- \\maxh\\Nominatim\\Reverse -->
+<g id="node6" class="node"><title>\\maxh\\Nominatim\\Reverse</title>
+<polygon fill="none" stroke="black" points="495.993,-400 431.993,-400 431.993,-364 495.993,-364 495.993,-400"/>
+<text text-anchor="middle" x="463.993" y="-379.2" font-family="Courier,monospace" font-size="11.00">Reverse</text>
+</g>
+<!-- \\maxh\\Nominatim\\Reverse&#45;&gt;\\maxh\\Nominatim\\Query -->
+<g id="edge3" class="edge"><title>\\maxh\\Nominatim\\Reverse&#45;&gt;\\maxh\\Nominatim\\Query</title>
+<path fill="none" stroke="black" d="M431.828,-376.803C411.626,-372.659 385.139,-365.737 363.493,-355 333.952,-340.347 304.571,-316.787 284.39,-298.844"/>
+<polygon fill="none" stroke="black" points="286.624,-296.145 276.861,-292.029 281.926,-301.335 286.624,-296.145"/>
+</g>
+<!-- \\maxh\\Nominatim\\Lookup -->
+<g id="node7" class="node"><title>\\maxh\\Nominatim\\Lookup</title>
+<polygon fill="none" stroke="black" points="492.493,-292 435.493,-292 435.493,-256 492.493,-256 492.493,-292"/>
+<text text-anchor="middle" x="463.993" y="-271.2" font-family="Courier,monospace" font-size="11.00">Lookup</text>
+</g>
+<!-- \\maxh\\Nominatim\\Lookup&#45;&gt;\\maxh\\Nominatim\\Query -->
+<g id="edge5" class="edge"><title>\\maxh\\Nominatim\\Lookup&#45;&gt;\\maxh\\Nominatim\\Query</title>
+<path fill="none" stroke="black" d="M435.38,-274C399.007,-274 334.95,-274 294.65,-274"/>
+<polygon fill="none" stroke="black" points="294.452,-270.5 284.452,-274 294.452,-277.5 294.452,-270.5"/>
 </g>
 </g>
 </svg>
