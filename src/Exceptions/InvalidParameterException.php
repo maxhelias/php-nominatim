@@ -18,5 +18,5 @@ use Exception;
  */
 class InvalidParameterException extends Exception
 {
-	
+    
 }
