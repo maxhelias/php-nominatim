@@ -1,5 +1,12 @@
 language: php
+
+## Run on container environment
 sudo: false
+
+## Cache composer
+cache:
+    directories:
+        - $HOME/.composer/cache
 
 env:
     - COMPOSER_DISABLE_XDEBUG_WARN=1
@@ -11,7 +18,7 @@ php:
     - 7.1
     - hhvm
 
-before_script:
-    - composer install
+install:
+    - composer install --prefer-dist
 
 script: phpunit
