@@ -19,7 +19,8 @@
     },
     "require-dev": {
         "phpunit/phpunit": "5.5.*||~4.0",
-        "squizlabs/php_codesniffer": "@dev||2.*"
+        "squizlabs/php_codesniffer": "@dev||2.*",
+        "phpro/grumphp": "^0.11.5"
     },
     "autoload": {
         "psr-4": { "maxh\\Nominatim\\": "src"}

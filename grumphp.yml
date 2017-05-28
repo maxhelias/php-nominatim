@@ -1,0 +1,24 @@
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
+    tasks:
+      phpcs:
+        standard: PSR2
+        show_warnings: true
+        tab_width: ~
+        whitelist_patterns:
+          - /^src\/(.*)/
+          - /^tests\/(.*)/
+        encoding: ~
+        ignore_patterns:
+          - /^docs\/(.*)/
+        sniffs: []
+        triggered_by: [php]
+      phpunit:
+            config_file: ~
+            testsuite: ~
+            group: []
+            always_execute: false
+    ascii:
+        failed: ~
+        succeeded: ~
