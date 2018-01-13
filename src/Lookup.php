@@ -36,7 +36,7 @@ class Lookup extends Query
      *
      * @param  string $id
      *
-     * @return maxh\Nominatim\Lookup
+     * @return \maxh\Nominatim\Lookup
      */
     public function osmIds($id)
     {
@@ -50,7 +50,7 @@ class Lookup extends Query
      *
      * @param  string $polygon
      *
-     * @throws maxh\Nominatim\Exceptions\InvalidParameterException  Polygon is not supported with lookup
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  Polygon is not supported with lookup
      */
     public function polygon($polygon)
     {

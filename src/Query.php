@@ -68,8 +68,8 @@ class Query implements QueryInterface
      *
      * @param  string $format The output format for the request
      *
-     * @return maxh\Nominatim\Query
-     * @throws maxh\Nominatim\Exceptions\InvalidParameterException if format is not supported
+     * @return \maxh\Nominatim\Query
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if format is not supported
      */
     public function format($format)
     {
@@ -94,7 +94,7 @@ class Query implements QueryInterface
      *                                  specified in the "Accept-Language" HTTP header. Either uses standard rfc2616
      *                                  accept-language string or a simple comma separated list of language codes.
      *
-     * @return maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Query
      */
     public function language($language)
     {
@@ -108,7 +108,7 @@ class Query implements QueryInterface
      *
      * @param  boolean $details
      *
-     * @return maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Query
      */
     public function addressDetails($details = true)
     {
@@ -124,7 +124,7 @@ class Query implements QueryInterface
      *
      * @param  string $email Address mail
      *
-     * @return maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Query
      */
     public function email($email)
     {
@@ -138,8 +138,8 @@ class Query implements QueryInterface
      *
      * @param  string $polygon
      *
-     * @return maxh\Nominatim\Query
-     * @throws maxh\Nominatim\Exceptions\InvalidParameterException  if polygon format is not supported
+     * @return \maxh\Nominatim\Query
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  if polygon format is not supported
      */
     public function polygon($polygon)
     {
@@ -157,7 +157,7 @@ class Query implements QueryInterface
      *
      * @param  boolean $tags
      *
-     * @return maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Query
      */
     public function extraTags($tags = true)
     {
@@ -172,7 +172,7 @@ class Query implements QueryInterface
      *
      * @param  boolean $details
      *
-     * @return maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Query
      */
     public function nameDetails($details = true)
     {
