@@ -34,13 +34,13 @@ class NominatimException extends Exception
      * @var ResponseInterface
      */
     private $response;
-    
+
     /**
      * Constructor
      * @param string                 $message  Message of this exception
      * @param RequestInterface       $request  The request instance
      * @param ResponseInterface|null $response The response of the request
-     * @param Exception|null        $previous Exception object
+     * @param Exception|null         $previous Exception object
      */
     public function __construct(
         $message,
@@ -59,7 +59,7 @@ class NominatimException extends Exception
 
     /**
      * Return the Request
-     * @return GuzzleHttp\Psr7\Request
+     * @return \GuzzleHttp\Psr7\Request
      */
     public function getRequest()
     {
@@ -68,7 +68,7 @@ class NominatimException extends Exception
 
     /**
      * Return the Response
-     * @return GuzzleHttp\Psr7\Response [description]
+     * @return \GuzzleHttp\Psr7\Response [description]
      */
     public function getResponse()
     {

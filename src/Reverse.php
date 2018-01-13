@@ -43,8 +43,8 @@ class Reverse extends Query
      *
      * @param  string $type
      *
-     * @return maxh\Nominatim\Reverse
-     * @throws maxh\Nominatim\Exceptions\InvalidParameterException  if osm type is not supported
+     * @return \maxh\Nominatim\Reverse
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  if osm type is not supported
      */
     public function osmType($type)
     {
@@ -62,7 +62,7 @@ class Reverse extends Query
      *
      * @param  integer $id
      *
-     * @return maxh\Nominatim\Reverse
+     * @return \maxh\Nominatim\Reverse
      */
     public function osmId($id)
     {
@@ -77,7 +77,7 @@ class Reverse extends Query
      * @param  float $lat The latitude
      * @param  float $lon The longitude
      *
-     * @return maxh\Nominatim\Reverse
+     * @return \maxh\Nominatim\Reverse
      */
     public function latlon($lat, $lon)
     {
@@ -93,7 +93,7 @@ class Reverse extends Query
      *
      * @param  integer $zoom
      *
-     * @return maxh\Nominatim\Reverse
+     * @return \maxh\Nominatim\Reverse
      */
     public function zoom($zoom)
     {

@@ -57,7 +57,7 @@ class Nominatim
     /**
      * Constructor
      * @param string                $application_url Contain url of the current application
-     * @param Guzzle\Client|null    $http_client     Client object from Guzzle
+     * @param \Guzzle\Client|null    $http_client     Client object from Guzzle
      */
     public function __construct(
         $application_url,
@@ -133,7 +133,7 @@ class Nominatim
      * @param  ResponseInterface $response Interface response object from Guzzle
      *
      * @return array|\SimpleXMLElement
-     * @throws maxh\Nominatim\Exceptions\NominatimException if no format for decode
+     * @throws \maxh\Nominatim\Exceptions\NominatimException if no format for decode
      */
     private function decodeResponse($format, Request $request, ResponseInterface $response)
     {
@@ -175,7 +175,7 @@ class Nominatim
 
     /**
      * Return the client using by instance
-     * @return GuzzleHttp\Client
+     * @return \GuzzleHttp\Client
      */
     public function getClient()
     {
