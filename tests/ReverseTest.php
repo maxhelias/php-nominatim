@@ -7,16 +7,16 @@ use maxh\Nominatim\Nominatim;
 class ReverseTest extends \PHPUnit_Framework_TestCase
 {
 
-    protected $url = "http://nominatim.openstreetmap.org/";
+    protected $url = 'http://nominatim.openstreetmap.org/';
 
-    private $nominatim = null;
-    
+    private $nominatim;
+
     protected function setUp()
     {
         $this->nominatim = new Nominatim($this->url);
     }
 
-    public function testAdress()
+    public function testAddress()
     {
         $reverse = $this->nominatim->newReverse()
             ->latlon(43.4843941, -1.4960842);

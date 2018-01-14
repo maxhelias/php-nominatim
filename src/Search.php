@@ -161,10 +161,10 @@ class Search extends Query
             throw new InvalidParameterException("Invalid country code: \"$countrycode\"");
         }
 
-        if (!isset($this->query['countrycode'])) {
+        if (empty($this->query['countrycode'])) {
             $this->query['countrycode'] = $countrycode;
         } else {
-            $this->query['countrycode'] .= "," . $countrycode;
+            $this->query['countrycode'] .= ',' . $countrycode;
         }
 
         return $this;
@@ -188,7 +188,7 @@ class Search extends Query
     }
 
     /**
-     * If you do not want certain openstreetmap objects to appear in the search results.
+     * If you do not want certain OpenStreetMap objects to appear in the search results.
      *
      * @return \maxh\Nominatim\Search
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  if no place id
@@ -203,7 +203,7 @@ class Search extends Query
             return $this;
         }
 
-        throw new InvalidParameterException("No place id in parameter");
+        throw new InvalidParameterException('No place id in parameter');
     }
 
     /**
@@ -215,7 +215,7 @@ class Search extends Query
      */
     public function limit($limit)
     {
-        $this->query['limit'] = strval($limit);
+        $this->query['limit'] = (string) $limit;
 
         return $this;
     }

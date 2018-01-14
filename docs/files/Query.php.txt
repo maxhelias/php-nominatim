@@ -52,7 +52,7 @@ class Query implements QueryInterface
      */
     public function __construct(array $query = [])
     {
-        if (!isset($query['format'])) {
+        if (empty($query['format'])) {
             //Default format
             $query['format'] = 'json';
         }
@@ -68,20 +68,20 @@ class Query implements QueryInterface
      *
      * @param  string $format The output format for the request
      *
-     * @return maxh\Nominatim\Query
-     * @throws maxh\Nominatim\Exceptions\InvalidParameterException if format is not supported
+     * @return \maxh\Nominatim\Query
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if format is not supported
      */
     public function format($format)
     {
         $format = strtolower($format);
 
-        if (in_array($format, $this->accepteFormat)) {
+        if (in_array($format, $this->accepteFormat, true)) {
             $this->setFormat($format);
 
             return $this;
         }
 
-        throw new InvalidParameterException("Format is not supported");
+        throw new InvalidParameterException('Format is not supported');
     }
 
     /**
@@ -94,7 +94,7 @@ class Query implements QueryInterface
      *                                  specified in the "Accept-Language" HTTP header. Either uses standard rfc2616
      *                                  accept-language string or a simple comma separated list of language codes.
      *
-     * @return maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Query
      */
     public function language($language)
     {
@@ -108,11 +108,11 @@ class Query implements QueryInterface
      *
      * @param  boolean $details
      *
-     * @return maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Query
      */
     public function addressDetails($details = true)
     {
-        $this->query['addressdetails'] = $details ? "1" : "0";
+        $this->query['addressdetails'] = $details ? '1' : '0';
 
         return $this;
     }
@@ -124,7 +124,7 @@ class Query implements QueryInterface
      *
      * @param  string $email Address mail
      *
-     * @return maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Query
      */
     public function email($email)
     {
@@ -138,18 +138,18 @@ class Query implements QueryInterface
      *
      * @param  string $polygon
      *
-     * @return maxh\Nominatim\Query
-     * @throws maxh\Nominatim\Exceptions\InvalidParameterException  if polygon format is not supported
+     * @return \maxh\Nominatim\Query
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  if polygon format is not supported
      */
     public function polygon($polygon)
     {
-        if (in_array($polygon, $this->polygon)) {
-            $this->query['polygon_' . $polygon] = "1";
+        if (in_array($polygon, $this->polygon, true)) {
+            $this->query['polygon_' . $polygon] = '1';
 
             return $this;
         }
 
-        throw new InvalidParameterException("This polygon format is not supported");
+        throw new InvalidParameterException('This polygon format is not supported');
     }
 
     /**
@@ -157,11 +157,11 @@ class Query implements QueryInterface
      *
      * @param  boolean $tags
      *
-     * @return maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Query
      */
     public function extraTags($tags = true)
     {
-        $this->query['extratags'] = $tags ? "1" : "0";
+        $this->query['extratags'] = $tags ? '1' : '0';
 
         return $this;
     }
@@ -172,11 +172,11 @@ class Query implements QueryInterface
      *
      * @param  boolean $details
      *
-     * @return maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Query
      */
     public function nameDetails($details = true)
     {
-        $this->query['namedetails'] = $details ? "1" : "0";
+        $this->query['namedetails'] = $details ? '1' : '0';
 
         return $this;
     }
@@ -233,7 +233,7 @@ class Query implements QueryInterface
      * Set query
      * @param array $query Parameter of the query
      */
-    protected function setQuery($query = array())
+    protected function setQuery(array $query = [ ])
     {
         $this->query = $query;
     }

@@ -26,13 +26,13 @@ class Nominatim
      * Contain url of the current application
      * @var string
      */
-    private $application_url = null;
+    private $application_url;
 
     /**
      * Contain http client connection
      * @var Client
      */
-    private $http_client = null;
+    private $http_client;
 
     /**
      * The search object which serves as a template for new ones created
@@ -56,19 +56,22 @@ class Nominatim
 
     /**
      * Constructor
-     * @param string                $application_url Contain url of the current application
-     * @param Guzzle\Client|null    $http_client     Client object from Guzzle
+     *
+     * @param string              $application_url Contain url of the current application
+     * @param \GuzzleHttp\Client|null $http_client     Client object from Guzzle
+     *
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException
      */
     public function __construct(
         $application_url,
         Client $http_client = null
     ) {
 
-        if (!isset($application_url)) {
-            throw new InvalidParameterException("Application url parameter is empty");
+        if (empty($application_url)) {
+            throw new InvalidParameterException('Application url parameter is empty');
         }
 
-        if (!isset($http_client)) {
+        if ($http_client === null) {
             $http_client = new Client([
                 'base_uri'           => $application_url,
                 'timeout'            => 30,
@@ -77,13 +80,13 @@ class Nominatim
         } elseif ($http_client instanceof Client) {
             $application_url_client = $http_client->getConfig('base_uri');
 
-            if (!isset($application_url_client)) {
+            if (empty($application_url_client)) {
                 $http_client->setDefaultOption('base_uri', $application_url);
-            } elseif ($application_url_client != $application_url) {
+            } elseif ($application_url_client !== $application_url) {
                 throw new InvalidParameterException("http_client parameter hasn't the same url application.");
             }
         } else {
-            throw new InvalidParameterException("http_client parameter must be a GuzzleHttp\Client object or empty");
+            throw new InvalidParameterException('http_client parameter must be a \\GuzzleHttp\\Client object or empty');
         }
 
         $this->application_url = $application_url;
@@ -133,27 +136,29 @@ class Nominatim
      * @param  ResponseInterface $response Interface response object from Guzzle
      *
      * @return array|\SimpleXMLElement
-     * @throws maxh\Nominatim\Exceptions\NominatimException if no format for decode
+     * @throws \maxh\Nominatim\Exceptions\NominatimException if no format for decode
      */
     private function decodeResponse($format, Request $request, ResponseInterface $response)
     {
-        if ($format == 'json') {
+        if ($format === 'json') {
             return json_decode($response->getBody(), true);
         }
 
-        if ($format == 'xml') {
+        if ($format === 'xml') {
             return new \SimpleXMLElement($response->getBody());
         }
 
-        throw new NominatimException("Format is undefined or not supported for decode response", $request, $response);
+        throw new NominatimException('Format is undefined or not supported for decode response', $request, $response);
     }
 
     /**
      * Runs the query and returns the result set from Nominatim.
-     * @param  QueryInterface $nRequest  The object request to send
      *
-     * @return array                                        The decoded data returned from Nominatim
-     * @throws \GuzzleHttp\Exception\ClientException        if http request is an error
+     * @param  QueryInterface $nRequest The object request to send
+     *
+     * @return array                                         The decoded data returned from Nominatim
+     * @throws \GuzzleHttp\Exception\ClientException         if http request is an error
+     * @throws \maxh\Nominatim\Exceptions\NominatimException if no format for decode
      */
     public function find(QueryInterface $nRequest)
     {
@@ -175,7 +180,7 @@ class Nominatim
 
     /**
      * Return the client using by instance
-     * @return GuzzleHttp\Client
+     * @return \GuzzleHttp\Client
      */
     public function getClient()
     {

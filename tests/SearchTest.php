@@ -7,10 +7,10 @@ use maxh\Nominatim\Nominatim;
 class SearchTest extends \PHPUnit_Framework_TestCase
 {
 
-    protected $url = "http://nominatim.openstreetmap.org/";
+    protected $url = 'http://nominatim.openstreetmap.org/';
 
-    private $nominatim = null;
-    
+    private $nominatim;
+
     protected function setUp()
     {
         $this->nominatim = new Nominatim($this->url);
@@ -36,7 +36,7 @@ class SearchTest extends \PHPUnit_Framework_TestCase
         $this->assertSame($expected, $search->getQueryString());
     }
 
-    public function testAdress()
+    public function testAddress()
     {
         $search = $this->nominatim->newSearch()
             ->country('France')

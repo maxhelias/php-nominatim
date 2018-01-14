@@ -50,10 +50,11 @@ class Lookup extends Query
      *
      * @param  string $polygon
      *
+     * @return void
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  Polygon is not supported with lookup
      */
     public function polygon($polygon)
     {
-        throw new InvalidParameterException("The polygon is not supported with lookup");
+        throw new InvalidParameterException('The polygon is not supported with lookup');
     }
 }

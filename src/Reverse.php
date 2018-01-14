@@ -26,7 +26,7 @@ class Reverse extends Query
 
 
     /**
-     * Constructo
+     * Constructor
      * @param array $query Default value for this query
      */
     public function __construct(array $query = [])
@@ -48,13 +48,13 @@ class Reverse extends Query
      */
     public function osmType($type)
     {
-        if (in_array($type, $this->osmType)) {
+        if (in_array($type, $this->osmType, true)) {
             $this->query['osm_type'] = $type;
 
             return $this;
         }
 
-        throw new InvalidParameterException("OSM Type is not supported");
+        throw new InvalidParameterException('OSM Type is not supported');
     }
 
     /**
@@ -97,7 +97,7 @@ class Reverse extends Query
      */
     public function zoom($zoom)
     {
-        $this->query['zoom'] = strval($zoom);
+        $this->query['zoom'] = (string) $zoom;
 
         return $this;
     }

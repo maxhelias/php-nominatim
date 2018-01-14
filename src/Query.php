@@ -52,7 +52,7 @@ class Query implements QueryInterface
      */
     public function __construct(array $query = [])
     {
-        if (!isset($query['format'])) {
+        if (empty($query['format'])) {
             //Default format
             $query['format'] = 'json';
         }
@@ -75,13 +75,13 @@ class Query implements QueryInterface
     {
         $format = strtolower($format);
 
-        if (in_array($format, $this->accepteFormat)) {
+        if (in_array($format, $this->accepteFormat, true)) {
             $this->setFormat($format);
 
             return $this;
         }
 
-        throw new InvalidParameterException("Format is not supported");
+        throw new InvalidParameterException('Format is not supported');
     }
 
     /**
@@ -112,7 +112,7 @@ class Query implements QueryInterface
      */
     public function addressDetails($details = true)
     {
-        $this->query['addressdetails'] = $details ? "1" : "0";
+        $this->query['addressdetails'] = $details ? '1' : '0';
 
         return $this;
     }
@@ -143,13 +143,13 @@ class Query implements QueryInterface
      */
     public function polygon($polygon)
     {
-        if (in_array($polygon, $this->polygon)) {
-            $this->query['polygon_' . $polygon] = "1";
+        if (in_array($polygon, $this->polygon, true)) {
+            $this->query['polygon_' . $polygon] = '1';
 
             return $this;
         }
 
-        throw new InvalidParameterException("This polygon format is not supported");
+        throw new InvalidParameterException('This polygon format is not supported');
     }
 
     /**
@@ -161,7 +161,7 @@ class Query implements QueryInterface
      */
     public function extraTags($tags = true)
     {
-        $this->query['extratags'] = $tags ? "1" : "0";
+        $this->query['extratags'] = $tags ? '1' : '0';
 
         return $this;
     }
@@ -176,7 +176,7 @@ class Query implements QueryInterface
      */
     public function nameDetails($details = true)
     {
-        $this->query['namedetails'] = $details ? "1" : "0";
+        $this->query['namedetails'] = $details ? '1' : '0';
 
         return $this;
     }
@@ -233,7 +233,7 @@ class Query implements QueryInterface
      * Set query
      * @param array $query Parameter of the query
      */
-    protected function setQuery($query = array())
+    protected function setQuery(array $query = [ ])
     {
         $this->query = $query;
     }

@@ -41,6 +41,6 @@ class NominatimTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($lookup, $baseLookup);
 
         //Testing Client
-        $this->assertInstanceOf("GuzzleHttp\\Client", $instance->getClient());
+        $this->assertInstanceOf('GuzzleHttp\\Client', $instance->getClient());
     }
 }

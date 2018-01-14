@@ -13,11 +13,11 @@ use Exception;
  * InvalidParameterException appears when the request failed because of a bad parameter from
  * the client request.
  *
- * @package maxh\Nominatim
+ * @package \maxh\Nominatim
  * @category Exceptions
  */
 class InvalidParameterException extends Exception
 {
-    
+
 }
 

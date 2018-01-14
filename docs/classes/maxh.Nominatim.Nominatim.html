@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1010530170"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1424910245"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1010530170" class="accordion-body collapse in">
+            <div id="namespace-1424910245" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-901501447"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1442354960"></a>
                                 <a href="../namespaces/maxh.html" style="margin-left: 30px; padding-left: 0">maxh</a>
             </div>
-            <div id="namespace-901501447" class="accordion-body collapse ">
+            <div id="namespace-1442354960" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1374690683"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-634993298"></a>
                                 <a href="../namespaces/maxh.Nominatim.html" style="margin-left: 30px; padding-left: 0">Nominatim</a>
             </div>
-            <div id="namespace-1374690683" class="accordion-body collapse ">
+            <div id="namespace-634993298" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-655957121"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1951295541"></a>
                                 <a href="../namespaces/maxh.Nominatim.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
             </div>
-            <div id="namespace-655957121" class="accordion-body collapse ">
+            <div id="namespace-1951295541" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -458,7 +458,7 @@ by &#039;newSearch()&#039; method.</em></p>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$application_url</span>, \maxh\Nominatim\Guzzle\Client|null  <span class="argument">$http_client = null</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$application_url</span>, \GuzzleHttp\Client|null  <span class="argument">$http_client = null</span>) </pre>
                 <p><em>Constructor</em></p>
                 
 
@@ -470,12 +470,17 @@ by &#039;newSearch()&#039; method.</em></p>
                                 <td><p>Contain url of the current application</p></td>
                             </tr>
                                                     <tr>
-                                <td>\maxh\Nominatim\Guzzle\Client|null</td>
+                                <td>\GuzzleHttp\Client|null</td>
                                 <td>$http_client </td>
                                 <td><p>Client object from Guzzle</p></td>
                             </tr>
                                             </table>
                 
+                                    <h4>Throws</h4>
+                    <dl>
+                                                    <dt>\maxh\Nominatim\Exceptions\InvalidParameterException</dt>
+                            <dd></dd>
+                                                                    </dl>
                 
                 				
                             </article>
@@ -598,6 +603,8 @@ by &#039;newSearch()&#039; method.</em></p>
                     <dl>
                                                     <dt>\GuzzleHttp\Exception\ClientException</dt>
                             <dd><p>if http request is an error</p></dd>
+                                                    <dt>\maxh\Nominatim\Exceptions\NominatimException</dt>
+                            <dd><p>if no format for decode</p></dd>
                                                                     </dl>
                 
                                     <h4>Returns</h4>
@@ -623,14 +630,14 @@ by &#039;newSearch()&#039; method.</em></p>
             <article class="method">
                 <h3 class="public ">getClient()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getClient() : \maxh\Nominatim\GuzzleHttp\Client</pre>
+                <pre class="signature" style="margin-right: 54px;">getClient() : \GuzzleHttp\Client</pre>
                 <p><em>Return the client using by instance</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    \maxh\Nominatim\GuzzleHttp\Client
+                    \GuzzleHttp\Client
                                     				
                             </article>
         </div>
@@ -676,7 +683,7 @@ by &#039;newSearch()&#039; method.</em></p>
                 
                                     <h4>Throws</h4>
                     <dl>
-                                                    <dt>\maxh\Nominatim\maxh\Nominatim\Exceptions\NominatimException</dt>
+                                                    <dt>\maxh\Nominatim\Exceptions\NominatimException</dt>
                             <dd><p>if no format for decode</p></dd>
                                                                     </dl>
                 
@@ -746,7 +753,7 @@ by &#039;newSearch()&#039; method.</em></p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on February 4th, 2017 at 20:25.
+                    on January 14th, 2018 at 23:46.
                 </section>
             </section>
         </section>
