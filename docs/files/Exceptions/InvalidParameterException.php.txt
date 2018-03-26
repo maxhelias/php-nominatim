@@ -1,6 +1,9 @@
 <?php
 /**
  * This file contains code about maxh\Nominatim\Exceptions\InvalidParameterException class
+ *
+ * @package      maxh\Nominatim
+ * @author       Maxime Hélias <maximehelias16@gmail.com>
  */
 
 namespace maxh\Nominatim\Exceptions;

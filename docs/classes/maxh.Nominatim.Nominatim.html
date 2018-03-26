@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1424910245"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-616690015"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1424910245" class="accordion-body collapse in">
+            <div id="namespace-616690015" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1442354960"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-626799202"></a>
                                 <a href="../namespaces/maxh.html" style="margin-left: 30px; padding-left: 0">maxh</a>
             </div>
-            <div id="namespace-1442354960" class="accordion-body collapse ">
+            <div id="namespace-626799202" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-634993298"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1121776237"></a>
                                 <a href="../namespaces/maxh.Nominatim.html" style="margin-left: 30px; padding-left: 0">Nominatim</a>
             </div>
-            <div id="namespace-634993298" class="accordion-body collapse ">
+            <div id="namespace-1121776237" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1951295541"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-738792493"></a>
                                 <a href="../namespaces/maxh.Nominatim.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
             </div>
-            <div id="namespace-1951295541" class="accordion-body collapse ">
+            <div id="namespace-738792493" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -297,7 +297,7 @@
                         <dt>File</dt>
                             <dd><a href="../files/Nominatim.html"><div class="path-wrapper">Nominatim.php</div></a></dd>
                                                 <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">maxh\nominatim</div></dd>
+                            <dd><div class="namespace-wrapper">maxh\Nominatim</div></dd>
                                                 <dt>Class hierarchy</dt>
                             <dd class="hierarchy">
                                                                                                                                                                     <div class="namespace-wrapper">\maxh\Nominatim\Nominatim</div>
@@ -306,7 +306,9 @@
                         
                         
                         
-                        
+                                                                            <dt>See also</dt>
+                                                                                        <dd><a href="http://wiki.openstreetmap.org/wiki/Nominatim"><span class="namespace-wrapper">http://wiki.openstreetmap.org/wiki/Nominatim</span></a></dd>
+                                                    
                                                                         </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
@@ -478,7 +480,7 @@ by &#039;newSearch()&#039; method.</em></p>
                 
                                     <h4>Throws</h4>
                     <dl>
-                                                    <dt>\maxh\Nominatim\Exceptions\InvalidParameterException</dt>
+                                                    <dt>\maxh\Nominatim\Exceptions\NominatimException</dt>
                             <dd></dd>
                                                                     </dl>
                 
@@ -531,7 +533,7 @@ by &#039;newSearch()&#039; method.</em></p>
                 <h3 class="public ">newReverse()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">newReverse() : \maxh\Nominatim\Reverse</pre>
-                <p><em>Returns a new search object based on the base reverse.</em></p>
+                <p><em>Returns a new reverse object based on the base reverse.</em></p>
                 
 
                 
@@ -559,7 +561,7 @@ by &#039;newSearch()&#039; method.</em></p>
                 <h3 class="public ">newLookup()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">newLookup() : \maxh\Nominatim\Lookup</pre>
-                <p><em>Returns a new search object based on the base lookup.</em></p>
+                <p><em>Returns a new lookup object based on the base lookup.</em></p>
                 
 
                 
@@ -586,7 +588,7 @@ by &#039;newSearch()&#039; method.</em></p>
             <article class="method">
                 <h3 class="public ">find()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">find(\maxh\Nominatim\QueryInterface  <span class="argument">$nRequest</span>) : array</pre>
+                <pre class="signature" style="margin-right: 54px;">find(\maxh\Nominatim\QueryInterface  <span class="argument">$nRequest</span>) : array|\SimpleXMLElement</pre>
                 <p><em>Runs the query and returns the result set from Nominatim.</em></p>
                 
 
@@ -608,7 +610,7 @@ by &#039;newSearch()&#039; method.</em></p>
                                                                     </dl>
                 
                                     <h4>Returns</h4>
-                    array
+                    array|\SimpleXMLElement
                                             &mdash; <p>The decoded data returned from Nominatim</p>
                                     				
                             </article>
@@ -753,7 +755,7 @@ by &#039;newSearch()&#039; method.</em></p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on January 14th, 2018 at 23:46.
+                    on March 26th, 2018 at 20:58.
                 </section>
             </section>
         </section>

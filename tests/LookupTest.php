@@ -1,23 +1,38 @@
 <?php
+/**
+ * Class LookupTest
+ *
+ * @package      maxh\Nominatim\Test
+ * @author       Maxime Hélias <maximehelias16@gmail.com>
+ */
 
 namespace maxh\Nominatim\Test;
-
-use maxh\Nominatim\Nominatim;
 
 class LookupTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $url = 'http://nominatim.openstreetmap.org/';
 
+    /**
+     * Contain url of the current application
+     * @var \maxh\Nominatim\Nominatim
+     */
     private $nominatim;
 
+    /**
+     * @throws \maxh\Nominatim\Exceptions\NominatimException
+     */
     protected function setUp()
     {
-        $this->nominatim = new Nominatim($this->url);
+        $this->nominatim = new \maxh\Nominatim\Nominatim($this->url);
     }
 
+    /**
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException
+     */
     public function testOsmIds()
     {
+        /** @var \maxh\Nominatim\Lookup $lookup */
         $lookup = $this->nominatim->newLookup()
             ->format('xml')
             ->osmIds('R146656,W104393803,N240109189');

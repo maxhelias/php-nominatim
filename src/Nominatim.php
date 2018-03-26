@@ -2,7 +2,7 @@
 /**
  * Class Nominatim
  *
- * @package      maxh\nominatim
+ * @package      maxh\Nominatim
  * @author       Maxime Hélias <maximehelias16@gmail.com>
  */
 
@@ -12,12 +12,12 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use Psr\Http\Message\ResponseInterface;
 
-use maxh\Nominatim\Exceptions\InvalidParameterException;
 use maxh\Nominatim\Exceptions\NominatimException;
 
 /**
  *  Wrapper to manage exchanges with OSM Nominatim API
  *
+ * @see http://wiki.openstreetmap.org/wiki/Nominatim
  */
 class Nominatim
 {
@@ -30,7 +30,7 @@ class Nominatim
 
     /**
      * Contain http client connection
-     * @var Client
+     * @var \GuzzleHttp\Client
      */
     private $http_client;
 
@@ -38,37 +38,37 @@ class Nominatim
      * The search object which serves as a template for new ones created
      * by 'newSearch()' method.
      *
-     * @var Search
+     * @var \maxh\Nominatim\Search
      */
     private $baseSearch;
 
     /**
      * Template for new ones created by 'newReverser()' method.
-     * @var Reverse
+     * @var \maxh\Nominatim\Reverse
      */
     private $baseReverse;
 
     /**
      * Template for new ones created by 'newLookup()' method.
-     * @var Lookup
+     * @var \maxh\Nominatim\Lookup
      */
     private $baseLookup;
 
     /**
      * Constructor
      *
-     * @param string              $application_url Contain url of the current application
-     * @param \GuzzleHttp\Client|null $http_client     Client object from Guzzle
+     * @param string $application_url Contain url of the current application
+     * @param \GuzzleHttp\Client|null $http_client Client object from Guzzle
      *
-     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException
+     * @throws \maxh\Nominatim\Exceptions\NominatimException
      */
     public function __construct(
-        $application_url,
+        string $application_url,
         Client $http_client = null
     ) {
 
         if (empty($application_url)) {
-            throw new InvalidParameterException('Application url parameter is empty');
+            throw new NominatimException('Application url parameter is empty');
         }
 
         if ($http_client === null) {
@@ -81,12 +81,14 @@ class Nominatim
             $application_url_client = $http_client->getConfig('base_uri');
 
             if (empty($application_url_client)) {
-                $http_client->setDefaultOption('base_uri', $application_url);
-            } elseif ($application_url_client !== $application_url) {
-                throw new InvalidParameterException("http_client parameter hasn't the same url application.");
+                throw new NominatimException('http_client must have a configured base_uri.');
+            }
+
+            if ($application_url_client !== $application_url) {
+                throw new NominatimException("http_client parameter hasn't the same url application.");
             }
         } else {
-            throw new InvalidParameterException('http_client parameter must be a \\GuzzleHttp\\Client object or empty');
+            throw new NominatimException('http_client parameter must be a \\GuzzleHttp\\Client object or empty');
         }
 
         $this->application_url = $application_url;
@@ -101,29 +103,29 @@ class Nominatim
     /**
      * Returns a new search object based on the base search.
      *
-     * @return Search
+     * @return \maxh\Nominatim\Search
      */
-    public function newSearch()
+    public function newSearch(): Search
     {
         return clone $this->baseSearch;
     }
 
     /**
-     * Returns a new search object based on the base reverse.
+     * Returns a new reverse object based on the base reverse.
      *
-     * @return Reverse
+     * @return \maxh\Nominatim\Reverse
      */
-    public function newReverse()
+    public function newReverse(): Reverse
     {
         return clone $this->baseReverse;
     }
 
     /**
-     * Returns a new search object based on the base lookup.
+     * Returns a new lookup object based on the base lookup.
      *
-     * @return Lookup
+     * @return \maxh\Nominatim\Lookup
      */
-    public function newLookup()
+    public function newLookup(): Lookup
     {
         return clone $this->baseLookup;
     }
@@ -138,7 +140,7 @@ class Nominatim
      * @return array|\SimpleXMLElement
      * @throws \maxh\Nominatim\Exceptions\NominatimException if no format for decode
      */
-    private function decodeResponse($format, Request $request, ResponseInterface $response)
+    private function decodeResponse(string $format, Request $request, ResponseInterface $response)
     {
         if ($format === 'json') {
             return json_decode($response->getBody(), true);
@@ -156,7 +158,7 @@ class Nominatim
      *
      * @param  QueryInterface $nRequest The object request to send
      *
-     * @return array                                         The decoded data returned from Nominatim
+     * @return array|\SimpleXMLElement                                         The decoded data returned from Nominatim
      * @throws \GuzzleHttp\Exception\ClientException         if http request is an error
      * @throws \maxh\Nominatim\Exceptions\NominatimException if no format for decode
      */
@@ -182,7 +184,7 @@ class Nominatim
      * Return the client using by instance
      * @return \GuzzleHttp\Client
      */
-    public function getClient()
+    public function getClient(): Client
     {
         return $this->http_client;
     }

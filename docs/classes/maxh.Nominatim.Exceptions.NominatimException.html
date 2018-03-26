@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-743962778"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1173300529"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-743962778" class="accordion-body collapse in">
+            <div id="namespace-1173300529" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1969366245"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-969570493"></a>
                                 <a href="../namespaces/maxh.html" style="margin-left: 30px; padding-left: 0">maxh</a>
             </div>
-            <div id="namespace-1969366245" class="accordion-body collapse ">
+            <div id="namespace-969570493" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1287626162"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1779959186"></a>
                                 <a href="../namespaces/maxh.Nominatim.html" style="margin-left: 30px; padding-left: 0">Nominatim</a>
             </div>
-            <div id="namespace-1287626162" class="accordion-body collapse ">
+            <div id="namespace-1779959186" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-387998253"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-253047147"></a>
                                 <a href="../namespaces/maxh.Nominatim.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
             </div>
-            <div id="namespace-387998253" class="accordion-body collapse ">
+            <div id="namespace-253047147" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -290,7 +290,7 @@ the client request.</p>
                     
                     <dl>
                         <dt>File</dt>
-                            <dd><a href="../files/Exceptions.NominatimException.html"><div class="path-wrapper">Exceptions\NominatimException.php</div></a></dd>
+                            <dd><a href="../files/Exceptions.NominatimException.html"><div class="path-wrapper">Exceptions/NominatimException.php</div></a></dd>
                                                 <dt>Package</dt>
                             <dd><div class="namespace-wrapper">maxh\Nominatim</div></dd>
                                                 <dt>Class hierarchy</dt>
@@ -389,7 +389,7 @@ the client request.</p>
             <article class="method">
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$message</span>, \Psr\Http\Message\RequestInterface  <span class="argument">$request</span>, \Psr\Http\Message\ResponseInterface|null  <span class="argument">$response = null</span>, \Exception|null  <span class="argument">$previous = null</span>) </pre>
+                <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$message</span>, \Psr\Http\Message\RequestInterface  <span class="argument">$request = null</span>, \Psr\Http\Message\ResponseInterface|null  <span class="argument">$response = null</span>, \Exception|null  <span class="argument">$previous = null</span>) </pre>
                 <p><em>Constructor</em></p>
                 
 
@@ -438,14 +438,14 @@ the client request.</p>
             <article class="method">
                 <h3 class="public ">getRequest()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getRequest() : \GuzzleHttp\Psr7\Request</pre>
+                <pre class="signature" style="margin-right: 54px;">getRequest() : \Psr\Http\Message\RequestInterface</pre>
                 <p><em>Return the Request</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    \GuzzleHttp\Psr7\Request
+                    \Psr\Http\Message\RequestInterface
                                     				
                             </article>
         </div>
@@ -466,15 +466,14 @@ the client request.</p>
             <article class="method">
                 <h3 class="public ">getResponse()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getResponse() : \GuzzleHttp\Psr7\Response</pre>
+                <pre class="signature" style="margin-right: 54px;">getResponse() : \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface</pre>
                 <p><em>Return the Response</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
-                    \GuzzleHttp\Psr7\Response
-                                            &mdash; <p>[description]</p>
+                    \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface
                                     				
                             </article>
         </div>
@@ -498,7 +497,7 @@ the client request.</p>
             <h3 id="source-view-label">NominatimException.php</h3>
         </div>
         <div class="modal-body">
-            <pre data-src="../files/Exceptions\NominatimException.php.txt" class="language-php line-numbers"></pre>
+            <pre data-src="../files/Exceptions/NominatimException.php.txt" class="language-php line-numbers"></pre>
         </div>
     </div>
 
@@ -539,7 +538,7 @@ the client request.</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on January 14th, 2018 at 23:46.
+                    on March 26th, 2018 at 20:58.
                 </section>
             </section>
         </section>

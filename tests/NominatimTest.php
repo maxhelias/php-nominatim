@@ -10,11 +10,13 @@ use maxh\Nominatim\Lookup;
 class NominatimTest extends \PHPUnit_Framework_TestCase
 {
 
-    protected $url = "http://nominatim.openstreetmap.org/";
+    protected $url = 'http://nominatim.openstreetmap.org/';
 
+    /**
+     * @throws \maxh\Nominatim\Exceptions\NominatimException
+     */
     public function testNominatimFactory()
     {
-
         //Instance Nominatim
         $instance = new Nominatim($this->url);
         $this->assertInstanceOf(Nominatim::class, $instance);
@@ -39,8 +41,5 @@ class NominatimTest extends \PHPUnit_Framework_TestCase
 
         $baseLookup = $instance->newLookup();
         $this->assertEquals($lookup, $baseLookup);
-
-        //Testing Client
-        $this->assertInstanceOf('GuzzleHttp\\Client', $instance->getClient());
     }
 }

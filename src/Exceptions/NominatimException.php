@@ -1,6 +1,9 @@
 <?php
 /**
  * This file contains code about maxh\Nominatim\Exceptions\NominatimException class
+ *
+ * @package      maxh\Nominatim
+ * @author       Maxime Hélias <maximehelias16@gmail.com>
  */
 
 namespace maxh\Nominatim\Exceptions;
@@ -44,7 +47,7 @@ class NominatimException extends Exception
      */
     public function __construct(
         $message,
-        RequestInterface $request,
+        RequestInterface $request = null,
         ResponseInterface $response = null,
         Exception $previous = null
     ) {
@@ -59,16 +62,16 @@ class NominatimException extends Exception
 
     /**
      * Return the Request
-     * @return \GuzzleHttp\Psr7\Request
+     * @return RequestInterface
      */
-    public function getRequest()
+    public function getRequest(): RequestInterface
     {
         return $this->request;
     }
 
     /**
      * Return the Response
-     * @return \GuzzleHttp\Psr7\Response [description]
+     * @return PromiseInterface|ResponseInterface
      */
     public function getResponse()
     {

@@ -1,19 +1,31 @@
 <?php
 
+declare(strict_types=1);
+
 require '../vendor/autoload.php';
 
 use maxh\Nominatim\Nominatim;
 
 //URL Server
-$url = "http://nominatim.openstreetmap.org/";
+$url = 'http://nominatim.openstreetmap.org/';
 
-$instance = new Nominatim($url);
+try {
 
-$Reverse = $instance->newReverse()
-			->latlon(43.4843941, -1.4960842);
+    $instance = new Nominatim($url);
 
-$result = $instance->find($Reverse);
+    $reverse = $instance->newReverse()
+        ->latlon(43.4843941, -1.4960842);
 
-echo 'URL : ' . $url . $Reverse->getQueryString();
+    $result = $instance->find($reverse);
 
-var_dump($result);
+    echo 'URL : ' . $url . $reverse->getPath() . '?' . $reverse->getQueryString();
+
+    var_dump($result);
+
+} catch (\GuzzleHttp\Exception\ClientException $e) {
+    // If you have any exceptions with Guzzle
+    var_dump($e->getMessage());
+} catch (\maxh\Nominatim\Exceptions\NominatimException $e) {
+    // If you set a wrong instance of Nominatim
+    var_dump($e->getMessage());
+}
