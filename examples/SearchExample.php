@@ -1,24 +1,38 @@
 <?php
 
+declare(strict_types=1);
+
 require '../vendor/autoload.php';
 
 use maxh\Nominatim\Nominatim;
 
 //URL Server
-$url = "http://nominatim.openstreetmap.org/";
+$url = 'http://nominatim.openstreetmap.org/';
 
-$instance = new Nominatim($url);
+try {
 
-$Search = $instance->newSearch()
-			->country('France')
-			->city('Bayonne')
-			->postalCode('64100')
-			->polygon('geojson')
-			->addressDetails();
+    $instance = new Nominatim($url);
 
-$result = $instance->find($Search);
+    $search = $instance->newSearch()
+        ->country('France')
+        ->city('Bayonne')
+        ->postalCode('64100')
+        ->polygon('geojson')
+        ->addressDetails();
 
-echo 'URL : ' . $url . $Search->getPath() . '?'. $Search->getQueryString();
+    $result = $instance->find($search);
 
+    echo 'URL : ' . $url . $search->getPath() . '?' . $search->getQueryString();
 
-var_dump($result);
+    var_dump($result);
+
+} catch (\maxh\Nominatim\Exceptions\InvalidParameterException $e) {
+    // If you set invalid parameter in instance
+    var_dump($e->getMessage());
+} catch (\GuzzleHttp\Exception\ClientException $e) {
+    // If you have any exceptions with Guzzle
+    var_dump($e->getMessage());
+} catch (\maxh\Nominatim\Exceptions\NominatimException $e) {
+    // If you set a wrong instance of Nominatim
+    var_dump($e->getMessage());
+}

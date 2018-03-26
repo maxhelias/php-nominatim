@@ -2,7 +2,7 @@
 /**
  * Class Search
  *
- * @package      maxh\nominatim
+ * @package      maxh\Nominatim
  * @author       Maxime Hélias <maximehelias16@gmail.com>
  */
 
@@ -28,8 +28,8 @@ class Search extends Query
 
         $this->setPath('search');
 
-        $this->accepteFormat[] = 'html';
-        $this->accepteFormat[] = 'jsonv2';
+        $this->acceptedFormat[] = 'html';
+        $this->acceptedFormat[] = 'jsonv2';
     }
 
     // -- Builder methods ------------------------------------------------------
@@ -41,7 +41,7 @@ class Search extends Query
      *
      * @return \maxh\Nominatim\Search
      */
-    public function query($query)
+    public function query(string $query): Search
     {
         $this->query['q'] = $query;
 
@@ -57,7 +57,7 @@ class Search extends Query
      *
      * @return \maxh\Nominatim\Search
      */
-    public function street($street)
+    public function street(string $street): Search
     {
         $this->query['street'] = $street;
 
@@ -73,7 +73,7 @@ class Search extends Query
      *
      * @return \maxh\Nominatim\Search
      */
-    public function city($city)
+    public function city(string $city): Search
     {
         $this->query['city'] = $city;
 
@@ -89,7 +89,7 @@ class Search extends Query
      *
      * @return \maxh\Nominatim\Search
      */
-    public function county($county)
+    public function county(string $county): Search
     {
         $this->query['county'] = $county;
 
@@ -105,7 +105,7 @@ class Search extends Query
      *
      * @return \maxh\Nominatim\Search
      */
-    public function state($state)
+    public function state(string $state): Search
     {
         $this->query['state'] = $state;
 
@@ -121,7 +121,7 @@ class Search extends Query
      *
      * @return \maxh\Nominatim\Search
      */
-    public function country($country)
+    public function country(string $country): Search
     {
         $this->query['country'] = $country;
 
@@ -133,11 +133,11 @@ class Search extends Query
      *
      * Do not combine with query().
      *
-     * @param  integer $postalCode The postal code
+     * @param  string $postalCode The postal code
      *
      * @return \maxh\Nominatim\Search
      */
-    public function postalCode($postalCode)
+    public function postalCode(string $postalCode): Search
     {
         $this->query['postalcode'] = $postalCode;
 
@@ -155,7 +155,7 @@ class Search extends Query
      * @return \maxh\Nominatim\Search
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if country code is invalid
      */
-    public function countryCode($countrycode)
+    public function countryCode(string $countrycode): Search
     {
         if (!preg_match('/^[a-z]{2}$/i', $countrycode)) {
             throw new InvalidParameterException("Invalid country code: \"$countrycode\"");
@@ -180,7 +180,7 @@ class Search extends Query
      *
      * @return \maxh\Nominatim\Search
      */
-    public function viewBox($left, $top, $right, $bottom)
+    public function viewBox(string $left, string $top, string $right, string $bottom): Search
     {
         $this->query['viewbox'] = $left . ',' . $top . ',' . $right . ',' . $bottom;
 
@@ -193,9 +193,9 @@ class Search extends Query
      * @return \maxh\Nominatim\Search
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  if no place id
      */
-    public function exludePlaceIds()
+    public function exludePlaceIds(): Search
     {
-        $args = func_get_args();
+        $args = \func_get_args();
 
         if (count($args) > 0) {
             $this->query['exclude_place_ids'] = implode(', ', $args);
@@ -213,7 +213,7 @@ class Search extends Query
      *
      * @return \maxh\Nominatim\Search
      */
-    public function limit($limit)
+    public function limit(int $limit): Search
     {
         $this->query['limit'] = (string) $limit;
 

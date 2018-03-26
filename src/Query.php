@@ -2,7 +2,7 @@
 /**
  * Class Query
  *
- * @package      maxh\nominatim
+ * @package      maxh\Nominatim
  * @author       Maxime Hélias <maximehelias16@gmail.com>
  */
 
@@ -13,7 +13,7 @@ use maxh\Nominatim\Exceptions\InvalidParameterException;
 /**
  * Class implementing functionality common to requests nominatim.
  */
-class Query implements QueryInterface
+abstract class Query implements QueryInterface
 {
     /**
      * Contain the path of the request
@@ -37,7 +37,7 @@ class Query implements QueryInterface
      * Output format accepted
      * @var array
      */
-    protected $accepteFormat = ['xml', 'json'];
+    protected $acceptedFormat = ['xml', 'json'];
 
     /**
      * Output polygon format accepted
@@ -68,14 +68,14 @@ class Query implements QueryInterface
      *
      * @param  string $format The output format for the request
      *
-     * @return \maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if format is not supported
      */
-    public function format($format)
+    public function format(string $format): Query
     {
         $format = strtolower($format);
 
-        if (in_array($format, $this->accepteFormat, true)) {
+        if (\in_array($format, $this->acceptedFormat, true)) {
             $this->setFormat($format);
 
             return $this;
@@ -94,9 +94,9 @@ class Query implements QueryInterface
      *                                  specified in the "Accept-Language" HTTP header. Either uses standard rfc2616
      *                                  accept-language string or a simple comma separated list of language codes.
      *
-     * @return \maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
      */
-    public function language($language)
+    public function language(string $language): Query
     {
         $this->query['accept-language'] = $language;
 
@@ -108,9 +108,9 @@ class Query implements QueryInterface
      *
      * @param  boolean $details
      *
-     * @return \maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
      */
-    public function addressDetails($details = true)
+    public function addressDetails(bool $details = true): Query
     {
         $this->query['addressdetails'] = $details ? '1' : '0';
 
@@ -124,9 +124,9 @@ class Query implements QueryInterface
      *
      * @param  string $email Address mail
      *
-     * @return \maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
      */
-    public function email($email)
+    public function email(string $email): Query
     {
         $this->query['email'] = $email;
 
@@ -138,12 +138,12 @@ class Query implements QueryInterface
      *
      * @param  string $polygon
      *
-     * @return \maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Query
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  if polygon format is not supported
      */
-    public function polygon($polygon)
+    public function polygon(string $polygon)
     {
-        if (in_array($polygon, $this->polygon, true)) {
+        if (\in_array($polygon, $this->polygon, true)) {
             $this->query['polygon_' . $polygon] = '1';
 
             return $this;
@@ -157,9 +157,9 @@ class Query implements QueryInterface
      *
      * @param  boolean $tags
      *
-     * @return \maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
      */
-    public function extraTags($tags = true)
+    public function extraTags(bool $tags = true): Query
     {
         $this->query['extratags'] = $tags ? '1' : '0';
 
@@ -172,9 +172,9 @@ class Query implements QueryInterface
      *
      * @param  boolean $details
      *
-     * @return \maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
      */
-    public function nameDetails($details = true)
+    public function nameDetails(bool $details = true): Query
     {
         $this->query['namedetails'] = $details ? '1' : '0';
 
@@ -186,7 +186,7 @@ class Query implements QueryInterface
      *
      * @return string
      */
-    public function getQueryString()
+    public function getQueryString(): string
     {
         return http_build_query($this->query);
     }
@@ -197,7 +197,7 @@ class Query implements QueryInterface
      * Get path
      * @return string
      */
-    public function getPath()
+    public function getPath(): string
     {
         return $this->path;
     }
@@ -206,7 +206,7 @@ class Query implements QueryInterface
      * Get query
      * @return array
      */
-    public function getQuery()
+    public function getQuery(): array
     {
         return $this->query;
     }
@@ -215,7 +215,7 @@ class Query implements QueryInterface
      * Get format
      * @return string
      */
-    public function getFormat()
+    public function getFormat(): string
     {
         return $this->format;
     }
@@ -224,7 +224,7 @@ class Query implements QueryInterface
      * Set path
      * @param string $path Name's path of the service
      */
-    protected function setPath($path)
+    protected function setPath(string $path)
     {
         $this->path = $path;
     }
@@ -233,7 +233,7 @@ class Query implements QueryInterface
      * Set query
      * @param array $query Parameter of the query
      */
-    protected function setQuery(array $query = [ ])
+    protected function setQuery(array $query = [])
     {
         $this->query = $query;
     }
@@ -242,7 +242,7 @@ class Query implements QueryInterface
      * Set format
      * @param string $format Format returning by the response
      */
-    protected function setFormat($format)
+    protected function setFormat(string $format)
     {
         $this->format = $this->query['format'] = $format;
     }

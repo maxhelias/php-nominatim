@@ -2,7 +2,7 @@
 /**
  * Class Reverse
  *
- * @package      maxh\nominatim
+ * @package      maxh\Nominatim
  * @author       Maxime Hélias <maximehelias16@gmail.com>
  */
 
@@ -46,9 +46,9 @@ class Reverse extends Query
      * @return \maxh\Nominatim\Reverse
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  if osm type is not supported
      */
-    public function osmType($type)
+    public function osmType(string $type): Reverse
     {
-        if (in_array($type, $this->osmType, true)) {
+        if (\in_array($type, $this->osmType, true)) {
             $this->query['osm_type'] = $type;
 
             return $this;
@@ -64,7 +64,7 @@ class Reverse extends Query
      *
      * @return \maxh\Nominatim\Reverse
      */
-    public function osmId($id)
+    public function osmId(int $id): Reverse
     {
         $this->query['osm_id'] = $id;
 
@@ -79,7 +79,7 @@ class Reverse extends Query
      *
      * @return \maxh\Nominatim\Reverse
      */
-    public function latlon($lat, $lon)
+    public function latlon(float $lat, float $lon): Reverse
     {
         $this->query['lat'] = $lat;
 
@@ -95,7 +95,7 @@ class Reverse extends Query
      *
      * @return \maxh\Nominatim\Reverse
      */
-    public function zoom($zoom)
+    public function zoom(int $zoom): Reverse
     {
         $this->query['zoom'] = (string) $zoom;
 

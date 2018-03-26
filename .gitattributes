@@ -14,4 +14,4 @@
 /tests              export-ignore
 
 # End line
-* text eol=lf
+\!*.{otf,ttf,woff,png} text eol=lf

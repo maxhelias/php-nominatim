@@ -1,19 +1,30 @@
 <?php
+/**
+ * Class SearchTest
+ *
+ * @package      maxh\Nominatim\Test
+ * @author       Maxime Hélias <maximehelias16@gmail.com>
+ */
 
 namespace maxh\Nominatim\Test;
-
-use maxh\Nominatim\Nominatim;
 
 class SearchTest extends \PHPUnit_Framework_TestCase
 {
 
     protected $url = 'http://nominatim.openstreetmap.org/';
 
+    /**
+     * Contain url of the current application
+     * @var \maxh\Nominatim\Nominatim
+     */
     private $nominatim;
 
+    /**
+     * @throws \maxh\Nominatim\Exceptions\NominatimException
+     */
     protected function setUp()
     {
-        $this->nominatim = new Nominatim($this->url);
+        $this->nominatim = new \maxh\Nominatim\Nominatim($this->url);
     }
 
     /**
@@ -21,6 +32,7 @@ class SearchTest extends \PHPUnit_Framework_TestCase
      */
     public function testQuery()
     {
+        /** @var \maxh\Nominatim\Search $search */
         $search = $this->nominatim->newSearch()
             ->query('HelloWorld');
 

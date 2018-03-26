@@ -1,8 +1,8 @@
 <?php
 /**
- * Interface QueryInterce
+ * Interface QueryInterface
  *
- * @package      maxh\nominatim
+ * @package      maxh\Nominatim
  * @author       Maxime Hélias <maximehelias16@gmail.com>
  */
 
@@ -13,7 +13,7 @@ namespace maxh\Nominatim;
  */
 interface QueryInterface
 {
-    
+
     /**
      * Get path of the request
      *
@@ -23,14 +23,14 @@ interface QueryInterface
      *
      * @return string
      */
-    public function getPath();
+    public function getPath(): string;
 
     /**
      * Get the query to send
      *
      * @return array
      */
-    public function getQuery();
+    public function getQuery(): array;
 
     /**
      * Get the format of the request
@@ -39,6 +39,6 @@ interface QueryInterface
      *
      * @return string
      */
-    public function getFormat();
+    public function getFormat(): string;
 }
 
