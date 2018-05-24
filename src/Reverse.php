@@ -1,9 +1,12 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * Class Reverse
- *
- * @package      maxh\Nominatim
- * @author       Maxime Hélias <maximehelias16@gmail.com>
+ * This file is part of PHP Nominatim.
+ * (c) Maxime Hélias <maximehelias16@gmail.com>
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace maxh\Nominatim;
@@ -17,21 +20,21 @@ use maxh\Nominatim\Exceptions\InvalidParameterException;
  */
 class Reverse extends Query
 {
-
     /**
-     * OSM Type accepted (Node/Way/Relation)
+     * OSM Type accepted (Node/Way/Relation).
+     *
      * @var array
      */
     public $osmType = ['N', 'W', 'R'];
 
-
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param array $query Default value for this query
      */
-    public function __construct(array $query = [])
+    public function __construct(array &$query = [])
     {
-        parent::__construct();
+        parent::__construct($query);
 
         $this->setPath('reverse');
     }
@@ -39,14 +42,15 @@ class Reverse extends Query
     // -- Builder methods ------------------------------------------------------
 
     /**
-     * [osmType description]
+     * [osmType description].
      *
-     * @param  string $type
+     * @param string $type
+     *
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if osm type is not supported
      *
      * @return \maxh\Nominatim\Reverse
-     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  if osm type is not supported
      */
-    public function osmType(string $type): Reverse
+    public function osmType(string $type): self
     {
         if (\in_array($type, $this->osmType, true)) {
             $this->query['osm_type'] = $type;
@@ -60,11 +64,11 @@ class Reverse extends Query
     /**
      * A specific osm node / way / relation to return an address for.
      *
-     * @param  integer $id
+     * @param int $id
      *
      * @return \maxh\Nominatim\Reverse
      */
-    public function osmId(int $id): Reverse
+    public function osmId(int $id): self
     {
         $this->query['osm_id'] = $id;
 
@@ -72,14 +76,14 @@ class Reverse extends Query
     }
 
     /**
-     * The location to generate an address for
+     * The location to generate an address for.
      *
-     * @param  float $lat The latitude
-     * @param  float $lon The longitude
+     * @param float $lat The latitude
+     * @param float $lon The longitude
      *
      * @return \maxh\Nominatim\Reverse
      */
-    public function latlon(float $lat, float $lon): Reverse
+    public function latlon(float $lat, float $lon): self
     {
         $this->query['lat'] = $lat;
 
@@ -89,13 +93,13 @@ class Reverse extends Query
     }
 
     /**
-     * Level of detail required where 0 is country and 18 is house/building
+     * Level of detail required where 0 is country and 18 is house/building.
      *
-     * @param  integer $zoom
+     * @param int $zoom
      *
      * @return \maxh\Nominatim\Reverse
      */
-    public function zoom(int $zoom): Reverse
+    public function zoom(int $zoom): self
     {
         $this->query['zoom'] = (string) $zoom;
 

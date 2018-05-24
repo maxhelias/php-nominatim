@@ -1,9 +1,12 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * Class Lookup
- *
- * @package      maxh\Nominatim
- * @author       Maxime Hélias <maximehelias16@gmail.com>
+ * This file is part of PHP Nominatim.
+ * (c) Maxime Hélias <maximehelias16@gmail.com>
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace maxh\Nominatim;
@@ -17,15 +20,14 @@ use maxh\Nominatim\Exceptions\InvalidParameterException;
  */
 class Lookup extends Query
 {
-
     /**
-     * Constuctor
+     * Constuctor.
      *
      * @param array $query Default value for this query
      */
-    public function __construct(array $query = [])
+    public function __construct(array &$query = [])
     {
-        parent::__construct();
+        parent::__construct($query);
 
         $this->setPath('lookup');
     }
@@ -33,13 +35,13 @@ class Lookup extends Query
     // -- Builder methods ------------------------------------------------------
 
     /**
-     * A list of up to 50 specific osm node, way or relations ids to return the addresses for
+     * A list of up to 50 specific osm node, way or relations ids to return the addresses for.
      *
-     * @param  string $id
+     * @param string $id
      *
      * @return \maxh\Nominatim\Lookup
      */
-    public function osmIds(string $id): Lookup
+    public function osmIds(string $id): self
     {
         $this->query['osm_ids'] = $id;
 
@@ -47,12 +49,11 @@ class Lookup extends Query
     }
 
     /**
-     * Output format for the geometry of results
+     * Output format for the geometry of results.
      *
-     * @param  string $polygon
+     * @param string $polygon
      *
-     * @return void
-     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  Polygon is not supported with lookup
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException Polygon is not supported with lookup
      */
     public function polygon(string $polygon)
     {

@@ -1,45 +1,48 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * This file contains code about maxh\Nominatim\Exceptions\NominatimException class
- *
- * @package      maxh\Nominatim
- * @author       Maxime Hélias <maximehelias16@gmail.com>
+ * This file is part of PHP Nominatim.
+ * (c) Maxime Hélias <maximehelias16@gmail.com>
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace maxh\Nominatim\Exceptions;
 
+use Exception;
+use GuzzleHttp\Promise\PromiseInterface;
 use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
-use GuzzleHttp\Promise\PromiseInterface;
-
-use Exception;
 
 /**
- * InvalidParameterException exception is thrown when a request failed because of a bad client configuration
+ * InvalidParameterException exception is thrown when a request failed because of a bad client configuration.
  *
  * InvalidParameterException appears when the request failed because of a bad parameter from
  * the client request.
  *
- * @package maxh\Nominatim
  * @category Exceptions
  */
 class NominatimException extends Exception
 {
-
     /**
-     * Contain the request
+     * Contain the request.
+     *
      * @var RequestInterface
      */
     private $request;
 
     /**
-     * Contain the response
+     * Contain the response.
+     *
      * @var ResponseInterface
      */
     private $response;
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param string                 $message  Message of this exception
      * @param RequestInterface       $request  The request instance
      * @param ResponseInterface|null $response The response of the request
@@ -61,7 +64,8 @@ class NominatimException extends Exception
     }
 
     /**
-     * Return the Request
+     * Return the Request.
+     *
      * @return RequestInterface
      */
     public function getRequest(): RequestInterface
@@ -70,7 +74,8 @@ class NominatimException extends Exception
     }
 
     /**
-     * Return the Response
+     * Return the Response.
+     *
      * @return PromiseInterface|ResponseInterface
      */
     public function getResponse()

@@ -1,35 +1,38 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * Class Nominatim
- *
- * @package      maxh\Nominatim
- * @author       Maxime Hélias <maximehelias16@gmail.com>
+ * This file is part of PHP Nominatim.
+ * (c) Maxime Hélias <maximehelias16@gmail.com>
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace maxh\Nominatim;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
+use maxh\Nominatim\Exceptions\NominatimException;
 use Psr\Http\Message\ResponseInterface;
 
-use maxh\Nominatim\Exceptions\NominatimException;
-
 /**
- *  Wrapper to manage exchanges with OSM Nominatim API
+ *  Wrapper to manage exchanges with OSM Nominatim API.
  *
  * @see http://wiki.openstreetmap.org/wiki/Nominatim
  */
 class Nominatim
 {
-
     /**
-     * Contain url of the current application
+     * Contain url of the current application.
+     *
      * @var string
      */
     private $application_url;
 
     /**
-     * Contain http client connection
+     * Contain http client connection.
+     *
      * @var \GuzzleHttp\Client
      */
     private $http_client;
@@ -44,21 +47,23 @@ class Nominatim
 
     /**
      * Template for new ones created by 'newReverser()' method.
+     *
      * @var \maxh\Nominatim\Reverse
      */
     private $baseReverse;
 
     /**
      * Template for new ones created by 'newLookup()' method.
+     *
      * @var \maxh\Nominatim\Lookup
      */
     private $baseLookup;
 
     /**
-     * Constructor
+     * Constructor.
      *
-     * @param string $application_url Contain url of the current application
-     * @param \GuzzleHttp\Client|null $http_client Client object from Guzzle
+     * @param string                  $application_url Contain url of the current application
+     * @param \GuzzleHttp\Client|null $http_client     Client object from Guzzle
      *
      * @throws \maxh\Nominatim\Exceptions\NominatimException
      */
@@ -66,12 +71,11 @@ class Nominatim
         string $application_url,
         Client $http_client = null
     ) {
-
         if (empty($application_url)) {
             throw new NominatimException('Application url parameter is empty');
         }
 
-        if ($http_client === null) {
+        if (null === $http_client) {
             $http_client = new Client([
                 'base_uri'           => $application_url,
                 'timeout'            => 30,
@@ -85,7 +89,7 @@ class Nominatim
             }
 
             if ($application_url_client !== $application_url) {
-                throw new NominatimException("http_client parameter hasn't the same url application.");
+                throw new NominatimException('http_client parameter hasn\'t the same url application.');
             }
         } else {
             throw new NominatimException('http_client parameter must be a \\GuzzleHttp\\Client object or empty');
@@ -131,22 +135,23 @@ class Nominatim
     }
 
     /**
-     * Decode the data returned from the request
+     * Decode the data returned from the request.
      *
-     * @param  string   $format   json or xml
-     * @param  Request  $request  Request object from Guzzle
-     * @param  ResponseInterface $response Interface response object from Guzzle
+     * @param string            $format   json or xml
+     * @param Request           $request  Request object from Guzzle
+     * @param ResponseInterface $response Interface response object from Guzzle
+     *
+     * @throws \maxh\Nominatim\Exceptions\NominatimException if no format for decode
      *
      * @return array|\SimpleXMLElement
-     * @throws \maxh\Nominatim\Exceptions\NominatimException if no format for decode
      */
     private function decodeResponse(string $format, Request $request, ResponseInterface $response)
     {
-        if ($format === 'json') {
-            return json_decode($response->getBody(), true);
+        if ('json' === $format) {
+            return \json_decode($response->getBody(), true);
         }
 
-        if ($format === 'xml') {
+        if ('xml' === $format) {
             return new \SimpleXMLElement($response->getBody());
         }
 
@@ -156,11 +161,12 @@ class Nominatim
     /**
      * Runs the query and returns the result set from Nominatim.
      *
-     * @param  QueryInterface $nRequest The object request to send
+     * @param QueryInterface $nRequest The object request to send
      *
-     * @return array|\SimpleXMLElement                                         The decoded data returned from Nominatim
      * @throws \GuzzleHttp\Exception\ClientException         if http request is an error
      * @throws \maxh\Nominatim\Exceptions\NominatimException if no format for decode
+     *
+     * @return array|\SimpleXMLElement The decoded data returned from Nominatim
      */
     public function find(QueryInterface $nRequest)
     {
@@ -181,7 +187,8 @@ class Nominatim
     }
 
     /**
-     * Return the client using by instance
+     * Return the client using by instance.
+     *
      * @return \GuzzleHttp\Client
      */
     public function getClient(): Client

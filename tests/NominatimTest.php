@@ -1,15 +1,23 @@
 <?php
 
+declare(strict_types=1);
+
+/**
+ * This file is part of PHP Nominatim.
+ * (c) Maxime Hélias <maximehelias16@gmail.com>
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
+ */
+
 namespace maxh\Nominatim\Test;
 
-use maxh\Nominatim\Nominatim;
-use maxh\Nominatim\Search;
-use maxh\Nominatim\Reverse;
 use maxh\Nominatim\Lookup;
+use maxh\Nominatim\Nominatim;
+use maxh\Nominatim\Reverse;
+use maxh\Nominatim\Search;
 
-class NominatimTest extends \PHPUnit_Framework_TestCase
+class NominatimTest extends \PHPUnit\Framework\TestCase
 {
-
     protected $url = 'http://nominatim.openstreetmap.org/';
 
     /**

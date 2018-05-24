@@ -1,9 +1,12 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * This file contains code about maxh\Nominatim\Exceptions\InvalidParameterException class
- *
- * @package      maxh\Nominatim
- * @author       Maxime Hélias <maximehelias16@gmail.com>
+ * This file is part of PHP Nominatim.
+ * (c) Maxime Hélias <maximehelias16@gmail.com>
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace maxh\Nominatim\Exceptions;
@@ -11,15 +14,13 @@ namespace maxh\Nominatim\Exceptions;
 use Exception;
 
 /**
- * InvalidParameterException exception is thrown when a request failed because of a bad client configuration
+ * InvalidParameterException exception is thrown when a request failed because of a bad client configuration.
  *
  * InvalidParameterException appears when the request failed because of a bad parameter from
  * the client request.
  *
- * @package \maxh\Nominatim
  * @category Exceptions
  */
 class InvalidParameterException extends Exception
 {
-
 }

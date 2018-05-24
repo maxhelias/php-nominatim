@@ -1,20 +1,23 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * Class SearchTest
- *
- * @package      maxh\Nominatim\Test
- * @author       Maxime Hélias <maximehelias16@gmail.com>
+ * This file is part of PHP Nominatim.
+ * (c) Maxime Hélias <maximehelias16@gmail.com>
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace maxh\Nominatim\Test;
 
-class SearchTest extends \PHPUnit_Framework_TestCase
+class SearchTest extends \PHPUnit\Framework\TestCase
 {
-
     protected $url = 'http://nominatim.openstreetmap.org/';
 
     /**
-     * Contain url of the current application
+     * Contain url of the current application.
+     *
      * @var \maxh\Nominatim\Nominatim
      */
     private $nominatim;
@@ -28,7 +31,7 @@ class SearchTest extends \PHPUnit_Framework_TestCase
     }
 
     /**
-     * Search HelloWorld
+     * Search HelloWorld.
      */
     public function testQuery()
     {
@@ -38,13 +41,13 @@ class SearchTest extends \PHPUnit_Framework_TestCase
 
         $expected = [
             'format' => 'json',
-            'q' => 'HelloWorld',
+            'q'      => 'HelloWorld',
         ];
 
         $query = $search->getQuery();
         $this->assertSame($expected, $query);
 
-        $expected = http_build_query($query);
+        $expected = \http_build_query($query);
         $this->assertSame($expected, $search->getQueryString());
     }
 
@@ -57,18 +60,17 @@ class SearchTest extends \PHPUnit_Framework_TestCase
             ->addressDetails();
 
         $expected = [
-            'format' => 'json',
-            'country' => 'France',
-            'city' => 'Bayonne',
-            'postalcode' => '64100',
-            'addressdetails' => '1'
+            'format'         => 'json',
+            'country'        => 'France',
+            'city'           => 'Bayonne',
+            'postalcode'     => '64100',
+            'addressdetails' => '1',
         ];
-
 
         $query = $search->getQuery();
         $this->assertSame($expected, $query);
 
-        $expected = http_build_query($query);
+        $expected = \http_build_query($query);
         $this->assertSame($expected, $search->getQueryString());
     }
 }

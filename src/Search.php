@@ -1,9 +1,12 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * Class Search
- *
- * @package      maxh\Nominatim
- * @author       Maxime Hélias <maximehelias16@gmail.com>
+ * This file is part of PHP Nominatim.
+ * (c) Maxime Hélias <maximehelias16@gmail.com>
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace maxh\Nominatim;
@@ -17,14 +20,14 @@ use maxh\Nominatim\Exceptions\InvalidParameterException;
  */
 class Search extends Query
 {
-
     /**
-     * Constuctor
+     * Constuctor.
+     *
      * @param array $query Default value for this query
      */
-    public function __construct(array $query = [])
+    public function __construct(array &$query = [])
     {
-        parent::__construct();
+        parent::__construct($query);
 
         $this->setPath('search');
 
@@ -37,11 +40,11 @@ class Search extends Query
     /**
      * Query string to search for.
      *
-     * @param  string $query The query
+     * @param string $query The query
      *
      * @return \maxh\Nominatim\Search
      */
-    public function query(string $query): Search
+    public function query(string $query): self
     {
         $this->query['q'] = $query;
 
@@ -53,11 +56,11 @@ class Search extends Query
      *
      * Do not combine with query().
      *
-     * @param  string $street The street
+     * @param string $street The street
      *
      * @return \maxh\Nominatim\Search
      */
-    public function street(string $street): Search
+    public function street(string $street): self
     {
         $this->query['street'] = $street;
 
@@ -69,11 +72,11 @@ class Search extends Query
      *
      * Do not combine with query().
      *
-     * @param  string $city The city
+     * @param string $city The city
      *
      * @return \maxh\Nominatim\Search
      */
-    public function city(string $city): Search
+    public function city(string $city): self
     {
         $this->query['city'] = $city;
 
@@ -85,11 +88,11 @@ class Search extends Query
      *
      * Do not combine with query().
      *
-     * @param  string $county The county
+     * @param string $county The county
      *
      * @return \maxh\Nominatim\Search
      */
-    public function county(string $county): Search
+    public function county(string $county): self
     {
         $this->query['county'] = $county;
 
@@ -101,11 +104,11 @@ class Search extends Query
      *
      * Do not combine with query().
      *
-     * @param  string $state The state
+     * @param string $state The state
      *
      * @return \maxh\Nominatim\Search
      */
-    public function state(string $state): Search
+    public function state(string $state): self
     {
         $this->query['state'] = $state;
 
@@ -117,11 +120,11 @@ class Search extends Query
      *
      * Do not combine with query().
      *
-     * @param  string $country The country
+     * @param string $country The country
      *
      * @return \maxh\Nominatim\Search
      */
-    public function country(string $country): Search
+    public function country(string $country): self
     {
         $this->query['country'] = $country;
 
@@ -133,11 +136,11 @@ class Search extends Query
      *
      * Do not combine with query().
      *
-     * @param  string $postalCode The postal code
+     * @param string $postalCode The postal code
      *
      * @return \maxh\Nominatim\Search
      */
-    public function postalCode(string $postalCode): Search
+    public function postalCode(string $postalCode): self
     {
         $this->query['postalcode'] = $postalCode;
 
@@ -150,14 +153,15 @@ class Search extends Query
      * <countrycode> should be the ISO 3166-1alpha2 code, e.g. gb for the United
      * Kingdom, de for Germany, etc.
      *
-     * @param  string $countrycode The country code
+     * @param string $countrycode The country code
+     *
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if country code is invalid
      *
      * @return \maxh\Nominatim\Search
-     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if country code is invalid
      */
-    public function countryCode(string $countrycode): Search
+    public function countryCode(string $countrycode): self
     {
-        if (!preg_match('/^[a-z]{2}$/i', $countrycode)) {
+        if (!\preg_match('/^[a-z]{2}$/i', $countrycode)) {
             throw new InvalidParameterException("Invalid country code: \"$countrycode\"");
         }
 
@@ -171,16 +175,16 @@ class Search extends Query
     }
 
     /**
-     * The preferred area to find search results
+     * The preferred area to find search results.
      *
-     * @param  string $left   Left of the area
-     * @param  string $top  Top of the area
-     * @param  string $right  Right of the area
-     * @param  string $bottom Bottom of the area
+     * @param string $left   Left of the area
+     * @param string $top    Top of the area
+     * @param string $right  Right of the area
+     * @param string $bottom Bottom of the area
      *
      * @return \maxh\Nominatim\Search
      */
-    public function viewBox(string $left, string $top, string $right, string $bottom): Search
+    public function viewBox(string $left, string $top, string $right, string $bottom): self
     {
         $this->query['viewbox'] = $left . ',' . $top . ',' . $right . ',' . $bottom;
 
@@ -190,15 +194,16 @@ class Search extends Query
     /**
      * If you do not want certain OpenStreetMap objects to appear in the search results.
      *
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if no place id
+     *
      * @return \maxh\Nominatim\Search
-     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException  if no place id
      */
-    public function exludePlaceIds(): Search
+    public function exludePlaceIds(): self
     {
         $args = \func_get_args();
 
-        if (count($args) > 0) {
-            $this->query['exclude_place_ids'] = implode(', ', $args);
+        if (\count($args) > 0) {
+            $this->query['exclude_place_ids'] = \implode(', ', $args);
 
             return $this;
         }
@@ -207,13 +212,13 @@ class Search extends Query
     }
 
     /**
-     * Limit the number of returned results
+     * Limit the number of returned results.
      *
-     * @param  integer $limit
+     * @param int $limit
      *
      * @return \maxh\Nominatim\Search
      */
-    public function limit(int $limit): Search
+    public function limit(int $limit): self
     {
         $this->query['limit'] = (string) $limit;
 

@@ -1,20 +1,23 @@
 <?php
+
+declare(strict_types=1);
+
 /**
- * Class LookupTest
- *
- * @package      maxh\Nominatim\Test
- * @author       Maxime Hélias <maximehelias16@gmail.com>
+ * This file is part of PHP Nominatim.
+ * (c) Maxime Hélias <maximehelias16@gmail.com>
+ * This source file is subject to the MIT license that is bundled
+ * with this source code in the file LICENSE.
  */
 
 namespace maxh\Nominatim\Test;
 
-class LookupTest extends \PHPUnit_Framework_TestCase
+class LookupTest extends \PHPUnit\Framework\TestCase
 {
-
     protected $url = 'http://nominatim.openstreetmap.org/';
 
     /**
-     * Contain url of the current application
+     * Contain url of the current application.
+     *
      * @var \maxh\Nominatim\Nominatim
      */
     private $nominatim;
@@ -38,14 +41,14 @@ class LookupTest extends \PHPUnit_Framework_TestCase
             ->osmIds('R146656,W104393803,N240109189');
 
         $expected = [
-            'format' => 'xml',
+            'format'  => 'xml',
             'osm_ids' => 'R146656,W104393803,N240109189',
         ];
 
         $query = $lookup->getQuery();
         $this->assertSame($expected, $query);
 
-        $expected = http_build_query($query);
+        $expected = \http_build_query($query);
         $this->assertSame($expected, $lookup->getQueryString());
     }
 }
