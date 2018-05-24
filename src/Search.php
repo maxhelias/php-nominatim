@@ -161,10 +161,10 @@ class Search extends Query
             throw new InvalidParameterException("Invalid country code: \"$countrycode\"");
         }
 
-        if (empty($this->query['countrycode'])) {
-            $this->query['countrycode'] = $countrycode;
+        if (empty($this->query['countrycodes'])) {
+            $this->query['countrycodes'] = $countrycode;
         } else {
-            $this->query['countrycode'] .= ',' . $countrycode;
+            $this->query['countrycodes'] .= ',' . $countrycode;
         }
 
         return $this;
