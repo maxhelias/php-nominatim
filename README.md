@@ -22,7 +22,7 @@ Installation
 
 Install the package through [composer](http://getcomposer.org):
 
-```
+```bash
 composer require maxh/php-nominatim
 ```
 
@@ -86,8 +86,26 @@ $result = $nominatim->find($lookup);
 By default, the output format of the request is json and the wrapper return a array of results. 
 It can be also xml, but the wrapper return a object [SimpleXMLElement](http://php.net/manual/fr/simplexml.examples-basic.php)
 
-How to customize HTTP client configuration?
--------------------------------------------
+How to override request header ?
+--------------------------------
+
+There are two possibilities :
+
+1. By `Nominatim` instance, for all request :
+```php
+$nominatim = new Nominatim($url, [
+    'verify' => false
+]);
+```
+2. By `find` method, for a request :
+````php
+$result = $nominatim->find($lookup, [
+    'verify' => false
+]);
+````
+
+How to customize HTTP client configuration ?
+--------------------------------------------
 
 You can inject your own HTTP client with your specific configuration. For instance, you can edit user-agent and timeout for all your requests
 
@@ -96,14 +114,19 @@ You can inject your own HTTP client with your specific configuration. For instan
 use maxh\Nominatim\Nominatim;
 use GuzzleHttp\Client;
 
-$client = new Client();
-$client->setDefaultOption('timeout', 1);
-$client->setDefaultOption('headers', array('User-Agent' => 'api_client') );
-
 $url = "http://nominatim.openstreetmap.org/";
-$nominatim = new Nominatim($url, $client);
+$defaultHeader = [
+    'verify' => false,
+    'headers', array('User-Agent' => 'api_client')
+];
 
-?>
+$client = new Client([
+    'base_uri'           => $url,
+    'timeout'            => 30,
+    'connection_timeout' => 5,
+]);
+
+$nominatim = new Nominatim($url, $defaultHeader, $client);
 ```
 
 Note

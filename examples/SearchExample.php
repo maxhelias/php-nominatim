@@ -16,7 +16,9 @@ use maxh\Nominatim\Nominatim;
 $url = 'http://nominatim.openstreetmap.org/';
 
 try {
-    $instance = new Nominatim($url);
+    $instance = new Nominatim($url, [
+        'verify' => false,
+    ]);
 
     $search = $instance->newSearch()
         ->country('France')
