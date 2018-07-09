@@ -1,8 +1,5 @@
 # See http://git-scm.com/docs/gitignore
 
-### IDE ###
-.idea/
-
 ### Composer ###
 composer.phar
 vendor/
