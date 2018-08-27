@@ -158,7 +158,7 @@ class Nominatim
      */
     private function decodeResponse(string $format, Request $request, ResponseInterface $response)
     {
-        if ('json' === $format) {
+        if ('json' === $format || 'jsonv2' === $format || 'geojson' === $format || 'geocodejson' === $format) {
             return \json_decode($response->getBody()->getContents(), true);
         }
 
@@ -175,8 +175,8 @@ class Nominatim
      * @param QueryInterface $nRequest The object request to send
      * @param array          $headers  Override the request header
      *
-     * @throws \RuntimeException
-     * @throws NominatimException if no format for decode
+     * @throws NominatimException                    if no format for decode
+     * @throws \GuzzleHttp\Exception\GuzzleException
      *
      * @return array|\SimpleXMLElement The decoded data returned from Nominatim
      */

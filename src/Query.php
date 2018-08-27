@@ -44,7 +44,7 @@ abstract class Query implements QueryInterface
      *
      * @var array
      */
-    protected $acceptedFormat = ['xml', 'json'];
+    protected $acceptedFormat = ['xml', 'json', 'jsonv2', 'geojson', 'geocodejson'];
 
     /**
      * Output polygon format accepted.
