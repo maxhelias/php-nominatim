@@ -214,8 +214,6 @@ class Search extends Query
     /**
      * Limit the number of returned results.
      *
-     * @param int $limit
-     *
      * @return \maxh\Nominatim\Search
      */
     public function limit(int $limit): self

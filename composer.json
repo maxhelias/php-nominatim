@@ -22,7 +22,7 @@
         "phpunit/phpunit": "6.5.*",
         "squizlabs/php_codesniffer": "dev-master",
         "friendsofphp/php-cs-fixer": "dev-master",
-        "phpro/grumphp": "dev-master"
+        "phpro/grumphp": "^0.15.2"
     },
     "autoload": {
         "psr-4": { "maxh\\Nominatim\\": "src"}

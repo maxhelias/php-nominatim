@@ -1,4 +1,6 @@
-grumphp:
+parameters:
+    git_dir: .
+    bin_dir: vendor/bin
     tasks:
       composer:
         file: ./composer.json
@@ -16,7 +18,7 @@ grumphp:
           - /^docs\/(.*)/
         sniffs: []
         triggered_by: [php]
-      phpcsfixer:
+      phpcsfixer2:
         cache_file: .php_cs.cache
         config: .php_cs
       phpunit:
