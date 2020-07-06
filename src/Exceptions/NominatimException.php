@@ -65,8 +65,6 @@ class NominatimException extends Exception
 
     /**
      * Return the Request.
-     *
-     * @return RequestInterface
      */
     public function getRequest(): RequestInterface
     {
