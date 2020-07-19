@@ -83,6 +83,26 @@ $lookup = $nominatim->newLookup()
 $result = $nominatim->find($lookup);
 ```
 
+Or do a details query (by place_id):
+
+```php
+$details = $nominatim->newDetails()
+            ->placeId(1234)
+            ->polygon('geojson');
+
+$result = $nominatim->find($details);
+```
+
+Or do a details query (by osm type and osm id):
+
+```php
+$details = $nominatim->newDetails()
+            ->osmId('R', 1234)
+            ->polygon('geojson');
+
+$result = $nominatim->find($details);
+```
+
 By default, the output format of the request is json and the wrapper return a array of results. 
 It can be also xml, but the wrapper return a object [SimpleXMLElement](http://php.net/manual/fr/simplexml.examples-basic.php)
 
