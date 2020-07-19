@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 namespace maxh\Nominatim\Test;
 
-use maxh\Nominatim\Consts;
 use maxh\Nominatim\Exceptions\InvalidParameterException;
 
 class DetailsTest extends \PHPUnit\Framework\TestCase
@@ -95,9 +94,9 @@ class DetailsTest extends \PHPUnit\Framework\TestCase
     {
         return [
             //OsmType, OsmId, AssertException
-            [Consts\OsmTypes::WAY, 1234, null], //W1234
-            [Consts\OsmTypes::NODE, 1221, null], //N1221
-            [Consts\OsmTypes::RELATIVE, 43534, null], //R43534
+            ['W', 1234, null], //W1234
+            ['N', 1221, null], //N1221
+            ['R', 43534, null], //R43534
             ['X', 43534, InvalidParameterException::class], //X43534 (Invalid)
         ];
     }
