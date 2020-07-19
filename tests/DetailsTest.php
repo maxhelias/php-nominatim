@@ -97,7 +97,6 @@ class DetailsTest extends \PHPUnit\Framework\TestCase
             ['W', 1234, null], //W1234
             ['N', 1221, null], //N1221
             ['R', 43534, null], //R43534
-            ['X', 43534, InvalidParameterException::class], //X43534 (Invalid)
         ];
     }
 }
