@@ -58,33 +58,27 @@ class DetailsTest extends \PHPUnit\Framework\TestCase
      *
      * @dataProvider osmIdProvider
      *
-     * @param $assertException
+     * @param string $osmType
+     * @param int    $osmId
      *
      * @throws InvalidParameterException
      */
-    public function testOsmId(string $osmType, int $osmId, $assertException)
+    public function testOsmId($osmType, $osmId)
     {
-        if ($assertException) {
-            $this->expectException($assertException);
-        }
-
-        /** @var \maxh\Nominatim\Details $details */
         $details = $this->nominatim->newDetails()
             ->osmId($osmType, $osmId);
 
-        if (!$assertException) {
-            $expected = [
-                'format'  => 'json',
-                'osmtype' => $osmType,
-                'osmid'   => $osmId,
-            ];
+        $expected = [
+            'format'  => 'json',
+            'osmtype' => $osmType,
+            'osmid'   => $osmId,
+        ];
 
-            $query = $details->getQuery();
-            $this->assertSame($expected, $query);
+        $query = $details->getQuery();
+        $this->assertSame($expected, $query);
 
-            $expected = \http_build_query($query);
-            $this->assertSame($expected, $details->getQueryString());
-        }
+        $expected = \http_build_query($query);
+        $this->assertSame($expected, $details->getQueryString());
     }
 
     /**
@@ -93,10 +87,10 @@ class DetailsTest extends \PHPUnit\Framework\TestCase
     public function osmIdProvider(): array
     {
         return [
-            //OsmType, OsmId, AssertException
-            ['W', 1234, null], //W1234
-            ['N', 1221, null], //N1221
-            ['R', 43534, null], //R43534
+            //OsmType, OsmId
+            ['W', 1234], //W1234
+            ['N', 1221], //N1221
+            ['R', 43534], //R43534
         ];
     }
 }
