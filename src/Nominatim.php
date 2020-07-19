@@ -218,8 +218,6 @@ class Nominatim
 
     /**
      * Return the client using by instance.
-     *
-     * @return \GuzzleHttp\Client
      */
     public function getClient(): Client
     {

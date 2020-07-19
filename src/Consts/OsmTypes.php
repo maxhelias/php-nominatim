@@ -12,22 +12,20 @@ declare(strict_types=1);
 namespace maxh\Nominatim\Consts;
 
 /**
- * Constants for osm types
+ * Constants for osm types.
  *
  * Class OsmTypes
- * @package maxh\Nominatim\Consts
  */
 class OsmTypes
 {
-    const NODE = 'N';
-    const WAY = 'W';
-    const RELATIVE = 'R';
+    public const NODE = 'N';
+    public const WAY = 'W';
+    public const RELATIVE = 'R';
 
     /**
-     * All Osm Types
-     * @return array
+     * All Osm Types.
      */
-    static function all(): array
+    public static function all(): array
     {
         return [self::NODE, self::WAY, self::RELATIVE];
     }

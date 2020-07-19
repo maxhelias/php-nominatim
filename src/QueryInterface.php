@@ -22,15 +22,11 @@ interface QueryInterface
      *  Example request :
      *  - Search = search
      *  - Reverse Geocoding = reverse
-     *
-     * @return string
      */
     public function getPath(): string;
 
     /**
      * Get the query to send.
-     *
-     * @return array
      */
     public function getQuery(): array;
 
@@ -38,8 +34,6 @@ interface QueryInterface
      * Get the format of the request.
      *
      * Example : json or xml
-     *
-     * @return string
      */
     public function getFormat(): string;
 }

@@ -115,8 +115,6 @@ abstract class Query implements QueryInterface
     /**
      * Include a breakdown of the address into elements.
      *
-     * @param bool $details
-     *
      * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
      */
     public function addressDetails(bool $details = true): self
@@ -145,8 +143,6 @@ abstract class Query implements QueryInterface
     /**
      * Output format for the geometry of results.
      *
-     * @param string $polygon
-     *
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if polygon format is not supported
      *
      * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Query
@@ -165,8 +161,6 @@ abstract class Query implements QueryInterface
     /**
      * Include additional information in the result if available.
      *
-     * @param bool $tags
-     *
      * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
      */
     public function extraTags(bool $tags = true): self
@@ -180,8 +174,6 @@ abstract class Query implements QueryInterface
      * Include a list of alternative names in the results.
      * These may include language variants, references, operator and brand.
      *
-     * @param bool $details
-     *
      * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
      */
     public function nameDetails(bool $details = true): self
@@ -193,8 +185,6 @@ abstract class Query implements QueryInterface
 
     /**
      * Returns the URL-encoded query.
-     *
-     * @return string
      */
     public function getQueryString(): string
     {
@@ -205,8 +195,6 @@ abstract class Query implements QueryInterface
 
     /**
      * Get path.
-     *
-     * @return string
      */
     public function getPath(): string
     {
@@ -215,8 +203,6 @@ abstract class Query implements QueryInterface
 
     /**
      * Get query.
-     *
-     * @return array
      */
     public function getQuery(): array
     {
@@ -225,8 +211,6 @@ abstract class Query implements QueryInterface
 
     /**
      * Get format.
-     *
-     * @return string
      */
     public function getFormat(): string
     {

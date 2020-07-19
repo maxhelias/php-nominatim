@@ -44,8 +44,6 @@ class Reverse extends Query
     /**
      * [osmType description].
      *
-     * @param string $type
-     *
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if osm type is not supported
      *
      * @return \maxh\Nominatim\Reverse
@@ -63,8 +61,6 @@ class Reverse extends Query
 
     /**
      * A specific osm node / way / relation to return an address for.
-     *
-     * @param int $id
      *
      * @return \maxh\Nominatim\Reverse
      */
@@ -94,8 +90,6 @@ class Reverse extends Query
 
     /**
      * Level of detail required where 0 is country and 18 is house/building.
-     *
-     * @param int $zoom
      *
      * @return \maxh\Nominatim\Reverse
      */

@@ -36,9 +36,8 @@ class Details extends Query
     }
 
     /**
-     * Place information by placeId
+     * Place information by placeId.
      *
-     * @param int $placeId
      * @return Details
      */
     public function placeId(int $placeId): self
@@ -49,16 +48,15 @@ class Details extends Query
     }
 
     /**
-     * Place information by osmtype and osmid
+     * Place information by osmtype and osmid.
      *
-     * @param string $osmType
-     * @param int $osmId
-     * @return Details
      * @throws InvalidParameterException
+     *
+     * @return Details
      */
     public function osmId(string $osmType, int $osmId): self
     {
-        if (!in_array($osmType, Consts\OsmTypes::all())) {
+        if (!\in_array($osmType, Consts\OsmTypes::all(), true)) {
             throw new InvalidParameterException('Osm type is invalid');
         }
 

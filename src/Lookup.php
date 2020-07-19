@@ -37,8 +37,6 @@ class Lookup extends Query
     /**
      * A list of up to 50 specific osm node, way or relations ids to return the addresses for.
      *
-     * @param string $id
-     *
      * @return \maxh\Nominatim\Lookup
      */
     public function osmIds(string $id): self
@@ -50,8 +48,6 @@ class Lookup extends Query
 
     /**
      * Output format for the geometry of results.
-     *
-     * @param string $polygon
      *
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException Polygon is not supported with lookup
      */

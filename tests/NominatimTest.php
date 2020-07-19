@@ -11,6 +11,7 @@ declare(strict_types=1);
 
 namespace maxh\Nominatim\Test;
 
+use maxh\Nominatim\Details;
 use maxh\Nominatim\Lookup;
 use maxh\Nominatim\Nominatim;
 use maxh\Nominatim\Reverse;
@@ -49,5 +50,12 @@ class NominatimTest extends \PHPUnit\Framework\TestCase
 
         $baseLookup = $instance->newLookup();
         $this->assertEquals($lookup, $baseLookup);
+
+        //Instance Details
+        $details = new Details();
+        $this->assertInstanceOf(Details::class, $details);
+
+        $baseDetails = $instance->newDetails();
+        $this->assertEquals($details, $baseDetails);
     }
 }
