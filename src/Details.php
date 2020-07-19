@@ -11,8 +11,6 @@ declare(strict_types=1);
 
 namespace maxh\Nominatim;
 
-use maxh\Nominatim\Exceptions\InvalidParameterException;
-
 /**
  * Lookup details about a single place by id.
  *
@@ -50,16 +48,10 @@ class Details extends Query
     /**
      * Place information by osmtype and osmid.
      *
-     * @throws InvalidParameterException
-     *
      * @return Details
      */
     public function osmId(string $osmType, int $osmId): self
     {
-        if (!\in_array($osmType, Consts\OsmTypes::all(), true)) {
-            throw new InvalidParameterException('Osm type is invalid');
-        }
-
         $this->query['osmtype'] = $osmType;
         $this->query['osmid'] = $osmId;
 
