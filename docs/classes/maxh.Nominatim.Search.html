@@ -24,7 +24,7 @@
     <script type="text/javascript">
     function loadExternalCodeSnippets() {
         Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
+            var src = pre.getAttribute('data-src').replace( /\\/g, '/');
             var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
             var language = 'php';
 
@@ -114,12 +114,12 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">27</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-600875560"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1387969260"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-600875560" class="accordion-body collapse in">
+            <div id="namespace-1387969260" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1347396446"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-36539676"></a>
                                 <a href="../namespaces/maxh.html" style="margin-left: 30px; padding-left: 0">maxh</a>
             </div>
-            <div id="namespace-1347396446" class="accordion-body collapse ">
+            <div id="namespace-36539676" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1627945480"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-146581297"></a>
                                 <a href="../namespaces/maxh.Nominatim.html" style="margin-left: 30px; padding-left: 0">Nominatim</a>
             </div>
-            <div id="namespace-1627945480" class="accordion-body collapse ">
+            <div id="namespace-146581297" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-979786925"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-561074616"></a>
                                 <a href="../namespaces/maxh.Nominatim.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
             </div>
-            <div id="namespace-979786925" class="accordion-body collapse ">
+            <div id="namespace-561074616" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -190,7 +190,8 @@
                     
                     <ul>
                                                     <li class="interface"><a href="../classes/maxh.Nominatim.QueryInterface.html">QueryInterface</a></li>
-                                                                                                    <li class="class"><a href="../classes/maxh.Nominatim.Lookup.html">Lookup</a></li>
+                                                                                                    <li class="class"><a href="../classes/maxh.Nominatim.Details.html">Details</a></li>
+                                                    <li class="class"><a href="../classes/maxh.Nominatim.Lookup.html">Lookup</a></li>
                                                     <li class="class"><a href="../classes/maxh.Nominatim.Nominatim.html">Nominatim</a></li>
                                                     <li class="class"><a href="../classes/maxh.Nominatim.Query.html">Query</a></li>
                                                     <li class="class"><a href="../classes/maxh.Nominatim.Reverse.html">Reverse</a></li>
@@ -316,7 +317,7 @@
                         <dt>File</dt>
                             <dd><a href="../files/Search.html"><div class="path-wrapper">Search.php</div></a></dd>
                                                 <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">maxh\Nominatim</div></dd>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
                                                 <dt>Class hierarchy</dt>
                             <dd class="hierarchy">
                                                                                                                                                                                                                                                                                                 
@@ -329,7 +330,7 @@
                         
                                                                             <dt>See also</dt>
                                                                                         <dd><a href="http://wiki.openstreetmap.org/wiki/Nominatim"><span class="namespace-wrapper">http://wiki.openstreetmap.org/wiki/Nominatim</span></a></dd>
-                                                    
+                                                                            
                                                                         </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
@@ -353,7 +354,7 @@
             <article class="property">
                 <h3 class="protected ">$path</h3>
                 <pre class="signature">$path : string</pre>
-                <p><em>Contain the path of the request</em></p>
+                <p><em>Contain the path of the request.</em></p>
                 
 
                                 <h4>Type</h4>
@@ -379,7 +380,7 @@
             <article class="property">
                 <h3 class="protected ">$query</h3>
                 <pre class="signature">$query : array</pre>
-                <p><em>Contain the query for request</em></p>
+                <p><em>Contain the query for request.</em></p>
                 
 
                                 <h4>Type</h4>
@@ -405,7 +406,7 @@
             <article class="property">
                 <h3 class="protected ">$format</h3>
                 <pre class="signature">$format : string</pre>
-                <p><em>Contain the format for decode data returning by the request</em></p>
+                <p><em>Contain the format for decode data returning by the request.</em></p>
                 
 
                                 <h4>Type</h4>
@@ -431,7 +432,7 @@
             <article class="property">
                 <h3 class="protected ">$acceptedFormat</h3>
                 <pre class="signature">$acceptedFormat : array</pre>
-                <p><em>Output format accepted</em></p>
+                <p><em>Output format accepted.</em></p>
                 
 
                                 <h4>Type</h4>
@@ -457,7 +458,7 @@
             <article class="property">
                 <h3 class="protected ">$polygon</h3>
                 <pre class="signature">$polygon : array</pre>
-                <p><em>Output polygon format accepted</em></p>
+                <p><em>Output polygon format accepted.</em></p>
                 
 
                                 <h4>Type</h4>
@@ -491,7 +492,7 @@
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">__construct(array  <span class="argument">$query = array()</span>) </pre>
-                <p><em>Constuctor</em></p>
+                <p><em>Constuctor.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -504,13 +505,15 @@
                                             </table>
                 
                 
-                				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -545,7 +548,7 @@
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>|<a href="../classes/maxh.Nominatim.Reverse.html">\maxh\Nominatim\Reverse</a>|<a href="../classes/maxh.Nominatim.Lookup.html">\maxh\Nominatim\Lookup</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -588,7 +591,7 @@ accept-language string or a simple comma separated list of language codes.</p></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>|<a href="../classes/maxh.Nominatim.Reverse.html">\maxh\Nominatim\Reverse</a>|<a href="../classes/maxh.Nominatim.Lookup.html">\maxh\Nominatim\Lookup</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -610,14 +613,14 @@ accept-language string or a simple comma separated list of language codes.</p></
             <article class="method">
                 <h3 class="public ">addressDetails()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">addressDetails(boolean  <span class="argument">$details = true</span>) : \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup</pre>
+                <pre class="signature" style="margin-right: 54px;">addressDetails(\maxh\Nominatim\bool  <span class="argument">$details = true</span>) : \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup</pre>
                 <p><em>Include a breakdown of the address into elements.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>boolean</td>
+                                <td>\maxh\Nominatim\bool</td>
                                 <td>$details </td>
                                 <td></td>
                             </tr>
@@ -626,7 +629,7 @@ accept-language string or a simple comma separated list of language codes.</p></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>|<a href="../classes/maxh.Nominatim.Reverse.html">\maxh\Nominatim\Reverse</a>|<a href="../classes/maxh.Nominatim.Lookup.html">\maxh\Nominatim\Lookup</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -666,7 +669,7 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>|<a href="../classes/maxh.Nominatim.Reverse.html">\maxh\Nominatim\Reverse</a>|<a href="../classes/maxh.Nominatim.Lookup.html">\maxh\Nominatim\Lookup</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -688,14 +691,14 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
             <article class="method">
                 <h3 class="public ">polygon()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">polygon(string  <span class="argument">$polygon</span>) : \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Query</pre>
-                <p><em>Output format for the geometry of results</em></p>
+                <pre class="signature" style="margin-right: 54px;">polygon(\maxh\Nominatim\string  <span class="argument">$polygon</span>) : \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Query</pre>
+                <p><em>Output format for the geometry of results.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>string</td>
+                                <td>\maxh\Nominatim\string</td>
                                 <td>$polygon </td>
                                 <td></td>
                             </tr>
@@ -709,7 +712,7 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>|<a href="../classes/maxh.Nominatim.Reverse.html">\maxh\Nominatim\Reverse</a>|<a href="../classes/maxh.Nominatim.Query.html">\maxh\Nominatim\Query</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -731,14 +734,14 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
             <article class="method">
                 <h3 class="public ">extraTags()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">extraTags(boolean  <span class="argument">$tags = true</span>) : \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup</pre>
-                <p><em>Include additional information in the result if available</em></p>
+                <pre class="signature" style="margin-right: 54px;">extraTags(\maxh\Nominatim\bool  <span class="argument">$tags = true</span>) : \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup</pre>
+                <p><em>Include additional information in the result if available.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>boolean</td>
+                                <td>\maxh\Nominatim\bool</td>
                                 <td>$tags </td>
                                 <td></td>
                             </tr>
@@ -747,7 +750,7 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>|<a href="../classes/maxh.Nominatim.Reverse.html">\maxh\Nominatim\Reverse</a>|<a href="../classes/maxh.Nominatim.Lookup.html">\maxh\Nominatim\Lookup</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -769,14 +772,14 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
             <article class="method">
                 <h3 class="public ">nameDetails()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">nameDetails(boolean  <span class="argument">$details = true</span>) : \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup</pre>
+                <pre class="signature" style="margin-right: 54px;">nameDetails(\maxh\Nominatim\bool  <span class="argument">$details = true</span>) : \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup</pre>
                 <p><em>Include a list of alternative names in the results.</em></p>
                 <p>These may include language variants, references, operator and brand.</p>
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>boolean</td>
+                                <td>\maxh\Nominatim\bool</td>
                                 <td>$details </td>
                                 <td></td>
                             </tr>
@@ -785,7 +788,7 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>|<a href="../classes/maxh.Nominatim.Reverse.html">\maxh\Nominatim\Reverse</a>|<a href="../classes/maxh.Nominatim.Lookup.html">\maxh\Nominatim\Lookup</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -807,15 +810,13 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
             <article class="method">
                 <h3 class="public ">getQueryString()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getQueryString() : string</pre>
+                <pre class="signature" style="margin-right: 54px;">getQueryString() </pre>
                 <p><em>Returns the URL-encoded query.</em></p>
                 
 
                 
                 
-                                    <h4>Returns</h4>
-                    string
-                                    				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -837,8 +838,8 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
             <article class="method">
                 <h3 class="public ">getPath()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getPath() : string</pre>
-                <p><em>Get path</em></p>
+                <pre class="signature" style="margin-right: 54px;">getPath() </pre>
+                <p><em>Get path.</em></p>
                 <p>Example request :</p>
 <ul>
 <li>Search = search</li>
@@ -847,9 +848,7 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
 
                 
                 
-                                    <h4>Returns</h4>
-                    string
-                                    				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -871,15 +870,13 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
             <article class="method">
                 <h3 class="public ">getQuery()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getQuery() : array</pre>
-                <p><em>Get query</em></p>
+                <pre class="signature" style="margin-right: 54px;">getQuery() </pre>
+                <p><em>Get query.</em></p>
                 
 
                 
                 
-                                    <h4>Returns</h4>
-                    array
-                                    				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -901,15 +898,13 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
             <article class="method">
                 <h3 class="public ">getFormat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getFormat() : string</pre>
-                <p><em>Get format</em></p>
+                <pre class="signature" style="margin-right: 54px;">getFormat() </pre>
+                <p><em>Get format.</em></p>
                 <p>Example : json or xml</p>
 
                 
                 
-                                    <h4>Returns</h4>
-                    string
-                                    				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -947,13 +942,15 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -983,13 +980,15 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -1019,13 +1018,15 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -1055,13 +1056,15 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -1091,13 +1094,15 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -1127,13 +1132,15 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -1163,13 +1170,15 @@ contact you in the event of a problem, see Usage Policy for more details.</em></
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -1205,13 +1214,15 @@ Kingdom, de for Germany, etc.
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -1226,7 +1237,7 @@ Kingdom, de for Germany, etc.
                 <h3 class="public ">viewBox()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">viewBox(string  <span class="argument">$left</span>, string  <span class="argument">$top</span>, string  <span class="argument">$right</span>, string  <span class="argument">$bottom</span>) : \maxh\Nominatim\Search</pre>
-                <p><em>The preferred area to find search results</em></p>
+                <p><em>The preferred area to find search results.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -1256,13 +1267,15 @@ Kingdom, de for Germany, etc.
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -1289,13 +1302,15 @@ Kingdom, de for Germany, etc.
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -1309,14 +1324,14 @@ Kingdom, de for Germany, etc.
             <article class="method">
                 <h3 class="public ">limit()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">limit(integer  <span class="argument">$limit</span>) : \maxh\Nominatim\Search</pre>
-                <p><em>Limit the number of returned results</em></p>
+                <pre class="signature" style="margin-right: 54px;">limit(\maxh\Nominatim\int  <span class="argument">$limit</span>) : \maxh\Nominatim\Search</pre>
+                <p><em>Limit the number of returned results.</em></p>
                 
 
                                     <h4>Parameters</h4>
                     <table class="table table-condensed table-hover">
                                                     <tr>
-                                <td>integer</td>
+                                <td>\maxh\Nominatim\int</td>
                                 <td>$limit </td>
                                 <td></td>
                             </tr>
@@ -1325,13 +1340,15 @@ Kingdom, de for Germany, etc.
                 
                                     <h4>Returns</h4>
                     <a href="../classes/maxh.Nominatim.Search.html">\maxh\Nominatim\Search</a>
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Search.html"><div class="path-wrapper">\maxh\Nominatim\Search</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -1346,7 +1363,7 @@ Kingdom, de for Germany, etc.
                 <h3 class="protected ">setPath()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">setPath(string  <span class="argument">$path</span>) </pre>
-                <p><em>Set path</em></p>
+                <p><em>Set path.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -1359,7 +1376,7 @@ Kingdom, de for Germany, etc.
                                             </table>
                 
                 
-                				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1382,7 +1399,7 @@ Kingdom, de for Germany, etc.
                 <h3 class="protected ">setQuery()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">setQuery(array  <span class="argument">$query = array()</span>) </pre>
-                <p><em>Set query</em></p>
+                <p><em>Set query.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -1395,7 +1412,7 @@ Kingdom, de for Germany, etc.
                                             </table>
                 
                 
-                				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1418,7 +1435,7 @@ Kingdom, de for Germany, etc.
                 <h3 class="protected ">setFormat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">setFormat(string  <span class="argument">$format</span>) </pre>
-                <p><em>Set format</em></p>
+                <p><em>Set format.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -1431,7 +1448,7 @@ Kingdom, de for Germany, etc.
                                             </table>
                 
                 
-                				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
@@ -1497,7 +1514,7 @@ Kingdom, de for Germany, etc.
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 26th, 2018 at 20:58.
+                    on July 19th, 2020 at 04:10.
                 </section>
             </section>
         </section>
