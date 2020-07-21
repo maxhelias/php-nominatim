@@ -24,7 +24,7 @@
         <script type="text/javascript">
         function loadExternalCodeSnippets() {
             Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-                var src = pre.getAttribute('data-src');
+                var src = pre.getAttribute('data-src').replace( /\\/g, '/');
                 var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
                 var language = 'php';
 
@@ -114,12 +114,12 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">27</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-2058228558"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-882043195"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-2058228558" class="accordion-body collapse in">
+            <div id="namespace-882043195" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1944747500"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-52089824"></a>
                                 <a href="../namespaces/maxh.html" style="margin-left: 30px; padding-left: 0">maxh</a>
             </div>
-            <div id="namespace-1944747500" class="accordion-body collapse ">
+            <div id="namespace-52089824" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1672200265"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1456319684"></a>
                                 <a href="../namespaces/maxh.Nominatim.html" style="margin-left: 30px; padding-left: 0">Nominatim</a>
             </div>
-            <div id="namespace-1672200265" class="accordion-body collapse ">
+            <div id="namespace-1456319684" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1620023355"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-150703629"></a>
                                 <a href="../namespaces/maxh.Nominatim.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
             </div>
-            <div id="namespace-1620023355" class="accordion-body collapse ">
+            <div id="namespace-150703629" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -190,7 +190,8 @@
                     
                     <ul>
                                                     <li class="interface"><a href="../classes/maxh.Nominatim.QueryInterface.html">QueryInterface</a></li>
-                                                                                                    <li class="class"><a href="../classes/maxh.Nominatim.Lookup.html">Lookup</a></li>
+                                                                                                    <li class="class"><a href="../classes/maxh.Nominatim.Details.html">Details</a></li>
+                                                    <li class="class"><a href="../classes/maxh.Nominatim.Lookup.html">Lookup</a></li>
                                                     <li class="class"><a href="../classes/maxh.Nominatim.Nominatim.html">Nominatim</a></li>
                                                     <li class="class"><a href="../classes/maxh.Nominatim.Query.html">Query</a></li>
                                                     <li class="class"><a href="../classes/maxh.Nominatim.Reverse.html">Reverse</a></li>
@@ -229,7 +230,7 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\maxh\Nominatim</small>QueryInterface</h1>
-                    <p><em>QueryInterface for building request to Nominatim</em></p>
+                    <p><em>QueryInterface for building request to Nominatim.</em></p>
                     
 
                     <section id="summary">
@@ -277,7 +278,7 @@
                                 <a href="../files/QueryInterface.html"><div class="path-wrapper">QueryInterface.php</div></a>
                             </dd>
                                                 <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">\maxh\Nominatim</div></dd>
+                            <dd><div class="namespace-wrapper">\Default</div></dd>
                                                 
                                             </dl>
                     <h2>Tags</h2>
@@ -301,8 +302,8 @@
             <article class="method">
                 <h3 class="public ">getPath()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getPath() : string</pre>
-                <p><em>Get path of the request</em></p>
+                <pre class="signature" style="margin-right: 54px;">getPath() </pre>
+                <p><em>Get path of the request.</em></p>
                 <p>Example request :</p>
 <ul>
 <li>Search = search</li>
@@ -311,15 +312,15 @@
 
                 
                 
-                                    <h4>Returns</h4>
-                    string
-                                    				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.QueryInterface.html"><div class="path-wrapper">\maxh\Nominatim\QueryInterface</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -333,21 +334,21 @@
             <article class="method">
                 <h3 class="public ">getQuery()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getQuery() : array</pre>
-                <p><em>Get the query to send</em></p>
+                <pre class="signature" style="margin-right: 54px;">getQuery() </pre>
+                <p><em>Get the query to send.</em></p>
                 
 
                 
                 
-                                    <h4>Returns</h4>
-                    array
-                                    				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.QueryInterface.html"><div class="path-wrapper">\maxh\Nominatim\QueryInterface</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -361,21 +362,21 @@
             <article class="method">
                 <h3 class="public ">getFormat()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getFormat() : string</pre>
-                <p><em>Get the format of the request</em></p>
+                <pre class="signature" style="margin-right: 54px;">getFormat() </pre>
+                <p><em>Get the format of the request.</em></p>
                 <p>Example : json or xml</p>
 
                 
                 
-                                    <h4>Returns</h4>
-                    string
-                                    				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.QueryInterface.html"><div class="path-wrapper">\maxh\Nominatim\QueryInterface</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -433,7 +434,7 @@
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 26th, 2018 at 20:58.
+                    on July 19th, 2020 at 04:10.
                 </section>
             </section>
         </section>

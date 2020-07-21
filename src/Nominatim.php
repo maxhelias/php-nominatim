@@ -67,6 +67,13 @@ class Nominatim
     private $baseLookup;
 
     /**
+     * Template for new ones created by 'newDetails()' method.
+     *
+     * @var \maxh\Nominatim\Lookup
+     */
+    private $baseDetails;
+
+    /**
      * Constructor.
      *
      * @param string                  $application_url Contain url of the current application
@@ -112,6 +119,7 @@ class Nominatim
         $this->baseSearch = new Search();
         $this->baseReverse = new Reverse();
         $this->baseLookup = new Lookup();
+        $this->baseDetails = new Details();
     }
 
     /**
@@ -142,6 +150,16 @@ class Nominatim
     public function newLookup(): Lookup
     {
         return clone $this->baseLookup;
+    }
+
+    /**
+     * Returns a new datails object based on the base details.
+     *
+     * @return \maxh\Nominatim\Details
+     */
+    public function newDetails(): Details
+    {
+        return clone $this->baseDetails;
     }
 
     /**

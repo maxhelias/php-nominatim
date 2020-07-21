@@ -24,7 +24,7 @@
     <script type="text/javascript">
     function loadExternalCodeSnippets() {
         Array.prototype.slice.call(document.querySelectorAll('pre[data-src]')).forEach(function (pre) {
-            var src = pre.getAttribute('data-src');
+            var src = pre.getAttribute('data-src').replace( /\\/g, '/');
             var extension = (src.match(/\.(\w+)$/) || [, ''])[1];
             var language = 'php';
 
@@ -114,12 +114,12 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <a href="../reports/errors.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Errors <span class="label label-info pull-right">27</span>
                                 </a>
                             </li>
                             <li>
                                 <a href="../reports/markers.html">
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                    <i class="icon-list-alt"></i>&#160;Markers <span class="label label-info pull-right">0</span>
                                 </a>
                             </li>
                             <li>
@@ -144,37 +144,37 @@
                                 <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1173300529"></a>
+                                    <a class="accordion-toggle " data-toggle="collapse" data-target="#namespace-1374440599"></a>
                                 <a href="../namespaces/default.html" style="margin-left: 30px; padding-left: 0">\</a>
             </div>
-            <div id="namespace-1173300529" class="accordion-body collapse in">
+            <div id="namespace-1374440599" class="accordion-body collapse in">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-969570493"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-648133206"></a>
                                 <a href="../namespaces/maxh.html" style="margin-left: 30px; padding-left: 0">maxh</a>
             </div>
-            <div id="namespace-969570493" class="accordion-body collapse ">
+            <div id="namespace-648133206" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-1779959186"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-971956920"></a>
                                 <a href="../namespaces/maxh.Nominatim.html" style="margin-left: 30px; padding-left: 0">Nominatim</a>
             </div>
-            <div id="namespace-1779959186" class="accordion-body collapse ">
+            <div id="namespace-971956920" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                                                     <div class="accordion" style="margin-bottom: 0">
         <div class="accordion-group">
             <div class="accordion-heading">
-                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-253047147"></a>
+                                    <a class="accordion-toggle collapsed" data-toggle="collapse" data-target="#namespace-857587428"></a>
                                 <a href="../namespaces/maxh.Nominatim.Exceptions.html" style="margin-left: 30px; padding-left: 0">Exceptions</a>
             </div>
-            <div id="namespace-253047147" class="accordion-body collapse ">
+            <div id="namespace-857587428" class="accordion-body collapse ">
                 <div class="accordion-inner">
 
                     
@@ -190,7 +190,8 @@
                     
                     <ul>
                                                     <li class="interface"><a href="../classes/maxh.Nominatim.QueryInterface.html">QueryInterface</a></li>
-                                                                                                    <li class="class"><a href="../classes/maxh.Nominatim.Lookup.html">Lookup</a></li>
+                                                                                                    <li class="class"><a href="../classes/maxh.Nominatim.Details.html">Details</a></li>
+                                                    <li class="class"><a href="../classes/maxh.Nominatim.Lookup.html">Lookup</a></li>
                                                     <li class="class"><a href="../classes/maxh.Nominatim.Nominatim.html">Nominatim</a></li>
                                                     <li class="class"><a href="../classes/maxh.Nominatim.Query.html">Query</a></li>
                                                     <li class="class"><a href="../classes/maxh.Nominatim.Reverse.html">Reverse</a></li>
@@ -229,7 +230,7 @@
                     <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal"><i class="icon-code"></i></a>
 
                     <h1><small>\maxh\Nominatim\Exceptions</small>NominatimException</h1>
-                    <p><em>InvalidParameterException exception is thrown when a request failed because of a bad client configuration</em></p>
+                    <p><em>InvalidParameterException exception is thrown when a request failed because of a bad client configuration.</em></p>
                     <p>InvalidParameterException appears when the request failed because of a bad parameter from
 the client request.</p>
                     
@@ -292,7 +293,7 @@ the client request.</p>
                         <dt>File</dt>
                             <dd><a href="../files/Exceptions.NominatimException.html"><div class="path-wrapper">Exceptions/NominatimException.php</div></a></dd>
                                                 <dt>Package</dt>
-                            <dd><div class="namespace-wrapper">maxh\Nominatim</div></dd>
+                            <dd><div class="namespace-wrapper">Default</div></dd>
                                                 <dt>Class hierarchy</dt>
                             <dd class="hierarchy">
                                                                                                                                                                                                                                                                                                 
@@ -303,7 +304,7 @@ the client request.</p>
                         
                         
                         
-                        
+                                                
                                                                         </dl>
                     <h2>Tags</h2>
                     <table class="table table-condensed">
@@ -312,7 +313,7 @@ the client request.</p>
                                 category
                             </th>
                             <td>
-                                                                    <p>Exceptions</p>
+                                                                                                        <p>Exceptions</p>
                                                             </td>
                         </tr>
                                         </table>
@@ -334,7 +335,7 @@ the client request.</p>
             <article class="property">
                 <h3 class="private ">$request</h3>
                 <pre class="signature">$request : \Psr\Http\Message\RequestInterface</pre>
-                <p><em>Contain the request</em></p>
+                <p><em>Contain the request.</em></p>
                 
 
                                 <h4>Type</h4>
@@ -358,7 +359,7 @@ the client request.</p>
             <article class="property">
                 <h3 class="private ">$response</h3>
                 <pre class="signature">$response : \Psr\Http\Message\ResponseInterface</pre>
-                <p><em>Contain the response</em></p>
+                <p><em>Contain the response.</em></p>
                 
 
                                 <h4>Type</h4>
@@ -390,7 +391,7 @@ the client request.</p>
                 <h3 class="public ">__construct()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">__construct(string  <span class="argument">$message</span>, \Psr\Http\Message\RequestInterface  <span class="argument">$request = null</span>, \Psr\Http\Message\ResponseInterface|null  <span class="argument">$response = null</span>, \Exception|null  <span class="argument">$previous = null</span>) </pre>
-                <p><em>Constructor</em></p>
+                <p><em>Constructor.</em></p>
                 
 
                                     <h4>Parameters</h4>
@@ -418,13 +419,15 @@ the client request.</p>
                                             </table>
                 
                 
-                				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Exceptions.NominatimException.html"><div class="path-wrapper">\maxh\Nominatim\Exceptions\NominatimException</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -438,21 +441,21 @@ the client request.</p>
             <article class="method">
                 <h3 class="public ">getRequest()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
-                <pre class="signature" style="margin-right: 54px;">getRequest() : \Psr\Http\Message\RequestInterface</pre>
-                <p><em>Return the Request</em></p>
+                <pre class="signature" style="margin-right: 54px;">getRequest() </pre>
+                <p><em>Return the Request.</em></p>
                 
 
                 
                 
-                                    <h4>Returns</h4>
-                    \Psr\Http\Message\RequestInterface
-                                    				
+                
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Exceptions.NominatimException.html"><div class="path-wrapper">\maxh\Nominatim\Exceptions\NominatimException</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -467,20 +470,22 @@ the client request.</p>
                 <h3 class="public ">getResponse()</h3>
                 <a href="#source-view" role="button" class="pull-right btn" data-toggle="modal" style="font-size: 1.1em; padding: 9px 14px"><i class="icon-code"></i></a>
                 <pre class="signature" style="margin-right: 54px;">getResponse() : \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface</pre>
-                <p><em>Return the Response</em></p>
+                <p><em>Return the Response.</em></p>
                 
 
                 
                 
                                     <h4>Returns</h4>
                     \GuzzleHttp\Promise\PromiseInterface|\Psr\Http\Message\ResponseInterface
-                                    				
+                                    
                             </article>
         </div>
         <aside class="span4 detailsbar">
             <h1><i class="icon-arrow-down"></i></h1>
                                                             <dl>
-                                                                            </dl>
+                                                    <dt>Inherited from</dt>
+                    <dd><a href="../classes/maxh.Nominatim.Exceptions.NominatimException.html"><div class="path-wrapper">\maxh\Nominatim\Exceptions\NominatimException</div></a></dd>
+                                                            </dl>
             <h2>Tags</h2>
             <table class="table table-condensed">
                                     <tr><td colspan="2"><em>None found</em></td></tr>
@@ -538,7 +543,7 @@ the client request.</p>
                 <section class="span10 offset1">
                     <hr />
                     Documentation is powered by <a href="http://www.phpdoc.org/">phpDocumentor </a> and authored
-                    on March 26th, 2018 at 20:58.
+                    on July 19th, 2020 at 04:10.
                 </section>
             </section>
         </section>
