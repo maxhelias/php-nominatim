@@ -11,6 +11,8 @@ declare(strict_types=1);
 
 namespace maxh\Nominatim;
 
+use maxh\Nominatim\Exceptions\InvalidParameterException;
+
 /**
  * Lookup details about a single place by id.
  *
@@ -18,6 +20,13 @@ namespace maxh\Nominatim;
  */
 class Details extends Query
 {
+    /**
+     * OSM Type accepted (Node/Way/Relation).
+     *
+     * @var array
+     */
+    private $osmType = ['N', 'W', 'R'];
+
     /**
      * Constructor.
      *
@@ -46,13 +55,30 @@ class Details extends Query
     }
 
     /**
+     * [osmType description].
+     *
+     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if osm type is not supported
+     *
+     * @return \maxh\Nominatim\Reverse
+     */
+    public function osmType(string $type): self
+    {
+        if (\in_array($type, $this->osmType, true)) {
+            $this->query['osmtype'] = $type;
+
+            return $this;
+        }
+
+        throw new InvalidParameterException('OSM Type is not supported');
+    }
+
+    /**
      * Place information by osmtype and osmid.
      *
      * @return Details
      */
-    public function osmId(string $osmType, int $osmId): self
+    public function osmId(int $osmId): self
     {
-        $this->query['osmtype'] = $osmType;
         $this->query['osmid'] = $osmId;
 
         return $this;

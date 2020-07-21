@@ -97,7 +97,8 @@ Or do a details query (by osm type and osm id):
 
 ```php
 $details = $nominatim->newDetails()
-            ->osmId('R', 1234)
+            ->osmType('R')
+            ->osmId(1234)
             ->polygon('geojson');
 
 $result = $nominatim->find($details);
