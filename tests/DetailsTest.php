@@ -66,7 +66,8 @@ class DetailsTest extends \PHPUnit\Framework\TestCase
     public function testOsmId($osmType, $osmId)
     {
         $details = $this->nominatim->newDetails()
-            ->osmId($osmType, $osmId);
+            ->osmType($osmType)
+            ->osmId($osmId);
 
         $expected = [
             'format'  => 'json',
