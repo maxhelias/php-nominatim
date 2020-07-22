@@ -9,9 +9,11 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace maxh\Nominatim\Test;
+namespace maxh\Nominatim\Tests;
 
-class SearchTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+class SearchTest extends TestCase
 {
     protected $url = 'http://nominatim.openstreetmap.org/';
 
@@ -25,7 +27,7 @@ class SearchTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws \maxh\Nominatim\Exceptions\NominatimException
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->nominatim = new \maxh\Nominatim\Nominatim($this->url);
     }
@@ -33,7 +35,7 @@ class SearchTest extends \PHPUnit\Framework\TestCase
     /**
      * Search HelloWorld.
      */
-    public function testQuery()
+    public function testQuery(): void
     {
         /** @var \maxh\Nominatim\Search $search */
         $search = $this->nominatim->newSearch()
@@ -45,10 +47,10 @@ class SearchTest extends \PHPUnit\Framework\TestCase
         ];
 
         $query = $search->getQuery();
-        $this->assertSame($expected, $query);
+        self::assertSame($expected, $query);
 
         $expected = \http_build_query($query);
-        $this->assertSame($expected, $search->getQueryString());
+        self::assertSame($expected, $search->getQueryString());
     }
 
     public function testAddress()
@@ -68,9 +70,9 @@ class SearchTest extends \PHPUnit\Framework\TestCase
         ];
 
         $query = $search->getQuery();
-        $this->assertSame($expected, $query);
+        self::assertSame($expected, $query);
 
         $expected = \http_build_query($query);
-        $this->assertSame($expected, $search->getQueryString());
+        self::assertSame($expected, $search->getQueryString());
     }
 }

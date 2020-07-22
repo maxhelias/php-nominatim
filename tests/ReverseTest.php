@@ -9,9 +9,11 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace maxh\Nominatim\Test;
+namespace maxh\Nominatim\Tests;
 
-class ReverseTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+class ReverseTest extends TestCase
 {
     protected $url = 'http://nominatim.openstreetmap.org/';
 
@@ -25,12 +27,12 @@ class ReverseTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws \maxh\Nominatim\Exceptions\NominatimException
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->nominatim = new \maxh\Nominatim\Nominatim($this->url);
     }
 
-    public function testAddress()
+    public function testAddress(): void
     {
         /** @var \maxh\Nominatim\Reverse $reverse */
         $reverse = $this->nominatim->newReverse()
@@ -43,9 +45,9 @@ class ReverseTest extends \PHPUnit\Framework\TestCase
         ];
 
         $query = $reverse->getQuery();
-        $this->assertSame($expected, $query);
+        self::assertSame($expected, $query);
 
         $expected = \http_build_query($query);
-        $this->assertSame($expected, $reverse->getQueryString());
+        self::assertSame($expected, $reverse->getQueryString());
     }
 }

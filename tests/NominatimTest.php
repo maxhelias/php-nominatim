@@ -9,53 +9,54 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace maxh\Nominatim\Test;
+namespace maxh\Nominatim\Tests;
 
 use maxh\Nominatim\Details;
 use maxh\Nominatim\Lookup;
 use maxh\Nominatim\Nominatim;
 use maxh\Nominatim\Reverse;
 use maxh\Nominatim\Search;
+use PHPUnit\Framework\TestCase;
 
-class NominatimTest extends \PHPUnit\Framework\TestCase
+class NominatimTest extends TestCase
 {
     protected $url = 'http://nominatim.openstreetmap.org/';
 
     /**
      * @throws \maxh\Nominatim\Exceptions\NominatimException
      */
-    public function testNominatimFactory()
+    public function testNominatimFactory(): void
     {
         //Instance Nominatim
         $instance = new Nominatim($this->url);
-        $this->assertInstanceOf(Nominatim::class, $instance);
+        self::assertInstanceOf(Nominatim::class, $instance);
 
         //Instance Search
         $search = new Search();
-        $this->assertInstanceOf(Search::class, $search);
+        self::assertInstanceOf(Search::class, $search);
 
         $baseSearch = $instance->newSearch();
-        $this->assertEquals($search, $baseSearch);
+        self::assertEquals($search, $baseSearch);
 
         //Instance Reverse
         $reverse = new Reverse();
-        $this->assertInstanceOf(Reverse::class, $reverse);
+        self::assertInstanceOf(Reverse::class, $reverse);
 
         $baseReverse = $instance->newReverse();
-        $this->assertEquals($reverse, $baseReverse);
+        self::assertEquals($reverse, $baseReverse);
 
         //Instance Lookup
         $lookup = new Lookup();
-        $this->assertInstanceOf(Lookup::class, $lookup);
+        self::assertInstanceOf(Lookup::class, $lookup);
 
         $baseLookup = $instance->newLookup();
-        $this->assertEquals($lookup, $baseLookup);
+        self::assertEquals($lookup, $baseLookup);
 
         //Instance Details
         $details = new Details();
-        $this->assertInstanceOf(Details::class, $details);
+        self::assertInstanceOf(Details::class, $details);
 
         $baseDetails = $instance->newDetails();
-        $this->assertEquals($details, $baseDetails);
+        self::assertEquals($details, $baseDetails);
     }
 }
