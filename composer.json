@@ -14,12 +14,12 @@
         }
     ],
     "require": {
-        "php": ">=7.0",
+        "php": ">=7.2",
         "ext-mbstring": "*",
         "guzzlehttp/guzzle": "@stable"
     },
     "require-dev": {
-        "phpunit/phpunit": "6.5.*",
+        "phpunit/phpunit": "8.5.*|9.2.*",
         "squizlabs/php_codesniffer": "dev-master",
         "friendsofphp/php-cs-fixer": "dev-master",
         "phpro/grumphp": "^0.15.2"

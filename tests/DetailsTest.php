@@ -9,11 +9,12 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace maxh\Nominatim\Test;
+namespace maxh\Nominatim\Tests;
 
 use maxh\Nominatim\Exceptions\InvalidParameterException;
+use PHPUnit\Framework\TestCase;
 
-class DetailsTest extends \PHPUnit\Framework\TestCase
+class DetailsTest extends TestCase
 {
     protected $url = 'http://nominatim.openstreetmap.org/';
 
@@ -27,7 +28,7 @@ class DetailsTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws \maxh\Nominatim\Exceptions\NominatimException
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->nominatim = new \maxh\Nominatim\Nominatim($this->url);
     }
@@ -35,7 +36,7 @@ class DetailsTest extends \PHPUnit\Framework\TestCase
     /**
      * Details for place with id 1234.
      */
-    public function testPlaceId()
+    public function testPlaceId(): void
     {
         /** @var \maxh\Nominatim\Details $details */
         $details = $this->nominatim->newDetails()
@@ -47,10 +48,10 @@ class DetailsTest extends \PHPUnit\Framework\TestCase
         ];
 
         $query = $details->getQuery();
-        $this->assertSame($expected, $query);
+        self::assertSame($expected, $query);
 
         $expected = \http_build_query($query);
-        $this->assertSame($expected, $details->getQueryString());
+        self::assertSame($expected, $details->getQueryString());
     }
 
     /**
@@ -63,7 +64,7 @@ class DetailsTest extends \PHPUnit\Framework\TestCase
      *
      * @throws InvalidParameterException
      */
-    public function testOsmId($osmType, $osmId)
+    public function testOsmId($osmType, $osmId): void
     {
         $details = $this->nominatim->newDetails()
             ->osmType($osmType)
@@ -76,10 +77,10 @@ class DetailsTest extends \PHPUnit\Framework\TestCase
         ];
 
         $query = $details->getQuery();
-        $this->assertSame($expected, $query);
+        self::assertSame($expected, $query);
 
         $expected = \http_build_query($query);
-        $this->assertSame($expected, $details->getQueryString());
+        self::assertSame($expected, $details->getQueryString());
     }
 
     /**

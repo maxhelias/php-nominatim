@@ -9,9 +9,11 @@ declare(strict_types=1);
  * with this source code in the file LICENSE.
  */
 
-namespace maxh\Nominatim\Test;
+namespace maxh\Nominatim\Tests;
 
-class LookupTest extends \PHPUnit\Framework\TestCase
+use PHPUnit\Framework\TestCase;
+
+class LookupTest extends TestCase
 {
     protected $url = 'http://nominatim.openstreetmap.org/';
 
@@ -25,7 +27,7 @@ class LookupTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws \maxh\Nominatim\Exceptions\NominatimException
      */
-    protected function setUp()
+    protected function setUp(): void
     {
         $this->nominatim = new \maxh\Nominatim\Nominatim($this->url);
     }
@@ -33,7 +35,7 @@ class LookupTest extends \PHPUnit\Framework\TestCase
     /**
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException
      */
-    public function testOsmIds()
+    public function testOsmIds(): void
     {
         /** @var \maxh\Nominatim\Lookup $lookup */
         $lookup = $this->nominatim->newLookup()
@@ -46,9 +48,9 @@ class LookupTest extends \PHPUnit\Framework\TestCase
         ];
 
         $query = $lookup->getQuery();
-        $this->assertSame($expected, $query);
+        self::assertSame($expected, $query);
 
         $expected = \http_build_query($query);
-        $this->assertSame($expected, $lookup->getQueryString());
+        self::assertSame($expected, $lookup->getQueryString());
     }
 }
