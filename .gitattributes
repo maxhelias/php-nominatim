@@ -10,6 +10,7 @@
 /.travis.yml        export-ignore
 /grumphp.yml        export-ignore
 /phpunit.xml        export-ignore
+/.github            export-ignore
 /examples           export-ignore
 /tests              export-ignore
 

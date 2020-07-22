@@ -8,7 +8,7 @@ Give us a short description.
 
 What version of PHP-Nominatim does this relates to?
 
-Is this an issue with a provider? If yes, which one? (Search, Reverse, Lookup)
+Is this an issue with a provider? If yes, which one? (Search, Reverse, Lookup or Details)
 
 ### Reproduction
 
