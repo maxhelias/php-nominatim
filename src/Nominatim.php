@@ -15,6 +15,8 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use maxh\Nominatim\Exceptions\NominatimException;
 use Psr\Http\Message\ResponseInterface;
+use RuntimeException;
+use SimpleXMLElement;
 
 /**
  *  Wrapper to manage exchanges with OSM Nominatim API.
@@ -77,7 +79,7 @@ class Nominatim
      * Constructor.
      *
      * @param string                  $application_url Contain url of the current application
-     * @param \GuzzleHttp\Client|null $http_client     Client object from Guzzle
+     * @param null|\GuzzleHttp\Client $http_client     Client object from Guzzle
      * @param array                   $defaultHeaders  Define default header for all request
      *
      * @throws NominatimException
@@ -85,7 +87,7 @@ class Nominatim
     public function __construct(
         string $application_url,
         array $defaultHeaders = [],
-        Client $http_client = null
+        ?Client $http_client = null
     ) {
         if (empty($application_url)) {
             throw new NominatimException('Application url parameter is empty');
@@ -93,8 +95,8 @@ class Nominatim
 
         if (null === $http_client) {
             $http_client = new Client([
-                'base_uri'           => $application_url,
-                'timeout'            => 30,
+                'base_uri' => $application_url,
+                'timeout' => 30,
                 'connection_timeout' => 5,
             ]);
         } elseif ($http_client instanceof Client) {
@@ -163,31 +165,6 @@ class Nominatim
     }
 
     /**
-     * Decode the data returned from the request.
-     *
-     * @param string            $format   json or xml
-     * @param Request           $request  Request object from Guzzle
-     * @param ResponseInterface $response Interface response object from Guzzle
-     *
-     * @throws \RuntimeException
-     * @throws \maxh\Nominatim\Exceptions\NominatimException if no format for decode
-     *
-     * @return array|\SimpleXMLElement
-     */
-    private function decodeResponse(string $format, Request $request, ResponseInterface $response)
-    {
-        if ('json' === $format || 'jsonv2' === $format || 'geojson' === $format || 'geocodejson' === $format) {
-            return \json_decode($response->getBody()->getContents(), true);
-        }
-
-        if ('xml' === $format) {
-            return new \SimpleXMLElement($response->getBody()->getContents());
-        }
-
-        throw new NominatimException('Format is undefined or not supported for decode response', $request, $response);
-    }
-
-    /**
      * Runs the query and returns the result set from Nominatim.
      *
      * @param QueryInterface $nRequest The object request to send
@@ -196,12 +173,12 @@ class Nominatim
      * @throws NominatimException                    if no format for decode
      * @throws \GuzzleHttp\Exception\GuzzleException
      *
-     * @return array|\SimpleXMLElement The decoded data returned from Nominatim
+     * @return array|SimpleXMLElement The decoded data returned from Nominatim
      */
     public function find(QueryInterface $nRequest, array $headers = [])
     {
-        $url = $this->application_url . '/' . $nRequest->getPath() . '?';
-        $request = new Request('GET', $url, \array_merge($this->defaultHeaders, $headers));
+        $url = $this->application_url.'/'.$nRequest->getPath().'?';
+        $request = new Request('GET', $url, array_merge($this->defaultHeaders, $headers));
 
         //Convert the query array to string with space replace to +
         $query = \GuzzleHttp\Psr7\build_query($nRequest->getQuery(), PHP_QUERY_RFC1738);
@@ -222,5 +199,30 @@ class Nominatim
     public function getClient(): Client
     {
         return $this->http_client;
+    }
+
+    /**
+     * Decode the data returned from the request.
+     *
+     * @param string            $format   json or xml
+     * @param Request           $request  Request object from Guzzle
+     * @param ResponseInterface $response Interface response object from Guzzle
+     *
+     * @throws RuntimeException
+     * @throws \maxh\Nominatim\Exceptions\NominatimException if no format for decode
+     *
+     * @return array|SimpleXMLElement
+     */
+    private function decodeResponse(string $format, Request $request, ResponseInterface $response)
+    {
+        if ('json' === $format || 'jsonv2' === $format || 'geojson' === $format || 'geocodejson' === $format) {
+            return json_decode($response->getBody()->getContents(), true);
+        }
+
+        if ('xml' === $format) {
+            return new SimpleXMLElement($response->getBody()->getContents());
+        }
+
+        throw new NominatimException('Format is undefined or not supported for decode response', $request, $response);
     }
 }

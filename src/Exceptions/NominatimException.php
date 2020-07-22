@@ -45,14 +45,14 @@ class NominatimException extends Exception
      *
      * @param string                 $message  Message of this exception
      * @param RequestInterface       $request  The request instance
-     * @param ResponseInterface|null $response The response of the request
-     * @param Exception|null         $previous Exception object
+     * @param null|ResponseInterface $response The response of the request
+     * @param null|Exception         $previous Exception object
      */
     public function __construct(
         $message,
-        RequestInterface $request = null,
-        ResponseInterface $response = null,
-        Exception $previous = null
+        ?RequestInterface $request = null,
+        ?ResponseInterface $response = null,
+        ?Exception $previous = null
     ) {
         // Set the code of the exception if the response is set and not future.
         $code = $response && !($response instanceof PromiseInterface) ? $response->getStatusCode() : 0;

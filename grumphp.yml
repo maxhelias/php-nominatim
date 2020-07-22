@@ -7,15 +7,6 @@ parameters:
         no_check_all: true
         no_check_lock: true
         strict: true
-      phpcs:
-        standard: PSR2
-        tab_width: ~
-        whitelist_patterns:
-          - /^src\/(.*)/
-          - /^tests\/(.*)/
-        encoding: ~
-        sniffs: []
-        triggered_by: [php]
       phpcsfixer2:
         cache_file: .php_cs.cache
         config: .php_cs

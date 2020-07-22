@@ -20,17 +20,18 @@ try {
     $instance = new Nominatim($url);
 
     $reverse = $instance->newReverse()
-        ->latlon(43.4843941, -1.4960842);
+        ->latlon(43.4843941, -1.4960842)
+    ;
 
     $result = $instance->find($reverse);
 
-    echo 'URL : ' . $url . $reverse->getPath() . '?' . $reverse->getQueryString();
+    echo 'URL : '.$url.$reverse->getPath().'?'.$reverse->getQueryString();
 
-    \var_dump($result);
+    var_dump($result);
 } catch (\GuzzleHttp\Exception\ClientException $e) {
     // If you have any exceptions with Guzzle
-    \var_dump($e->getMessage());
+    var_dump($e->getMessage());
 } catch (\maxh\Nominatim\Exceptions\NominatimException $e) {
     // If you set a wrong instance of Nominatim
-    \var_dump($e->getMessage());
+    var_dump($e->getMessage());
 }

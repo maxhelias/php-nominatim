@@ -161,14 +161,14 @@ class Search extends Query
      */
     public function countryCode(string $countrycode): self
     {
-        if (!\preg_match('/^[a-z]{2}$/i', $countrycode)) {
-            throw new InvalidParameterException("Invalid country code: \"$countrycode\"");
+        if (!preg_match('/^[a-z]{2}$/i', $countrycode)) {
+            throw new InvalidParameterException("Invalid country code: \"{$countrycode}\"");
         }
 
         if (empty($this->query['countrycodes'])) {
             $this->query['countrycodes'] = $countrycode;
         } else {
-            $this->query['countrycodes'] .= ',' . $countrycode;
+            $this->query['countrycodes'] .= ','.$countrycode;
         }
 
         return $this;
@@ -186,7 +186,7 @@ class Search extends Query
      */
     public function viewBox(string $left, string $top, string $right, string $bottom): self
     {
-        $this->query['viewbox'] = $left . ',' . $top . ',' . $right . ',' . $bottom;
+        $this->query['viewbox'] = $left.','.$top.','.$right.','.$bottom;
 
         return $this;
     }
@@ -203,7 +203,7 @@ class Search extends Query
         $args = \func_get_args();
 
         if (\count($args) > 0) {
-            $this->query['exclude_place_ids'] = \implode(', ', $args);
+            $this->query['exclude_place_ids'] = implode(', ', $args);
 
             return $this;
         }

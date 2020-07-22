@@ -11,9 +11,14 @@ declare(strict_types=1);
 
 namespace maxh\Nominatim\Tests;
 
+use maxh\Nominatim\Exceptions\InvalidParameterException;
 use PHPUnit\Framework\TestCase;
 
-class LookupTest extends TestCase
+/**
+ * @internal
+ * @coversDefaultClass \maxh\Nominatim\Lookup
+ */
+final class LookupTest extends TestCase
 {
     protected $url = 'http://nominatim.openstreetmap.org/';
 
@@ -33,24 +38,30 @@ class LookupTest extends TestCase
     }
 
     /**
-     * @throws \maxh\Nominatim\Exceptions\InvalidParameterException
+     * @throws InvalidParameterException
+     *
+     * @covers ::format
+     * @covers ::getQuery
+     * @covers ::getQueryString
+     * @covers ::osmIds
      */
     public function testOsmIds(): void
     {
         /** @var \maxh\Nominatim\Lookup $lookup */
         $lookup = $this->nominatim->newLookup()
             ->format('xml')
-            ->osmIds('R146656,W104393803,N240109189');
+            ->osmIds('R146656,W104393803,N240109189')
+        ;
 
         $expected = [
-            'format'  => 'xml',
+            'format' => 'xml',
             'osm_ids' => 'R146656,W104393803,N240109189',
         ];
 
         $query = $lookup->getQuery();
         self::assertSame($expected, $query);
 
-        $expected = \http_build_query($query);
+        $expected = http_build_query($query);
         self::assertSame($expected, $lookup->getQueryString());
     }
 }

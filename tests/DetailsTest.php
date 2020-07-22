@@ -14,7 +14,11 @@ namespace maxh\Nominatim\Tests;
 use maxh\Nominatim\Exceptions\InvalidParameterException;
 use PHPUnit\Framework\TestCase;
 
-class DetailsTest extends TestCase
+/**
+ * @internal
+ * @coversDefaultClass \maxh\Nominatim\Details
+ */
+final class DetailsTest extends TestCase
 {
     protected $url = 'http://nominatim.openstreetmap.org/';
 
@@ -35,22 +39,27 @@ class DetailsTest extends TestCase
 
     /**
      * Details for place with id 1234.
+     *
+     * @covers ::getQuery
+     * @covers ::getQueryString
+     * @covers ::placeId
      */
     public function testPlaceId(): void
     {
         /** @var \maxh\Nominatim\Details $details */
         $details = $this->nominatim->newDetails()
-            ->placeId(1234);
+            ->placeId(1234)
+        ;
 
         $expected = [
-            'format'   => 'json',
+            'format' => 'json',
             'place_id' => 1234,
         ];
 
         $query = $details->getQuery();
         self::assertSame($expected, $query);
 
-        $expected = \http_build_query($query);
+        $expected = http_build_query($query);
         self::assertSame($expected, $details->getQueryString());
     }
 
@@ -59,27 +68,30 @@ class DetailsTest extends TestCase
      *
      * @dataProvider osmIdProvider
      *
-     * @param string $osmType
-     * @param int    $osmId
-     *
      * @throws InvalidParameterException
+     *
+     * @covers ::getQuery
+     * @covers ::getQueryString
+     * @covers ::osmId
+     * @covers ::osmType
      */
-    public function testOsmId($osmType, $osmId): void
+    public function testOsmId(string $osmType, int $osmId): void
     {
         $details = $this->nominatim->newDetails()
             ->osmType($osmType)
-            ->osmId($osmId);
+            ->osmId($osmId)
+        ;
 
         $expected = [
-            'format'  => 'json',
+            'format' => 'json',
             'osmtype' => $osmType,
-            'osmid'   => $osmId,
+            'osmid' => $osmId,
         ];
 
         $query = $details->getQuery();
         self::assertSame($expected, $query);
 
-        $expected = \http_build_query($query);
+        $expected = http_build_query($query);
         self::assertSame($expected, $details->getQueryString());
     }
 

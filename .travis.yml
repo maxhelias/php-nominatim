@@ -3,11 +3,6 @@ language: php
 ## Run on container environment
 sudo: false
 
-## Cache composer
-cache:
-    directories:
-        - $HOME/.composer/cache
-
 env:
     - COMPOSER_DISABLE_XDEBUG_WARN=1
 
@@ -23,8 +18,8 @@ install:
     - composer install --prefer-dist
 
 script:
-    - vendor/bin/phpcs --standard=PSR2 src/
-    - phpunit --coverage-clover=coverage.clover
+    - vendor/bin/php-cs-fixer fix --dry-run --diff --config=.php_cs
+    - vendor/bin/phpunit --coverage-clover=coverage.clover
 
 after_script:
     - wget https://scrutinizer-ci.com/ocular.phar
