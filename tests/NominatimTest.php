@@ -18,12 +18,21 @@ use maxh\Nominatim\Reverse;
 use maxh\Nominatim\Search;
 use PHPUnit\Framework\TestCase;
 
-class NominatimTest extends TestCase
+/**
+ * @internal
+ * @coversDefaultClass \maxh\Nominatim\Nominatim
+ */
+final class NominatimTest extends TestCase
 {
     protected $url = 'http://nominatim.openstreetmap.org/';
 
     /**
      * @throws \maxh\Nominatim\Exceptions\NominatimException
+     *
+     * @covers ::newDetails
+     * @covers ::newLookup
+     * @covers ::newReverse
+     * @covers ::newSearch
      */
     public function testNominatimFactory(): void
     {

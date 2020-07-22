@@ -16,20 +16,11 @@ $finder = PhpCsFixer\Finder::create()
 return PhpCsFixer\Config::create()
     ->setRiskyAllowed(true)
     ->setRules([
-        '@Symfony' => true,
-        '@Symfony:risky' => true,
-        'array_syntax' => [
-            'syntax' => 'short'
-        ],
-        'combine_consecutive_unsets' => true,
-        '@PHP70Migration:risky' => true,
-        '@PHP71Migration' => true,
-        'binary_operator_spaces' => [
-            'align_equals' => false,
-            'align_double_arrow' => true
-        ],
-        'combine_consecutive_unsets' => true,
-        'declare_strict_types' => true,
+        '@PhpCsFixer' => true,
+        '@PhpCsFixer:risky' => true,
+        '@PHP73Migration' => true,
+        '@PHP71Migration:risky' => true,
+        'date_time_immutable' => true,
         'general_phpdoc_annotation_remove' => [
             'annotations' => [
                 'expectedException',
@@ -37,33 +28,21 @@ return PhpCsFixer\Config::create()
                 'expectedExceptionMessageRegExp'
             ]
         ],
+        'global_namespace_import' => true,
         'header_comment' => [
             'commentType' => 'PHPDoc',
             'header' => $header,
             'location' => 'after_declare_strict'
         ],
-        'is_null' => [
-            'use_yoda_style' => true
-        ],
         'linebreak_after_opening_tag' => true,
+        'list_syntax' => ['syntax' => 'short'],
         'mb_str_functions' => true,
-        'native_function_invocation' => true,
-        'no_multiline_whitespace_before_semicolons' => true,
-        'no_php4_constructor' => true,
-        'no_unreachable_default_argument_value' => true,
-        'no_useless_else' => true,
-        'no_useless_return' => true,
-        'ordered_imports' => true,
+        'nullable_type_declaration_for_default_null_value' => true,
+        'ordered_interfaces' => true,
         'php_unit_strict' => false,
-        'phpdoc_order' => true,
-        'semicolon_after_instruction' => true,
+        'phpdoc_line_span' => true,
+        'self_static_accessor' => true,
         'simplified_null_return' => true,
-        'strict_comparison' => true,
-        'strict_param' => true,
-        'concat_space' => [
-            'spacing' => 'one'
-        ],
-        'trailing_comma_in_multiline_array' => true
     ])
     ->setFinder($finder)
     ->setCacheFile(__DIR__.'/.php_cs.cache');

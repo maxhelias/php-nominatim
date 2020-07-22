@@ -78,11 +78,11 @@ abstract class Query implements QueryInterface
      *
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if format is not supported
      *
-     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
+     * @return \maxh\Nominatim\Details|\maxh\Nominatim\Lookup|\maxh\Nominatim\Reverse|\maxh\Nominatim\Search
      */
-    public function format(string $format): self
+    final public function format(string $format): self
     {
-        $format = \mb_strtolower($format);
+        $format = mb_strtolower($format);
 
         if (\in_array($format, $this->acceptedFormat, true)) {
             $this->setFormat($format);
@@ -103,9 +103,9 @@ abstract class Query implements QueryInterface
      *                         specified in the "Accept-Language" HTTP header. Either uses standard rfc2616
      *                         accept-language string or a simple comma separated list of language codes.
      *
-     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
+     * @return \maxh\Nominatim\Details|\maxh\Nominatim\Lookup|\maxh\Nominatim\Reverse|\maxh\Nominatim\Search
      */
-    public function language(string $language): self
+    final public function language(string $language): self
     {
         $this->query['accept-language'] = $language;
 
@@ -115,7 +115,7 @@ abstract class Query implements QueryInterface
     /**
      * Include a breakdown of the address into elements.
      *
-     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
+     * @return \maxh\Nominatim\Details|\maxh\Nominatim\Lookup|\maxh\Nominatim\Reverse|\maxh\Nominatim\Search
      */
     public function addressDetails(bool $details = true): self
     {
@@ -131,7 +131,7 @@ abstract class Query implements QueryInterface
      *
      * @param string $email Address mail
      *
-     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
+     * @return \maxh\Nominatim\Details|\maxh\Nominatim\Lookup|\maxh\Nominatim\Reverse|\maxh\Nominatim\Search
      */
     public function email(string $email): self
     {
@@ -145,12 +145,12 @@ abstract class Query implements QueryInterface
      *
      * @throws \maxh\Nominatim\Exceptions\InvalidParameterException if polygon format is not supported
      *
-     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Query
+     * @return \maxh\Nominatim\Details|\maxh\Nominatim\Query|\maxh\Nominatim\Reverse|\maxh\Nominatim\Search
      */
     public function polygon(string $polygon)
     {
         if (\in_array($polygon, $this->polygon, true)) {
-            $this->query['polygon_' . $polygon] = '1';
+            $this->query['polygon_'.$polygon] = '1';
 
             return $this;
         }
@@ -161,7 +161,7 @@ abstract class Query implements QueryInterface
     /**
      * Include additional information in the result if available.
      *
-     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
+     * @return \maxh\Nominatim\Details|\maxh\Nominatim\Lookup|\maxh\Nominatim\Reverse|\maxh\Nominatim\Search
      */
     public function extraTags(bool $tags = true): self
     {
@@ -174,7 +174,7 @@ abstract class Query implements QueryInterface
      * Include a list of alternative names in the results.
      * These may include language variants, references, operator and brand.
      *
-     * @return \maxh\Nominatim\Search|\maxh\Nominatim\Reverse|\maxh\Nominatim\Lookup
+     * @return \maxh\Nominatim\Details|\maxh\Nominatim\Lookup|\maxh\Nominatim\Reverse|\maxh\Nominatim\Search
      */
     public function nameDetails(bool $details = true): self
     {
@@ -188,7 +188,7 @@ abstract class Query implements QueryInterface
      */
     public function getQueryString(): string
     {
-        return \http_build_query($this->query);
+        return http_build_query($this->query);
     }
 
     // -- Getters & Setters ----------------------------------------------------
@@ -196,7 +196,7 @@ abstract class Query implements QueryInterface
     /**
      * Get path.
      */
-    public function getPath(): string
+    final public function getPath(): string
     {
         return $this->path;
     }
@@ -204,7 +204,7 @@ abstract class Query implements QueryInterface
     /**
      * Get query.
      */
-    public function getQuery(): array
+    final public function getQuery(): array
     {
         return $this->query;
     }
@@ -212,7 +212,7 @@ abstract class Query implements QueryInterface
     /**
      * Get format.
      */
-    public function getFormat(): string
+    final public function getFormat(): string
     {
         return $this->format;
     }
@@ -222,7 +222,7 @@ abstract class Query implements QueryInterface
      *
      * @param string $path Name's path of the service
      */
-    protected function setPath(string $path)
+    protected function setPath(string $path): void
     {
         $this->path = $path;
     }
@@ -232,7 +232,7 @@ abstract class Query implements QueryInterface
      *
      * @param array $query Parameter of the query
      */
-    protected function setQuery(array &$query = [])
+    protected function setQuery(array &$query = []): void
     {
         $this->query = $query;
     }
@@ -242,7 +242,7 @@ abstract class Query implements QueryInterface
      *
      * @param string $format Format returning by the response
      */
-    protected function setFormat(string $format)
+    protected function setFormat(string $format): void
     {
         $this->format = $this->query['format'] = $format;
     }

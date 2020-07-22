@@ -25,32 +25,34 @@ try {
     //Details by placeid
     $details = $instance->newDetails()
         ->placeId(235563716)
-        ->polygon('geojson');
+        ->polygon('geojson')
+    ;
 
     $result = $instance->find($details);
 
     echo "Details by place_id\n";
-    echo 'URL : ' . $url . $details->getPath() . '?' . $details->getQueryString() . "\n";
+    echo 'URL : '.$url.$details->getPath().'?'.$details->getQueryString()."\n";
 
-    \var_dump($result);
+    var_dump($result);
 
     //Details by osm type and osm id
     $details = $instance->newDetails()
-        ->osmId(Consts\OsmTypes::RELATIVE, 2555133);
+        ->osmId(Consts\OsmTypes::RELATIVE, 2555133)
+    ;
 
     $result = $instance->find($details);
 
     echo "Details by osm type and osm id\n";
-    echo 'URL : ' . $url . $details->getPath() . '?' . $details->getQueryString() . "\n";
+    echo 'URL : '.$url.$details->getPath().'?'.$details->getQueryString()."\n";
 
-    \var_dump($result);
+    var_dump($result);
 } catch (\maxh\Nominatim\Exceptions\InvalidParameterException $e) {
     // If you set invalid parameter in instance
-    \var_dump($e->getMessage());
+    var_dump($e->getMessage());
 } catch (\GuzzleHttp\Exception\ClientException $e) {
     // If you have any exceptions with Guzzle
-    \var_dump($e->getMessage());
+    var_dump($e->getMessage());
 } catch (\maxh\Nominatim\Exceptions\NominatimException $e) {
     // If you set a wrong instance of Nominatim
-    \var_dump($e->getMessage());
+    var_dump($e->getMessage());
 }
