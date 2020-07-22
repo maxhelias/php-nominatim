@@ -20,9 +20,6 @@ coding_style:
                 size: 4
             switch:
                 indent_case: true
-        spaces:
-            around_operators:
-                concatenation: true
 
 build:
     environment:
