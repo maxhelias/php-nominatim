@@ -14,8 +14,6 @@ parameters:
           - /^src\/(.*)/
           - /^tests\/(.*)/
         encoding: ~
-        ignore_patterns:
-          - /^docs\/(.*)/
         sniffs: []
         triggered_by: [php]
       phpcsfixer2:

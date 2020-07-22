@@ -15,8 +15,6 @@ A simple interface to OSM Nominatim.
 
 See [Nominatim documentation](http://wiki.openstreetmap.org/wiki/Nominatim) for info on the service.
 
-See the [PhpDoc](https://maxhelias.github.io/php-nominatim/) of the project.
-
 Installation
 ------------
 

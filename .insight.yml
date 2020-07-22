@@ -1,5 +1,4 @@
 global_exclude_dirs:
-    - docs
     - examples
     - vendor
     

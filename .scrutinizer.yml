@@ -1,7 +1,6 @@
 filter:
     paths: [src/*]
     excluded_paths:
-        - 'docs/*'
         - 'examples/*'
         - 'tests/*'
         - 'vendor/*'

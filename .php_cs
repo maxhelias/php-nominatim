@@ -8,7 +8,6 @@ with this source code in the file LICENSE.
 EOF;
 
 $finder = PhpCsFixer\Finder::create()
-    ->exclude(__DIR__ . '/docs')
     ->in(__DIR__ . '/examples')
     ->in(__DIR__ . '/src')
     ->in(__DIR__ . '/tests')
