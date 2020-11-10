@@ -100,7 +100,7 @@ class Nominatim
                 'connection_timeout' => 5,
             ]);
         } elseif ($http_client instanceof Client) {
-            $application_url_client = $http_client->getConfig('base_uri');
+            $application_url_client = (string)$http_client->getConfig('base_uri');
 
             if (empty($application_url_client)) {
                 throw new NominatimException('http_client must have a configured base_uri.');
