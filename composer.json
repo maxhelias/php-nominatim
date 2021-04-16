@@ -1,5 +1,5 @@
 {
-    "name": "maxh/php-nominatim",
+    "name": "tvswe/php-nominatim",
     "type": "library",
     "description": "Wrapper for Nominatim API",
     "keywords": ["geo", "geolocation", "open street map", "osm", "nominatim", "web service"],
@@ -7,16 +7,16 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "Maxime Helias",
-            "email": "maximehelias16@gmail.com",
-            "homepage": "http://maximehelias.com",
+            "name": "Tino Vogel",
+            "email": "tv.swe@gmx.de",
+            "homepage": "https://tvswe.eu",
             "role": "Developer"
         }
     ],
     "require": {
         "php": ">=7.2",
         "ext-mbstring": "*",
-        "guzzlehttp/guzzle": "@stable"
+        "guzzlehttp/guzzle": "5.3.4"
     },
     "require-dev": {
         "phpunit/phpunit": "8.5.*|9.2.*",
