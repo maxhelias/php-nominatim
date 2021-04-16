@@ -12,9 +12,9 @@ declare(strict_types=1);
 namespace maxh\Nominatim;
 
 use GuzzleHttp\Client;
-use GuzzleHttp\Psr7\Request;
+use GuzzleHttp\Message\Request;
 use maxh\Nominatim\Exceptions\NominatimException;
-use Psr\Http\Message\ResponseInterface;
+use GuzzleHttp\Message\ResponseInterface;
 use RuntimeException;
 use SimpleXMLElement;
 
@@ -179,17 +179,12 @@ class Nominatim
     {
         $url = $this->application_url.'/'.$nRequest->getPath().'?';
         $request = new Request('GET', $url, array_merge($this->defaultHeaders, $headers));
-
-        //Convert the query array to string with space replace to +
-        $query = \GuzzleHttp\Psr7\build_query($nRequest->getQuery(), PHP_QUERY_RFC1738);
-
-        $url = $request->getUri()->withQuery($query);
-        $request = $request->withUri($url);
+        $request->setQuery($nRequest->getQuery());
 
         return $this->decodeResponse(
             $nRequest->getFormat(),
             $request,
-            $this->http_client->send($request)
+            $this->http_client->get('https://nominatim.openstreetmap.org/search?format=json&q=Gutenbergstra%C3%9Fe%205,%2048282%20Emsdetten')
         );
     }
 
@@ -216,6 +211,7 @@ class Nominatim
     private function decodeResponse(string $format, Request $request, ResponseInterface $response)
     {
         if ('json' === $format || 'jsonv2' === $format || 'geojson' === $format || 'geocodejson' === $format) {
+            dump($format, $request, $response, (string)$response->getBody()->getContents(), $this->http_client); exit;
             return json_decode($response->getBody()->getContents(), true);
         }
 
