@@ -13,6 +13,7 @@ namespace maxh\Nominatim;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Message\Request;
+use GuzzleHttp\Message\RequestInterface;
 use maxh\Nominatim\Exceptions\NominatimException;
 use GuzzleHttp\Message\ResponseInterface;
 use RuntimeException;
@@ -177,15 +178,14 @@ class Nominatim
      */
     public function find(QueryInterface $nRequest, array $headers = [])
     {
-        $url = $this->application_url.'/'.$nRequest->getPath().'?';
-        $request = new Request('GET', $url, array_merge($this->defaultHeaders, $headers));
-        $request->setQuery($nRequest->getQuery());
+        $url = $this->application_url.'/'.$nRequest->getPath();
+        $request = $this->http_client->createRequest('GET', $url, [
+            'headers' => array_merge($this->defaultHeaders, $headers),
+            'query' => $nRequest->getQuery()
+        ]);
+        $response = $this->http_client->send($request);
 
-        return $this->decodeResponse(
-            $nRequest->getFormat(),
-            $request,
-            $this->http_client->get('https://nominatim.openstreetmap.org/search?format=json&q=Gutenbergstra%C3%9Fe%205,%2048282%20Emsdetten')
-        );
+        return $this->decodeResponse($nRequest->getFormat(), $request, $response);
     }
 
     /**
@@ -208,10 +208,9 @@ class Nominatim
      *
      * @return array|SimpleXMLElement
      */
-    private function decodeResponse(string $format, Request $request, ResponseInterface $response)
+    private function decodeResponse(string $format, RequestInterface $request, ResponseInterface $response)
     {
         if ('json' === $format || 'jsonv2' === $format || 'geojson' === $format || 'geocodejson' === $format) {
-            dump($format, $request, $response, (string)$response->getBody()->getContents(), $this->http_client); exit;
             return json_decode($response->getBody()->getContents(), true);
         }
 
