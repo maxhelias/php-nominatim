@@ -44,7 +44,7 @@ class NominatimException extends Exception
      * Constructor.
      *
      * @param string                 $message  Message of this exception
-     * @param RequestInterface       $request  The request instance
+     * @param null|RequestInterface  $request  The request instance
      * @param null|ResponseInterface $response The response of the request
      * @param null|Exception         $previous Exception object
      */
@@ -74,7 +74,7 @@ class NominatimException extends Exception
     /**
      * Return the Response.
      *
-     * @return PromiseInterface|ResponseInterface
+     * @return ResponseInterface
      */
     public function getResponse()
     {

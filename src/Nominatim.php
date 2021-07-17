@@ -14,6 +14,7 @@ namespace maxh\Nominatim;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Request;
 use maxh\Nominatim\Exceptions\NominatimException;
+use Psr\Http\Message\RequestInterface;
 use Psr\Http\Message\ResponseInterface;
 use RuntimeException;
 use SimpleXMLElement;
@@ -100,7 +101,7 @@ class Nominatim
                 'connection_timeout' => 5,
             ]);
         } elseif ($http_client instanceof Client) {
-            $application_url_client = (string)$http_client->getConfig('base_uri');
+            $application_url_client = (string) $http_client->getConfig('base_uri');
 
             if (empty($application_url_client)) {
                 throw new NominatimException('http_client must have a configured base_uri.');
@@ -181,7 +182,11 @@ class Nominatim
         $request = new Request('GET', $url, array_merge($this->defaultHeaders, $headers));
 
         //Convert the query array to string with space replace to +
-        $query = \GuzzleHttp\Psr7\build_query($nRequest->getQuery(), PHP_QUERY_RFC1738);
+        if (method_exists(\GuzzleHttp\Psr7\Query::class, 'build')) {
+            $query = \GuzzleHttp\Psr7\Query::build($nRequest->getQuery(), PHP_QUERY_RFC1738);
+        } else {
+            $query = \GuzzleHttp\Psr7\build_query($nRequest->getQuery(), PHP_QUERY_RFC1738);
+        }
 
         $url = $request->getUri()->withQuery($query);
         $request = $request->withUri($url);
@@ -205,7 +210,7 @@ class Nominatim
      * Decode the data returned from the request.
      *
      * @param string            $format   json or xml
-     * @param Request           $request  Request object from Guzzle
+     * @param RequestInterface  $request  Request object from Guzzle
      * @param ResponseInterface $response Interface response object from Guzzle
      *
      * @throws RuntimeException
@@ -213,7 +218,7 @@ class Nominatim
      *
      * @return array|SimpleXMLElement
      */
-    private function decodeResponse(string $format, Request $request, ResponseInterface $response)
+    private function decodeResponse(string $format, RequestInterface $request, ResponseInterface $response)
     {
         if ('json' === $format || 'jsonv2' === $format || 'geojson' === $format || 'geocodejson' === $format) {
             return json_decode($response->getBody()->getContents(), true);
