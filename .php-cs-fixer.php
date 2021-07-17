@@ -7,19 +7,19 @@ This source file is subject to the MIT license that is bundled
 with this source code in the file LICENSE.
 EOF;
 
-$finder = PhpCsFixer\Finder::create()
+$finder = (new PhpCsFixer\Finder())
     ->in(__DIR__ . '/examples')
     ->in(__DIR__ . '/src')
     ->in(__DIR__ . '/tests')
 ;
 
-return PhpCsFixer\Config::create()
+return (new PhpCsFixer\Config())
     ->setRiskyAllowed(true)
     ->setRules([
         '@PhpCsFixer' => true,
         '@PhpCsFixer:risky' => true,
-        '@PHP73Migration' => true,
-        '@PHP71Migration:risky' => true,
+        '@PHP74Migration:risky' => true,
+        '@PHPUnit84Migration:risky' => true,
         'date_time_immutable' => true,
         'general_phpdoc_annotation_remove' => [
             'annotations' => [
@@ -30,7 +30,7 @@ return PhpCsFixer\Config::create()
         ],
         'global_namespace_import' => true,
         'header_comment' => [
-            'commentType' => 'PHPDoc',
+            'comment_type' => 'PHPDoc',
             'header' => $header,
             'location' => 'after_declare_strict'
         ],

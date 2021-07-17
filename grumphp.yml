@@ -1,20 +1,11 @@
-parameters:
-    git_dir: .
-    bin_dir: vendor/bin
+grumphp:
     tasks:
-      composer:
-        file: ./composer.json
-        no_check_all: true
-        no_check_lock: true
-        strict: true
-      phpcsfixer2:
-        cache_file: .php_cs.cache
-        config: .php_cs
-      phpunit:
-        config_file: ~
-        testsuite: ~
-        group: []
-        always_execute: false
-    ascii:
-      failed: ~
-      succeeded: ~
+        composer:
+            no_check_all: true
+            no_check_lock: true
+            no_check_publish: true
+            no_local_repository: true
+            strict: true
+        phpcsfixer:
+            config: .php-cs-fixer.php
+        phpunit: ~
