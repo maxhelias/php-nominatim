@@ -11,7 +11,6 @@ declare(strict_types=1);
 
 require '../vendor/autoload.php';
 
-use maxh\Nominatim\Consts;
 use maxh\Nominatim\Nominatim;
 
 //URL Server
@@ -31,18 +30,6 @@ try {
     $result = $instance->find($details);
 
     echo "Details by place_id\n";
-    echo 'URL : '.$url.$details->getPath().'?'.$details->getQueryString()."\n";
-
-    var_dump($result);
-
-    //Details by osm type and osm id
-    $details = $instance->newDetails()
-        ->osmId(Consts\OsmTypes::RELATIVE, 2555133)
-    ;
-
-    $result = $instance->find($details);
-
-    echo "Details by osm type and osm id\n";
     echo 'URL : '.$url.$details->getPath().'?'.$details->getQueryString()."\n";
 
     var_dump($result);

@@ -1,24 +1,22 @@
 language: php
 
-## Run on container environment
-sudo: false
+git:
+    depth: 2
 
 env:
     - COMPOSER_DISABLE_XDEBUG_WARN=1
 
 php:
-    - 7.2
     - 7.3
     - 7.4
-
-before_install:
-    - composer self-update
+    - 8.0
+    - nightly
 
 install:
-    - composer install --prefer-dist
+    - composer install --prefer-dist --no-interaction --optimize-autoloader --no-progress
 
 script:
-    - vendor/bin/php-cs-fixer fix --dry-run --diff --config=.php_cs
+    - vendor/bin/php-cs-fixer fix --dry-run --diff
     - vendor/bin/phpunit --coverage-clover=coverage.clover
 
 after_script:

@@ -2,7 +2,7 @@ Wrapper Nominatim API
 ================
 
 [![Latest Stable Version](https://poser.pugx.org/maxh/php-nominatim/v/stable)](https://packagist.org/packages/maxh/php-nominatim)
-[![Build Status](https://travis-ci.org/maxhelias/php-nominatim.svg?branch=master)](https://travis-ci.org/maxhelias/php-nominatim)
+[![Build Status](https://travis-ci.com/maxhelias/php-nominatim.svg?branch=master)](https://travis-ci.com/maxhelias/php-nominatim)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/maxhelias/php-nominatim/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/maxhelias/php-nominatim/?branch=master)
 [![Total Downloads](https://poser.pugx.org/maxh/php-nominatim/downloads)](https://packagist.org/packages/maxh/php-nominatim)
 [![MIT licensed](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/maxhelias/php-nominatim/blob/master/LICENSE)
